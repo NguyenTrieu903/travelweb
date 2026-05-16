@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaigonTeam – Dịch Vụ & Sự Kiện</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+:root{--or:#E85D04;--or2:#C44B00;--or3:#FF8C42;--nv:#1B2A4A;--nv2:#243660;--gd:#FFB703;--cr:#FFF8F0;--gy:#F4F6F9;--tx:#2D2D2D;--tl:#6B7280;--wh:#FFFFFF}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--tx);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{text-decoration:none}
+
+/* UTILS */
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.sec{padding:96px 0}
+.sec-tag{display:inline-block;background:rgba(232,93,4,.12);color:var(--or);font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:7px 18px;border-radius:30px;margin-bottom:14px}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;color:var(--nv);line-height:1.2;margin-bottom:14px}
+.sec-sub{font-size:.95rem;color:var(--tl);max-width:580px;margin:0 auto;line-height:1.8}
+.sec-head{text-align:center;margin-bottom:60px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 30px;border-radius:50px;font-weight:700;font-size:.9rem;letter-spacing:.4px;cursor:pointer;transition:all .3s;border:none}
+.btn-pr{background:var(--or);color:#fff}
+.btn-pr:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,93,4,.35)}
+.btn-ol{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
+.btn-ol:hover{background:#fff;color:var(--or);transform:translateY(-2px)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+/* NAV */
+#nav{position:fixed;top:0;width:100%;z-index:900;padding:18px 0;transition:all .35s}
+#nav.solid{background:rgba(27,42,74,.96);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.2)}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-ico{width:44px;height:44px;flex-shrink:0}
+.logo-nm{font-weight:900;font-size:1.15rem;color:#fff;letter-spacing:.5px;line-height:1}
+.logo-sl{font-size:.58rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
+.nav-ul{list-style:none;display:flex;gap:32px;align-items:center}
+.nav-ul a{color:rgba(255,255,255,.82);font-size:.875rem;font-weight:500;position:relative;transition:color .3s}
+.nav-ul a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
+.nav-ul a:hover{color:#fff}
+.nav-ul a:hover::after{width:100%}
+.nav-cta{background:var(--or)!important;color:#fff!important;padding:10px 22px;border-radius:30px}
+.nav-cta:hover{background:var(--or2)!important;box-shadow:0 5px 16px rgba(232,93,4,.4)}
+.nav-cta::after{display:none!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hbg span{display:block;width:24px;height:2px;background:#fff;transition:all .3s;border-radius:2px}
+
+/* MOBILE NAV */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;opacity:0;visibility:hidden;transition:all .3s}
+.overlay.on{opacity:1;visibility:visible}
+.mnav{position:fixed;top:0;right:0;bottom:0;width:275px;background:var(--nv);z-index:900;padding:80px 28px 28px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.3)}
+.mnav.on{transform:translateX(0)}
+.mnav ul{list-style:none;display:flex;flex-direction:column;gap:18px}
+.mnav a{color:rgba(255,255,255,.85);font-size:1rem;font-weight:500;transition:color .3s}
+.mnav a:hover{color:var(--gd)}
+.mnav-close{position:absolute;top:20px;right:20px;background:none;border:none;color:#fff;font-size:1.4rem;cursor:pointer;padding:4px}
+
+/* HERO */
+#hero{min-height:100vh;background:linear-gradient(135deg,#0d1b35 0%,#1B2A4A 45%,#1a1040 100%);display:flex;align-items:center;position:relative;overflow:hidden}
+.hero-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 15% 75%,rgba(232,93,4,.18) 0%,transparent 55%),radial-gradient(ellipse at 85% 20%,rgba(255,183,3,.1) 0%,transparent 50%)}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;padding:100px 0 60px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(255,183,3,.15);border:1px solid rgba(255,183,3,.3);color:var(--gd);padding:7px 16px;border-radius:30px;font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px;animation:fdDown .8s ease both}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:700;color:#fff;line-height:1.15;margin-bottom:18px;animation:fdLeft .8s ease .2s both}
+.hero-h1 span{color:var(--or3)}
+.hero-p{font-size:1rem;color:rgba(255,255,255,.75);line-height:1.85;margin-bottom:32px;animation:fdLeft .8s ease .4s both}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;animation:fdLeft .8s ease .6s both}
+.hero-vis{position:relative;animation:fdRight .8s ease .3s both}
+.hero-card{background:rgba(255,255,255,.07);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:24px}
+.hero-img{height:260px;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,var(--or),var(--gd));margin-bottom:18px;position:relative}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(0,0,0,.35))}
+.hero-img-label{position:absolute;bottom:14px;left:14px;color:#fff;font-size:.75rem;font-weight:700;letter-spacing:1px;z-index:2}
+.hero-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.hero-st{text-align:center;padding:10px;background:rgba(255,255,255,.06);border-radius:10px}
+.hero-sn{font-size:1.5rem;font-weight:900;color:var(--or3)}
+.hero-sl{font-size:.65rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1px}
+.float-card{position:absolute;background:#fff;border-radius:14px;padding:11px 15px;box-shadow:0 12px 40px rgba(0,0,0,.18);display:flex;align-items:center;gap:10px}
+.float-card.tl{top:-18px;left:-28px;animation:bob 3s ease-in-out infinite}
+.float-card.br{bottom:55px;right:-28px;animation:bob 3s ease-in-out infinite 1.5s}
+.fc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.fc-ico.a{background:rgba(232,93,4,.12);color:var(--or)}
+.fc-ico.b{background:rgba(27,42,74,.1);color:var(--nv)}
+.fc-main{font-size:.95rem;font-weight:800;color:var(--nv);line-height:1}
+.fc-sub{font-size:.68rem;color:var(--tl)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.4);animation:bob 2s ease-in-out infinite}
+.scroll-hint span{display:block;font-size:.65rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+
+/* ABOUT */
+#about{padding:96px 0;background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.about-vis{position:relative}
+.about-main{height:440px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--nv),var(--nv2))}
+.about-main img{width:100%;height:100%;object-fit:cover}
+.about-acc{position:absolute;bottom:-28px;right:-28px;width:170px;height:170px;border-radius:14px;overflow:hidden;border:5px solid #fff;box-shadow:0 10px 36px rgba(0,0,0,.14);background:linear-gradient(135deg,var(--or),var(--gd))}
+.about-acc img{width:100%;height:100%;object-fit:cover}
+.about-yr{position:absolute;top:28px;left:-18px;background:var(--or);color:#fff;padding:14px 18px;border-radius:14px;text-align:center;box-shadow:0 10px 28px rgba(232,93,4,.4)}
+.about-yn{font-size:2.2rem;font-weight:900;line-height:1}
+.about-yt{font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
+.info-list{display:flex;flex-direction:column;gap:14px;margin:26px 0}
+.info-row{display:flex;align-items:flex-start;gap:13px}
+.info-ico{width:40px;height:40px;background:rgba(232,93,4,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:.95rem;flex-shrink:0}
+.info-tx strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--tl);margin-bottom:2px}
+.info-tx span{font-size:.9rem;font-weight:500;color:var(--tx);line-height:1.5}
+.hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.hl{padding:13px 15px;background:var(--gy);border-radius:10px;border-left:3px solid var(--or);display:flex;align-items:center;gap:9px}
+.hl i{color:var(--or);font-size:.85rem}
+.hl span{font-size:.82rem;font-weight:600;color:var(--nv)}
+
+/* SERVICES */
+#services{padding:96px 0;background:var(--cr)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.srv{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 3px 18px rgba(0,0,0,.06);transition:all .4s;cursor:default}
+.srv:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.12)}
+.srv-top{height:190px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.srv-top i{font-size:3.5rem;color:rgba(255,255,255,.9);position:relative;z-index:2}
+.srv-top::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.15))}
+.g1{background:linear-gradient(135deg,#E85D04,#FF8C42)}
+.g2{background:linear-gradient(135deg,#1B2A4A,#2D4080)}
+.g3{background:linear-gradient(135deg,#FFB703,#FB8500)}
+.g4{background:linear-gradient(135deg,#219EBC,#023047)}
+.g5{background:linear-gradient(135deg,#7C3AED,#3730A3)}
+.g6{background:linear-gradient(135deg,#059669,#0D9488)}
+.srv-body{padding:22px}
+.srv-ttl{font-size:1.05rem;font-weight:700;color:var(--nv);margin-bottom:9px}
+.srv-dsc{font-size:.82rem;color:var(--tl);line-height:1.75;margin-bottom:13px}
+.srv-tags{display:flex;flex-wrap:wrap;gap:5px}
+.srv-tag{padding:3px 10px;background:rgba(232,93,4,.09);color:var(--or);border-radius:20px;font-size:.72rem;font-weight:600}
+.srv-hot{position:absolute;top:14px;right:14px;background:var(--gd);color:var(--nv);font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:20px;z-index:3;letter-spacing:.5px}
+
+/* STATS */
+#stats{padding:80px 0;background:var(--nv);position:relative;overflow:hidden}
+#stats::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 50%,rgba(232,93,4,.2),transparent 50%),radial-gradient(circle at 85% 50%,rgba(255,183,3,.1),transparent 50%)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
+.stat{text-align:center;padding:28px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s}
+.stat:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
+.stat-ic{font-size:1.9rem;color:var(--or);margin-bottom:14px}
+.stat-n{font-size:2.8rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px}
+.stat-n span{color:var(--gd)}
+.stat-l{font-size:.75rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px}
+
+/* WHY */
+#why{padding:96px 0;background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.why-card{padding:30px 22px;border-radius:18px;background:var(--gy);transition:all .35s;text-align:center}
+.why-card:hover{background:var(--nv);transform:translateY(-6px);box-shadow:0 16px 44px rgba(27,42,74,.2)}
+.why-card:hover .why-ico{background:rgba(232,93,4,.2);color:var(--or3)}
+.why-card:hover .why-ttl{color:#fff}
+.why-card:hover .why-dsc{color:rgba(255,255,255,.65)}
+.why-ico{width:60px;height:60px;border-radius:16px;background:rgba(232,93,4,.1);color:var(--or);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 18px;transition:all .35s}
+.why-ttl{font-size:1rem;font-weight:700;color:var(--nv);margin-bottom:10px;transition:color .35s}
+.why-dsc{font-size:.82rem;color:var(--tl);line-height:1.75;transition:color .35s}
+
+/* PARTNERS */
+#partners{padding:80px 0;background:var(--cr)}
+.marq-wrap{overflow:hidden;position:relative;margin-top:0}
+.marq-wrap::before,.marq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
+.marq-wrap::before{left:0;background:linear-gradient(to right,var(--cr),transparent)}
+.marq-wrap::after{right:0;background:linear-gradient(to left,var(--cr),transparent)}
+.marq-track{display:flex;gap:18px;width:max-content;animation:marq 32s linear infinite}
+.marq-track:hover{animation-play-state:paused}
+.p-logo{display:flex;align-items:center;justify-content:center;width:175px;height:72px;background:#fff;border-radius:12px;border:1.5px solid #e8eaf0;font-weight:700;font-size:.8rem;color:var(--nv);letter-spacing:.5px;flex-shrink:0;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+.p-logo:hover{background:var(--nv);color:#fff;border-color:var(--nv)}
+
+/* LANGUAGES */
+#languages{padding:80px 0;background:#fff}
+.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.lang-card{background:var(--gy);border-radius:16px;padding:28px 20px;text-align:center;transition:all .35s;border:2px solid transparent}
+.lang-card:hover{transform:translateY(-5px);border-color:var(--or);box-shadow:0 12px 36px rgba(232,93,4,.12)}
+.lang-card.main{border-color:var(--or);background:rgba(232,93,4,.05)}
+.lang-flag{font-size:2.8rem;margin-bottom:11px}
+.lang-nm{font-size:1rem;font-weight:700;color:var(--nv);margin-bottom:4px}
+.lang-native{font-size:.78rem;color:var(--tl)}
+
+/* CONTACT */
+#contact{padding:96px 0;background:var(--cr)}
+.ct-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px}
+.ct-items{display:flex;flex-direction:column;gap:22px;margin:28px 0}
+.ct-row{display:flex;align-items:flex-start;gap:15px}
+.ct-ico{width:48px;height:48px;background:rgba(232,93,4,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:1.05rem;flex-shrink:0}
+.ct-tx strong{display:block;font-size:.8rem;font-weight:700;color:var(--nv);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
+.ct-tx span,.ct-tx a{font-size:.88rem;color:var(--tl);line-height:1.6}
+.ct-tx a{color:var(--or);font-weight:600}
+.socials{display:flex;gap:10px;margin-top:26px}
+.soc{width:42px;height:42px;background:var(--gy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--nv);font-size:.95rem;transition:all .3s}
+.soc:hover{background:var(--or);color:#fff;transform:translateY(-3px)}
+.ct-form{background:#fff;border-radius:22px;padding:38px;box-shadow:0 4px 24px rgba(0,0,0,.07)}
+.form-ttl{font-size:1.3rem;font-weight:700;color:var(--nv);margin-bottom:22px}
+.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--tx);margin-bottom:5px}
+.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1.5px solid #E8EAF0;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.875rem;color:var(--tx);outline:none;transition:border-color .3s;background:#fff}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--or)}
+.fg textarea{height:110px;resize:vertical}
+.f-btn{width:100%;padding:14px;background:var(--or);color:#fff;border:none;border-radius:50px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
+.f-btn:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,93,4,.35)}
+
+/* FOOTER */
+footer{background:var(--nv);color:#fff;padding:60px 0 28px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:36px;margin-bottom:40px}
+.ft-dsc{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.85;margin:14px 0 20px}
+.ft-ttl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gd);margin-bottom:18px}
+.ft-ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-ul a{color:rgba(255,255,255,.55);font-size:.83rem;transition:all .3s}
+.ft-ul a:hover{color:#fff;padding-left:5px}
+.ft-cl{list-style:none;display:flex;flex-direction:column;gap:11px}
+.ft-cl li{display:flex;align-items:flex-start;gap:9px;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.5}
+.ft-cl li i{color:var(--or);width:13px;margin-top:1px;flex-shrink:0}
+.ft-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:rgba(255,255,255,.35)}
+
+/* FLOAT PHONE */
+.float-phone{position:fixed;bottom:32px;right:32px;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.fp-btn{width:56px;height:56px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;box-shadow:0 8px 24px rgba(232,93,4,.5);animation:pulse 2s ease-in-out infinite;cursor:pointer}
+.fp-lbl{background:#fff;color:var(--or);font-size:.75rem;font-weight:700;padding:5px 12px;border-radius:20px;box-shadow:0 4px 14px rgba(0,0,0,.12);white-space:nowrap}
+
+/* KEYFRAMES */
+@keyframes fdDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fdLeft{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes fdRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(232,93,4,.5),0 0 0 0 rgba(232,93,4,.4)}50%{box-shadow:0 8px 24px rgba(232,93,4,.5),0 0 0 14px rgba(232,93,4,0)}}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-vis{display:none}
+  .hero-grid{padding:100px 0 60px}
+  .about-grid{grid-template-columns:1fr}
+  .about-vis{display:none}
+  .srv-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
+  .ft-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-ul{display:none}
+  .hbg{display:flex}
+  .srv-grid{grid-template-columns:1fr}
+  .lang-grid{grid-template-columns:repeat(2,1fr)}
+  .ct-grid{grid-template-columns:1fr}
+  .f-row{grid-template-columns:1fr}
+  .ft-grid{grid-template-columns:1fr}
+  .ft-bot{flex-direction:column;gap:8px;text-align:center}
+  .float-phone{bottom:20px;right:20px}
+}
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="#hero" class="logo">
+        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="11" fill="#E85D04"/>
+          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="21" r="4" fill="white"/>
+        </svg>
+        <div>
+          <div class="logo-nm">SAIGONTEAM</div>
+          <div class="logo-sl">Dịch Vụ & Sự Kiện</div>
+        </div>
+      </a>
+      <ul class="nav-ul">
+        <li><a href="#about">Về Chúng Tôi</a></li>
+        <li><a href="#services">Dịch Vụ</a></li>
+        <li><a href="#partners">Đối Tác</a></li>
+        <li><a href="#languages">Ngôn Ngữ</a></li>
+        <li><a href="#contact" class="nav-cta">Liên Hệ Ngay</a></li>
+      </ul>
+      <div class="hbg" onclick="toggleNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<div class="mnav" id="mnav">
+  <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-times"></i></button>
+  <ul>
+    <li><a href="#about" onclick="toggleNav()">Về Chúng Tôi</a></li>
+    <li><a href="#services" onclick="toggleNav()">Dịch Vụ</a></li>
+    <li><a href="#partners" onclick="toggleNav()">Đối Tác</a></li>
+    <li><a href="#languages" onclick="toggleNav()">Ngôn Ngữ</a></li>
+    <li><a href="#contact" onclick="toggleNav()">Liên Hệ</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge"><i class="fas fa-map-marker-alt"></i> TP. Hồ Chí Minh · Toàn Quốc</div>
+        <h1 class="hero-h1">Trải Nghiệm <span>Việt Nam</span><br>Theo Cách Của Bạn</h1>
+        <p class="hero-p">Chuyên tổ chức tour du lịch khách đoàn &amp; lẻ, teambuilding doanh nghiệp, sự kiện đẳng cấp, cho thuê xe và bán vé máy bay toàn quốc. Hơn 5 năm kinh nghiệm, hơn 500 khách hàng tin tưởng.</p>
+        <div class="hero-btns">
+          <a href="#services" class="btn btn-pr"><i class="fas fa-compass"></i> Xem Dịch Vụ</a>
+          <a href="#contact" class="btn btn-ol"><i class="fas fa-phone"></i> Liên Hệ Ngay</a>
+        </div>
+      </div>
+
+      <div class="hero-vis">
+        <div class="float-card tl">
+          <div class="fc-ico a"><i class="fas fa-trophy"></i></div>
+          <div><div class="fc-main">Top Rated</div><div class="fc-sub">TeamBuilding HCM</div></div>
+        </div>
+
+        <div class="hero-card">
+          <div class="hero-img">
+            <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=85&fit=crop&crop=center" alt="Vietnam Travel" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FFB703)'">
+            <div class="hero-img-overlay"></div>
+            <div class="hero-img-label"><i class="fas fa-map-marked-alt"></i> Việt Nam · Khám Phá</div>
+          </div>
+          <div class="hero-row">
+            <div class="hero-st"><div class="hero-sn">500<span style="font-size:1rem">+</span></div><div class="hero-sl">Khách hàng</div></div>
+            <div class="hero-st"><div class="hero-sn">1K<span style="font-size:1rem">+</span></div><div class="hero-sl">Tour</div></div>
+            <div class="hero-st"><div class="hero-sn">5<span style="font-size:1rem">+</span></div><div class="hero-sl">Năm KN</div></div>
+          </div>
+        </div>
+
+        <div class="float-card br">
+          <div class="fc-ico b"><i class="fas fa-shield-alt"></i></div>
+          <div><div class="fc-main">Uy Tín</div><div class="fc-sub">Chất lượng đảm bảo</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="sec" style="background:#fff;padding:96px 0">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-vis reveal">
+        <div class="about-yr"><div class="about-yn">5+</div><div class="about-yt">Năm kinh nghiệm</div></div>
+        <div class="about-main">
+          <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=600&q=85&fit=crop" alt="Saigon" onerror="this.style.display='none'">
+        </div>
+        <div class="about-acc">
+          <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=300&q=80&fit=crop" alt="TeamBuilding" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="sec-tag">Về Chúng Tôi</div>
+        <h2 class="sec-title" style="text-align:left">CÔNG TY TNHH<br>DỊCH VỤ & SỰ KIỆN<br><span style="color:var(--or)">SAIGONTEAM</span></h2>
+        <p style="color:var(--tl);line-height:1.85;font-size:.9rem">Với hơn 5 năm kinh nghiệm, SaigonTeam tự hào là đối tác tin cậy của hàng trăm doanh nghiệp trong lĩnh vực du lịch, teambuilding và tổ chức sự kiện chuyên nghiệp tại TP. Hồ Chí Minh và toàn quốc.</p>
+
+        <div class="info-list">
+          <div class="info-row">
+            <div class="info-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="info-tx">
+              <strong>Địa chỉ</strong>
+              <span>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng, TP. Hồ Chí Minh</span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico"><i class="fas fa-phone-alt"></i></div>
+            <div class="info-tx">
+              <strong>Hotline</strong>
+              <span><a href="tel:0908940903" style="color:var(--or);font-weight:700">0908.940.903</a></span>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-ico"><i class="fas fa-envelope"></i></div>
+            <div class="info-tx">
+              <strong>Email</strong>
+              <span><a href="mailto:Saigonteamtravel2021@gmail.com" style="color:var(--or)">Saigonteamtravel2021@gmail.com</a></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hl-grid">
+          <div class="hl"><i class="fas fa-check-circle"></i><span>Tour khách đoàn &amp; lẻ</span></div>
+          <div class="hl"><i class="fas fa-check-circle"></i><span>TeamBuilding chuyên nghiệp</span></div>
+          <div class="hl"><i class="fas fa-check-circle"></i><span>Tổ chức sự kiện</span></div>
+          <div class="hl"><i class="fas fa-check-circle"></i><span>Cho thuê xe du lịch</span></div>
+        </div>
+
+        <div style="margin-top:28px">
+          <a href="#contact" class="btn btn-pr">Nhận Tư Vấn Miễn Phí <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" style="padding:96px 0;background:var(--cr)">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Dịch Vụ Chính</div>
+      <h2 class="sec-title">Chúng Tôi Cung Cấp</h2>
+      <p class="sec-sub">Đa dạng dịch vụ du lịch &amp; sự kiện chuyên nghiệp, đáp ứng mọi nhu cầu của doanh nghiệp và cá nhân</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv reveal">
+        <div class="srv-top g1"><i class="fas fa-route"></i></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tour Khách Đoàn &amp; Lẻ</h3>
+          <p class="srv-dsc">Thiết kế tour du lịch trong và ngoài nước cho cả đoàn lớn và khách lẻ. Chương trình đa dạng, giá cạnh tranh, hướng dẫn viên chuyên nghiệp.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Tour nội địa</span>
+            <span class="srv-tag">Tour quốc tế</span>
+            <span class="srv-tag">Theo yêu cầu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal" style="position:relative">
+        <div class="srv-top g2"><i class="fas fa-users"></i><div class="srv-hot">PHỔ BIẾN</div></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tổ Chức TeamBuilding</h3>
+          <p class="srv-dsc">Chương trình teambuilding sáng tạo, gắn kết đội nhóm hiệu quả. Phù hợp mọi quy mô từ 20 đến 5.000+ người với các hoạt động indoor &amp; outdoor.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Outdoor</span>
+            <span class="srv-tag">Indoor</span>
+            <span class="srv-tag">Hybrid</span>
+            <span class="srv-tag">Game show</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal">
+        <div class="srv-top g3"><i class="fas fa-star"></i></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tổ Chức Sự Kiện</h3>
+          <p class="srv-dsc">Lên kế hoạch và thực hiện sự kiện doanh nghiệp, gala dinner, hội nghị, triển lãm, tiệc tất niên chuyên nghiệp từ A đến Z.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Gala dinner</span>
+            <span class="srv-tag">Hội nghị</span>
+            <span class="srv-tag">Tất niên</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal">
+        <div class="srv-top g4"><i class="fas fa-bus-alt"></i></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Cho Thuê Xe Du Lịch</h3>
+          <p class="srv-dsc">Đội xe hiện đại, đa dạng từ 4 đến 45 chỗ. Tài xế kinh nghiệm, am hiểu địa bàn, cam kết đúng giờ, phục vụ 24/7.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">4–7 chỗ</span>
+            <span class="srv-tag">16–29 chỗ</span>
+            <span class="srv-tag">45 chỗ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal">
+        <div class="srv-top g5"><i class="fas fa-plane-departure"></i></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Bán Vé Máy Bay</h3>
+          <p class="srv-dsc">Đặt vé máy bay nội địa và quốc tế với giá tốt nhất thị trường. Hỗ trợ đặt vé 24/7, xuất vé nhanh, thanh toán linh hoạt.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Nội địa</span>
+            <span class="srv-tag">Quốc tế</span>
+            <span class="srv-tag">Giá tốt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal" style="background:var(--nv)">
+        <div class="srv-top g6"><i class="fas fa-headset"></i></div>
+        <div class="srv-body">
+          <h3 class="srv-ttl" style="color:#fff">Tư Vấn &amp; Hỗ Trợ 24/7</h3>
+          <p class="srv-dsc" style="color:rgba(255,255,255,.6)">Đội ngũ tư vấn nhiệt tình, chuyên nghiệp. Liên hệ ngay để được báo giá và hỗ trợ nhanh nhất.</p>
+          <a href="tel:0908940903" class="btn btn-pr" style="margin-top:8px;padding:10px 20px;font-size:.82rem">
+            <i class="fas fa-phone-alt"></i> 0908.940.903
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="stat-ic"><i class="fas fa-smile-beam"></i></div>
+        <div class="stat-n"><span class="cnt" data-t="500">0</span><span>+</span></div>
+        <div class="stat-l">Khách Hàng Hài Lòng</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-ic"><i class="fas fa-map-marked-alt"></i></div>
+        <div class="stat-n"><span class="cnt" data-t="1000">0</span><span>+</span></div>
+        <div class="stat-l">Tour Thành Công</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-ic"><i class="fas fa-calendar-check"></i></div>
+        <div class="stat-n"><span class="cnt" data-t="200">0</span><span>+</span></div>
+        <div class="stat-l">Sự Kiện Tổ Chức</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-ic"><i class="fas fa-award"></i></div>
+        <div class="stat-n"><span class="cnt" data-t="5">0</span><span>+</span></div>
+        <div class="stat-l">Năm Kinh Nghiệm</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="why" style="padding:96px 0;background:#fff">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Tại Sao Chọn Chúng Tôi</div>
+      <h2 class="sec-title">Cam Kết Của SaigonTeam</h2>
+      <p class="sec-sub">Chúng tôi không chỉ cung cấp dịch vụ — chúng tôi tạo ra những kỷ niệm đáng nhớ cho bạn và đội nhóm</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <div class="why-ico"><i class="fas fa-medal"></i></div>
+        <div class="why-ttl">Chất Lượng Hàng Đầu</div>
+        <div class="why-dsc">Đội ngũ chuyên nghiệp, có kinh nghiệm, cam kết mang đến dịch vụ tốt nhất với mức giá hợp lý.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><i class="fas fa-dollar-sign"></i></div>
+        <div class="why-ttl">Giá Cả Minh Bạch</div>
+        <div class="why-dsc">Báo giá rõ ràng, không phát sinh chi phí ẩn. Nhiều gói dịch vụ linh hoạt phù hợp mọi ngân sách.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><i class="fas fa-headset"></i></div>
+        <div class="why-ttl">Hỗ Trợ 24/7</div>
+        <div class="why-dsc">Luôn sẵn sàng hỗ trợ khách hàng bất kỳ lúc nào, đảm bảo mọi vấn đề được giải quyết kịp thời.</div>
+      </div>
+      <div class="why-card reveal">
+        <div class="why-ico"><i class="fas fa-handshake"></i></div>
+        <div class="why-ttl">Uy Tín &amp; Tin Cậy</div>
+        <div class="why-dsc">Hơn 500 khách hàng doanh nghiệp tin tưởng, trong đó có nhiều thương hiệu lớn trong và ngoài nước.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section id="partners" style="padding:80px 0;background:var(--cr)">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Đối Tác</div>
+      <h2 class="sec-title">Khách Hàng &amp; Đối Tác Tin Cậy</h2>
+      <p class="sec-sub">Tự hào đồng hành cùng các thương hiệu lớn trong và ngoài nước</p>
+    </div>
+  </div>
+  <div class="marq-wrap">
+    <div class="marq-track" id="marq">
+      <div class="p-logo">ACECOOK VN</div>
+      <div class="p-logo">SIMONE</div>
+      <div class="p-logo">QUẢNG VIỆT</div>
+      <div class="p-logo">FREEVIEW</div>
+      <div class="p-logo">FIGLA</div>
+      <div class="p-logo">SAKATA</div>
+      <div class="p-logo">BOX PAK</div>
+      <div class="p-logo">SINWAH</div>
+      <div class="p-logo">WEISHENG</div>
+      <div class="p-logo">HISA</div>
+      <div class="p-logo">HÀ GIANG</div>
+      <div class="p-logo">CƯ HƯNG II</div>
+      <div class="p-logo">KIWORD</div>
+      <div class="p-logo">AMANDA</div>
+      <div class="p-logo">TIYI GÒ VẤP</div>
+      <div class="p-logo">COOPMART</div>
+      <div class="p-logo">ACECOOK VN</div>
+      <div class="p-logo">SIMONE</div>
+      <div class="p-logo">QUẢNG VIỆT</div>
+      <div class="p-logo">FREEVIEW</div>
+      <div class="p-logo">FIGLA</div>
+      <div class="p-logo">SAKATA</div>
+      <div class="p-logo">BOX PAK</div>
+      <div class="p-logo">SINWAH</div>
+      <div class="p-logo">WEISHENG</div>
+      <div class="p-logo">HISA</div>
+      <div class="p-logo">HÀ GIANG</div>
+      <div class="p-logo">CƯ HƯNG II</div>
+      <div class="p-logo">KIWORD</div>
+      <div class="p-logo">AMANDA</div>
+      <div class="p-logo">TIYI GÒ VẤP</div>
+      <div class="p-logo">COOPMART</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section id="languages" style="padding:80px 0;background:#fff">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Ngôn Ngữ</div>
+      <h2 class="sec-title">Hỗ Trợ Đa Ngôn Ngữ</h2>
+      <p class="sec-sub">Phục vụ khách hàng quốc tế bằng nhiều ngôn ngữ, đảm bảo giao tiếp thuận tiện và chuyên nghiệp</p>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card main reveal">
+        <div class="lang-flag">🇻🇳</div>
+        <div class="lang-nm">Tiếng Việt</div>
+        <div class="lang-native">Vietnamese (Chính)</div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇬🇧</div>
+        <div class="lang-nm">Việt – Anh</div>
+        <div class="lang-native">Vietnamese – English</div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇰🇷</div>
+        <div class="lang-nm">Việt – Hàn</div>
+        <div class="lang-native">Vietnamese – Korean</div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇯🇵</div>
+        <div class="lang-nm">Việt – Nhật</div>
+        <div class="lang-native">Vietnamese – Japanese</div>
+      </div>
+      <div class="lang-card reveal">
+        <div class="lang-flag">🇨🇳</div>
+        <div class="lang-nm">Việt – Trung</div>
+        <div class="lang-native">Vietnamese – Chinese</div>
+      </div>
+      <div class="lang-card reveal" style="border-style:dashed;border-color:#d1d5db">
+        <div class="lang-flag">🌐</div>
+        <div class="lang-nm">Ngôn Ngữ Khác</div>
+        <div class="lang-native">Other Languages</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="padding:96px 0;background:var(--cr)">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Liên Hệ</div>
+      <h2 class="sec-title">Liên Hệ Với Chúng Tôi</h2>
+      <p class="sec-sub">Đội ngũ tư vấn luôn sẵn sàng hỗ trợ bạn 24/7 — đừng ngại liên hệ!</p>
+    </div>
+    <div class="ct-grid">
+      <div class="reveal">
+        <h3 style="font-size:1.25rem;font-weight:700;color:var(--nv);margin-bottom:8px">SAIGONTEAM</h3>
+        <p style="font-size:.875rem;color:var(--tl);line-height:1.75">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — Đối tác du lịch và sự kiện tin cậy của hơn 500 doanh nghiệp.</p>
+        <div class="ct-items">
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ct-tx">
+              <strong>Địa chỉ văn phòng</strong>
+              <span>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng,<br>Thành phố Hồ Chí Minh</span>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-phone-alt"></i></div>
+            <div class="ct-tx">
+              <strong>Hotline</strong>
+              <a href="tel:0908940903">0908.940.903</a>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-envelope"></i></div>
+            <div class="ct-tx">
+              <strong>Email</strong>
+              <a href="mailto:Saigonteamtravel2021@gmail.com">Saigonteamtravel2021@gmail.com</a>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-clock"></i></div>
+            <div class="ct-tx">
+              <strong>Giờ làm việc</strong>
+              <span>Thứ 2 – Thứ 7: 8:00 – 18:00<br>Chủ nhật: 8:00 – 12:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="socials">
+          <a href="#" class="soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="soc"><i class="fas fa-comment-dots"></i></a>
+        </div>
+      </div>
+
+      <div class="ct-form reveal">
+        <div class="form-ttl">Gửi Yêu Cầu Tư Vấn</div>
+        <div class="f-row">
+          <div class="fg"><label>Họ &amp; Tên *</label><input type="text" placeholder="Nguyễn Văn A"></div>
+          <div class="fg"><label>Số Điện Thoại *</label><input type="tel" placeholder="0xxx xxx xxx"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="email@company.com"></div>
+        <div class="fg">
+          <label>Dịch Vụ Quan Tâm</label>
+          <select>
+            <option>Chọn dịch vụ...</option>
+            <option>Tour khách đoàn &amp; lẻ</option>
+            <option>Tổ chức TeamBuilding</option>
+            <option>Tổ chức sự kiện</option>
+            <option>Cho thuê xe du lịch</option>
+            <option>Bán vé máy bay</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Số Lượng Người</label>
+          <select>
+            <option>Chọn quy mô...</option>
+            <option>Dưới 20 người</option>
+            <option>20 – 50 người</option>
+            <option>50 – 200 người</option>
+            <option>200 – 500 người</option>
+            <option>Trên 500 người</option>
+          </select>
+        </div>
+        <div class="fg"><label>Nội Dung Yêu Cầu</label><textarea placeholder="Mô tả chi tiết nhu cầu của bạn (thời gian, địa điểm, ngân sách...)"></textarea></div>
+        <button class="f-btn" onclick="submitForm(this)"><i class="fas fa-paper-plane"></i> Gửi Yêu Cầu Ngay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px">
+          <svg width="40" height="40" viewBox="0 0 44 44" fill="none">
+            <rect width="44" height="44" rx="11" fill="#E85D04"/>
+            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+            <circle cx="22" cy="21" r="4" fill="white"/>
+          </svg>
+          <div>
+            <div class="logo-nm" style="font-size:1.1rem">SAIGONTEAM</div>
+            <div class="logo-sl">Dịch Vụ & Sự Kiện</div>
+          </div>
+        </div>
+        <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm phục vụ doanh nghiệp Việt Nam.</p>
+        <div class="socials">
+          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-facebook-f" style="color:#fff"></i></a>
+          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-youtube" style="color:#fff"></i></a>
+          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-instagram" style="color:#fff"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-ttl">Dịch Vụ</div>
+        <ul class="ft-ul">
+          <li><a href="#services">Tour Khách Đoàn &amp; Lẻ</a></li>
+          <li><a href="#services">Tổ Chức TeamBuilding</a></li>
+          <li><a href="#services">Tổ Chức Sự Kiện</a></li>
+          <li><a href="#services">Cho Thuê Xe Du Lịch</a></li>
+          <li><a href="#services">Bán Vé Máy Bay</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Công Ty</div>
+        <ul class="ft-ul">
+          <li><a href="#about">Về Chúng Tôi</a></li>
+          <li><a href="#why">Tại Sao Chọn Chúng Tôi</a></li>
+          <li><a href="#partners">Đối Tác</a></li>
+          <li><a href="#languages">Ngôn Ngữ Hỗ Trợ</a></li>
+          <li><a href="#contact">Liên Hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Liên Hệ</div>
+        <ul class="ft-cl">
+          <li><i class="fas fa-map-marker-alt"></i>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng, TP. HCM</li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" style="color:var(--or);font-weight:700">0908.940.903</a></li>
+          <li><i class="fas fa-envelope"></i>Saigonteamtravel2021@gmail.com</li>
+          <li><i class="fas fa-clock"></i>T2–T7: 8:00–18:00 | CN: 8:00–12:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2024 SaigonTeam. Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam. All rights reserved.</span>
+      <span>Thiết kế chuyên nghiệp để demo khách hàng</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT PHONE -->
+<div class="float-phone">
+  <div class="fp-lbl">Gọi ngay: 0908.940.903</div>
+  <a href="tel:0908940903" class="fp-btn"><i class="fas fa-phone-alt"></i></a>
+</div>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('solid', window.scrollY > 60);
+});
+
+// Mobile nav
+function toggleNav() {
+  document.getElementById('mnav').classList.toggle('on');
+  document.getElementById('overlay').classList.toggle('on');
+}
+
+// Reveal on scroll
+const io = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('on'), i * 90);
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Counter
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target._done) {
+      e.target._done = true;
+      const target = +e.target.dataset.t;
+      const dur = 2000;
+      const step = target / (dur / 16);
+      let cur = 0;
+      const t = setInterval(() => {
+        cur = Math.min(cur + step, target);
+        e.target.textContent = Math.floor(cur);
+        if (cur >= target) clearInterval(t);
+      }, 16);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
+
+// Form
+function submitForm(btn) {
+  const orig = btn.innerHTML;
+  btn.innerHTML = '<i class="fas fa-check"></i> Đã Gửi — Chúng Tôi Sẽ Liên Hệ Lại Sớm!';
+  btn.style.background = '#16a34a';
+  btn.disabled = true;
+  setTimeout(() => {
+    btn.innerHTML = orig;
+    btn.style.background = '';
+    btn.disabled = false;
+  }, 4000);
+}
+</script>
+</body>
+</html>
