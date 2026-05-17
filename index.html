@@ -106,9 +106,9 @@ body.bar-on .mnav{padding-top:110px}
 #hero{
   min-height:100vh;
   background:
-    linear-gradient(95deg,rgba(4,10,24,.84) 0%,rgba(4,10,24,.62) 28%,rgba(4,10,24,.14) 55%,transparent 75%),
-    linear-gradient(to top,rgba(0,0,0,.48) 0%,transparent 44%),
-    url('images/dia-diem-du-lich-da-nang-thumb.jpg') center/cover no-repeat;
+    linear-gradient(105deg,rgba(4,10,24,.97) 0%,rgba(4,10,24,.90) 28%,rgba(4,10,24,.52) 50%,rgba(4,10,24,.08) 70%,transparent 86%),
+    linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 38%),
+    url('images/du-lich-phu-quoc.jpg') right center/cover no-repeat;
   display:flex;align-items:center;position:relative;overflow:hidden
 }
 #hero::before{
@@ -127,6 +127,52 @@ body.bar-on .mnav{padding-top:110px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fdLeft .8s ease .5s both;margin-bottom:24px}
 .btn-ol-dk{background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.45);padding:12px 26px;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;cursor:pointer;backdrop-filter:blur(6px)}
 .btn-ol-dk:hover{background:rgba(255,255,255,.2);border-color:#fff;transform:translateY(-2px)}
+
+/* ── Hero CTA: maximum attention ── */
+/* Primary: fire gradient + shimmer sweep + pulsing glow ring */
+.hero-btns .btn-pr{
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,#FF4800,var(--or),#FF8C42,var(--gd));
+  background-size:250% 250%;
+  animation:btnGradAnim 3s ease infinite,btnOrangePulse 2.2s ease-in-out infinite;
+  box-shadow:0 8px 32px rgba(232,93,4,.7);
+  padding:15px 36px;font-size:.96rem;letter-spacing:.3px;border:none
+}
+.hero-btns .btn-pr::before{
+  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
+  animation:btnSweep 3s ease-in-out infinite;pointer-events:none
+}
+.hero-btns .btn-pr:hover{
+  transform:translateY(-5px) scale(1.07)!important;
+  box-shadow:0 22px 52px rgba(232,93,4,.95)!important;
+  animation:none!important
+}
+/* Secondary: electric cyan glow + sweep + pulse */
+.hero-btns .btn-ol-dk{
+  position:relative;overflow:hidden;
+  background:rgba(0,212,255,.07);
+  border:2px solid rgba(0,212,255,.7)!important;
+  box-shadow:0 0 24px rgba(0,212,255,.35),inset 0 1px 0 rgba(0,212,255,.12);
+  animation:btnCyanPulse 2.5s ease-in-out infinite;
+  padding:15px 36px;font-size:.96rem;letter-spacing:.2px
+}
+.hero-btns .btn-ol-dk::before{
+  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(0,212,255,.28),transparent);
+  animation:btnSweep 3s ease-in-out .85s infinite;pointer-events:none
+}
+.hero-btns .btn-ol-dk:hover{
+  background:rgba(0,212,255,.16)!important;
+  border-color:rgba(0,212,255,.95)!important;
+  box-shadow:0 0 44px rgba(0,212,255,.7),inset 0 0 22px rgba(0,212,255,.1)!important;
+  transform:translateY(-5px) scale(1.06)!important;
+  color:#7EF0FF!important;animation:none!important
+}
+@keyframes btnGradAnim{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes btnSweep{0%{left:-100%}48%,100%{left:150%}}
+@keyframes btnOrangePulse{0%,100%{box-shadow:0 8px 32px rgba(232,93,4,.7),0 0 0 0 rgba(232,93,4,.45)}50%{box-shadow:0 8px 32px rgba(232,93,4,.85),0 0 0 12px rgba(232,93,4,0)}}
+@keyframes btnCyanPulse{0%,100%{box-shadow:0 0 24px rgba(0,212,255,.35),inset 0 1px 0 rgba(0,212,255,.12)}50%{box-shadow:0 0 42px rgba(0,212,255,.6),inset 0 0 18px rgba(0,212,255,.1)}}
 /* Search strip — white pill nổi trên ảnh */
 .hero-search{display:flex;align-items:center;background:rgba(255,255,255,.97);border-radius:60px;box-shadow:0 12px 48px rgba(0,0,0,.25);padding:6px;gap:0;animation:fdLeft .8s ease .65s both;max-width:540px;border:1.5px solid rgba(255,255,255,.6)}
 .hs-field{display:flex;flex-direction:column;padding:6px 16px;flex:1;cursor:pointer;border-right:1px solid #eee;min-width:0}
@@ -141,28 +187,33 @@ body.bar-on .mnav{padding-top:110px}
 .ht-lbl{font-size:.73rem;color:rgba(255,255,255,.7);font-weight:600;flex-shrink:0}
 .htag{padding:5px 13px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);border-radius:30px;font-size:.73rem;font-weight:600;color:#fff;transition:all .3s;backdrop-filter:blur(6px)}
 .htag:hover{background:var(--or);border-color:var(--or);transform:translateY(-2px);box-shadow:0 4px 16px rgba(232,93,4,.5)}
-/* Photo collage */
-.hero-vis{position:relative;animation:fdRight .8s ease .3s both}
-.hcollage{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:1fr 1fr;gap:12px;height:490px}
-.hc-main{grid-row:1/3;border-radius:24px;overflow:hidden;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.15)}
-.hc-main img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.hc-main:hover img{transform:scale(1.04)}
-.hc-sm{border-radius:18px;overflow:hidden;position:relative;box-shadow:0 8px 28px rgba(0,0,0,.1)}
-.hc-sm img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.hc-sm:hover img{transform:scale(1.07)}
-.hc-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.52) 0%,transparent 55%)}
-.hc-lbl{position:absolute;bottom:12px;left:13px;color:#fff;font-size:.73rem;font-weight:700;letter-spacing:.5px;z-index:2}
-/* Floating stat cards */
-.hf{position:absolute;background:#fff;border-radius:16px;padding:12px 16px;box-shadow:0 12px 40px rgba(0,0,0,.13);display:flex;align-items:center;gap:11px;z-index:10}
-.hf.c1{top:-18px;left:-32px;animation:bob 3.5s ease-in-out infinite}
-.hf.c2{bottom:145px;right:-32px;animation:bob 3.5s ease-in-out infinite 1.8s}
-.hf.c3{bottom:-18px;left:40px;animation:bob 3.5s ease-in-out infinite .9s}
-.hf-ico{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0}
-.hf-ico.or{background:rgba(232,93,4,.12);color:var(--or)}
-.hf-ico.gd{background:rgba(255,183,3,.15);color:#C98000}
-.hf-ico.gn{background:rgba(16,185,129,.12);color:#059669}
-.hf-n{font-size:1rem;font-weight:800;color:var(--nv);line-height:1}
-.hf-l{font-size:.66rem;color:var(--tl);margin-top:2px}
+/* Hero visual — clean stacked card design */
+.hero-vis{position:relative;animation:fdRight .8s ease .3s both;display:flex;flex-direction:column;gap:16px}
+.hv-stack{position:relative;height:430px;flex-shrink:0}
+/* Card base */
+.hv-card{position:absolute;border-radius:22px;overflow:hidden;cursor:default}
+.hv-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.hv-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 58%);pointer-events:none}
+.hv-card-lbl{position:absolute;bottom:14px;left:16px;color:#fff;font-size:.78rem;font-weight:700;z-index:2;display:flex;align-items:center;gap:6px;letter-spacing:.2px}
+.hv-card-lbl i{color:var(--or3);font-size:.7rem}
+/* Card positions */
+.hv-c1{width:83%;height:64%;top:0;right:0;transform:rotate(3.5deg);box-shadow:0 24px 60px rgba(0,0,0,.25);z-index:1;background:linear-gradient(135deg,var(--nv),var(--nv2))}
+.hv-c2{width:80%;height:68%;bottom:0;left:0;transform:rotate(-2deg);box-shadow:0 32px 72px rgba(0,0,0,.3);z-index:2;background:linear-gradient(135deg,#0B6E4F,#219EBC)}
+.hv-c1:hover img{transform:scale(1.06) rotate(-1deg)}
+.hv-c2:hover img{transform:scale(1.06) rotate(1deg)}
+/* Rating badge */
+.hv-badge{position:absolute;top:42%;right:-20px;transform:translateY(-50%);background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 12px 40px rgba(0,0,0,.2);display:flex;align-items:center;gap:10px;z-index:10;animation:float 4.5s ease-in-out infinite;white-space:nowrap}
+.hv-badge-ico{width:36px;height:36px;background:linear-gradient(135deg,#FFB703,#FB8500);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;flex-shrink:0}
+.hv-badge-n{font-size:.95rem;font-weight:900;color:var(--nv);line-height:1}
+.hv-badge-l{font-size:.62rem;color:var(--tl);margin-top:2px}
+/* Stats row */
+.hv-stats{display:flex;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18)}
+.hv-st{flex:1;padding:13px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12);transition:background .3s}
+.hv-st:last-child{border-right:none}
+.hv-st:hover{background:rgba(255,255,255,.08)}
+.hv-st-n{font-size:1.2rem;font-weight:900;color:#fff;line-height:1}
+.hv-st-n span{color:var(--gd)}
+.hv-st-l{font-size:.6rem;color:rgba(255,255,255,.55);margin-top:3px;letter-spacing:.6px;text-transform:uppercase}
 .scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.45);animation:bob 2s ease-in-out infinite;z-index:2}
 .scroll-hint span{display:block;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
 
@@ -193,14 +244,10 @@ body.bar-on .mnav{padding-top:110px}
 .srv{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 3px 18px rgba(0,0,0,.06);transition:all .4s;cursor:default}
 .srv:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.12)}
 .srv-top{height:190px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.srv-top i{font-size:3.5rem;color:rgba(255,255,255,.9);position:relative;z-index:2}
-.srv-top::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.15))}
-.g1{background:linear-gradient(135deg,#E85D04,#FF8C42)}
-.g2{background:linear-gradient(135deg,#1B2A4A,#2D4080)}
-.g3{background:linear-gradient(135deg,#FFB703,#FB8500)}
-.g4{background:linear-gradient(135deg,#219EBC,#023047)}
-.g5{background:linear-gradient(135deg,#7C3AED,#3730A3)}
-.g6{background:linear-gradient(135deg,#059669,#0D9488)}
+.srv-top i{display:none}
+.srv-top::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%);z-index:1}
+.srv-top img{opacity:1!important;z-index:0!important}
+.g1,.g2,.g3,.g4,.g5,.g6{background:#1B2A4A}
 .srv-body{padding:22px}
 .srv-ttl{font-size:1.05rem;font-weight:700;color:var(--nv);margin-bottom:9px}
 .srv-dsc{font-size:.82rem;color:var(--tl);line-height:1.75;margin-bottom:13px}
@@ -359,10 +406,8 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 /* Hero badge glow pulse */
 .hero-badge{animation:fdDown .8s ease both,badgePulse 3s ease-in-out 1.2s infinite!important}
 
-/* Floating cards bob animation */
-.hf.c1{animation:float 4s ease-in-out infinite}
-.hf.c2{animation:float 4s ease-in-out 1.6s infinite}
-.hf.c3{animation:float 4s ease-in-out .9s infinite}
+/* Hero badge float animation */
+.hv-badge{animation:float 4.5s ease-in-out infinite}
 
 /* Stats counter pop */
 .stat-n,.st-n{transition:transform .3s}
@@ -733,64 +778,45 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <!-- RIGHT: Photo collage -->
+      <!-- RIGHT: Photo stack visual -->
       <div class="hero-vis">
-
-        <!-- Floating card: Rating -->
-        <div class="hf c1">
-          <div class="hf-ico gd"><i class="fas fa-star"></i></div>
-          <div>
-            <div class="hf-n">4.9 / 5.0</div>
-            <div class="hf-l">Đánh giá trung bình</div>
+        <div class="hv-stack">
+          <!-- Back card — client memory photo -->
+          <div class="hv-card hv-c1">
+            <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình SaigonTeam"
+                 onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
+            <div class="hv-card-lbl"><i class="fas fa-camera"></i> Hành Trình Của Những Kỷ Niệm</div>
+          </div>
+          <!-- Front card — destination hero -->
+          <div class="hv-card hv-c2">
+            <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc"
+                 onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
+            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Việt Nam</div>
+          </div>
+          <!-- Floating rating badge -->
+          <div class="hv-badge">
+            <div class="hv-badge-ico"><i class="fas fa-star"></i></div>
+            <div>
+              <div class="hv-badge-n">4.9 / 5.0</div>
+              <div class="hv-badge-l">Đánh giá trung bình</div>
+            </div>
           </div>
         </div>
-
-        <!-- Photo collage grid -->
-        <div class="hcollage">
-          <!-- Main large photo -->
-          <div class="hc-main">
-            <img src="images/du-lich-phu-quoc.jpg"
-                 alt="Phú Quốc"
-                 onerror="this.parentElement.style.background='linear-gradient(145deg,#0077B6 0%,#00B4D8 50%,#48CAE4 100%)';this.style.display='none'">
-            <div class="hc-ov"></div>
-            <div class="hc-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Việt Nam</div>
+        <!-- Glassmorphism stats row -->
+        <div class="hv-stats">
+          <div class="hv-st">
+            <div class="hv-st-n"><span class="cnt" data-t="500">0</span><span style="color:var(--gd)">+</span></div>
+            <div class="hv-st-l">Khách hàng</div>
           </div>
-          <!-- Small photo top -->
-          <div class="hc-sm">
-            <img src="images/vinhhalong.png"
-                 alt="Vịnh Hạ Long"
-                 onerror="this.parentElement.style.background='linear-gradient(145deg,#0077B6 0%,#023E6F 100%)';this.style.display='none'">
-            <div class="hc-ov"></div>
-            <div class="hc-lbl"><i class="fas fa-map-marker-alt"></i> Vịnh Hạ Long</div>
+          <div class="hv-st">
+            <div class="hv-st-n"><span style="color:var(--gd)">5</span></div>
+            <div class="hv-st-l">Năm kinh nghiệm</div>
           </div>
-          <!-- Small photo bottom -->
-          <div class="hc-sm">
-            <img src="images/mountains-in-Vietnam-banner.jpg"
-                 alt="Núi Rừng Sapa"
-                 onerror="this.parentElement.style.background='linear-gradient(145deg,#40916C 0%,#2D6A4F 55%,#1B4332 100%)';this.style.display='none'">
-            <div class="hc-ov"></div>
-            <div class="hc-lbl"><i class="fas fa-map-marker-alt"></i> Núi Rừng Sapa</div>
+          <div class="hv-st">
+            <div class="hv-st-n"><span class="cnt" data-t="1000">0</span><span style="color:var(--gd)">+</span></div>
+            <div class="hv-st-l">Tour đã thực hiện</div>
           </div>
         </div>
-
-        <!-- Floating card: Price -->
-        <div class="hf c2">
-          <div class="hf-ico or"><i class="fas fa-tag"></i></div>
-          <div>
-            <div class="hf-n">Từ 2.990.000đ</div>
-            <div class="hf-l">Tour nội địa / người</div>
-          </div>
-        </div>
-
-        <!-- Floating card: Clients -->
-        <div class="hf c3">
-          <div class="hf-ico gn"><i class="fas fa-users"></i></div>
-          <div>
-            <div class="hf-n">500+ Khách hàng</div>
-            <div class="hf-l">Hài lòng &amp; tin tưởng</div>
-          </div>
-        </div>
-
       </div>
     </div>
   </div>
