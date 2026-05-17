@@ -29,6 +29,34 @@ a{text-decoration:none}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.on{opacity:1;transform:translateY(0)}
 
+/* ANNOUNCEMENT BAR */
+.top-bar{position:fixed;top:0;left:0;width:100%;z-index:950;background:linear-gradient(90deg,var(--or2),var(--or),#FF6B08,var(--or));background-size:300% 100%;animation:gradientShift 6s ease infinite;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 48px 9px 16px;text-align:center;line-height:1.4;letter-spacing:.2px}
+.top-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.top-bar a:hover{opacity:.85}
+.top-bar-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .2s;font-family:inherit;flex-shrink:0}
+.top-bar-close:hover{background:rgba(255,255,255,.35)}
+.top-bar-tag{background:rgba(255,255,255,.22);padding:2px 9px;border-radius:20px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
+.top-bar.hidden{display:none}
+body.bar-on #nav{top:42px}
+body.bar-on .mnav{padding-top:110px}
+@media(max-width:480px){.top-bar{font-size:.7rem;padding:8px 40px 8px 12px;gap:8px}.top-bar-tag{display:none}}
+
+/* REVIEWS CAROUSEL */
+#reviews{padding:72px 0;background:var(--nv);overflow:hidden;position:relative}
+#reviews::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(232,93,4,.15),transparent 50%),radial-gradient(circle at 80% 50%,rgba(255,183,3,.08),transparent 50%);pointer-events:none}
+.rv-scroll-wrap{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent 0%,#fff 6%,#fff 94%,transparent 100%);mask:linear-gradient(90deg,transparent 0%,#fff 6%,#fff 94%,transparent 100%);margin-top:8px}
+.rv-track{display:flex;gap:20px;width:max-content;animation:destRoll 42s linear infinite;padding:8px 0 16px}
+.rv-track:hover{animation-play-state:paused}
+.rv-card{flex:0 0 300px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;backdrop-filter:blur(8px);transition:transform .3s,background .3s}
+.rv-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.11)}
+.rv-stars{color:var(--gd);font-size:.85rem;letter-spacing:1px;margin-bottom:12px}
+.rv-quote{font-size:.84rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:18px;font-style:italic}
+.rv-author{display:flex;align-items:center;gap:12px}
+.rv-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--gd));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#fff;flex-shrink:0}
+.rv-nm{font-size:.85rem;font-weight:700;color:#fff;line-height:1.2}
+.rv-loc{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px}
+.rv-service{display:inline-block;margin-top:14px;font-size:.67rem;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:1px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;width:100%}
+
 /* NAV */
 #nav{position:fixed;top:0;width:100%;z-index:900;padding:18px 0;transition:all .35s}
 #nav.solid{background:rgba(27,42,74,.96);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.2)}
@@ -381,7 +409,8 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
   .tour-grid{grid-template-columns:repeat(2,1fr)}
   .combo-grid{grid-template-columns:1fr}
   .glr-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
-  .gi:nth-child(1),.gi:nth-child(5),.gi:nth-child(7){grid-column:auto;grid-row:auto}
+  .gi:nth-child(1),.gi:nth-child(8){grid-column:auto;grid-row:auto}
+  .gi{height:180px}
   .dest-grid{grid-template-columns:repeat(2,1fr)}
   .hl-grid{grid-template-columns:1fr}
   .ft-grid{gap:24px}
@@ -513,7 +542,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 
 /* ===== GALLERY ===== */
 #gallery{padding:80px 0;background:var(--cr)}
-.glr-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,210px);gap:12px}
+.glr-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,200px);gap:12px}
 .gi{border-radius:14px;overflow:hidden;position:relative;cursor:pointer}
 .gi img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
 .gi:hover img{transform:scale(1.09)}
@@ -524,8 +553,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 .gi-zoom{position:absolute;top:12px;right:12px;width:30px;height:30px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--nv);font-size:.7rem;opacity:0;transition:all .35s;z-index:2}
 .gi:hover .gi-zoom{opacity:1}
 .gi:nth-child(1){grid-column:1/3;grid-row:1/3}
-.gi:nth-child(5){grid-column:4;grid-row:2/4}
-.gi:nth-child(7){grid-column:2/4;grid-row:3}
+.gi:nth-child(8){grid-column:3/5;grid-row:3/5}
 
 /* LIGHTBOX */
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
@@ -550,6 +578,14 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </style>
 </head>
 <body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="top-bar" id="topBar">
+  <span class="top-bar-tag">🔥 Flash Sale</span>
+  <span>Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> — Đặt trước 30/6 còn chỗ!</span>
+  <a href="#tours">Xem ngay →</a>
+  <button class="top-bar-close" onclick="dismissBar()" title="Đóng">✕</button>
+</div>
 
 <!-- NAV -->
 <nav id="nav">
@@ -1384,6 +1420,54 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 </section>
 
 
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="sec-head" style="margin-bottom:36px">
+      <div class="sec-tag" style="background:rgba(255,183,3,.15);color:var(--gd)">Khách Hàng Nói Gì</div>
+      <h2 class="sec-title" style="color:#fff">Hàng Nghìn Hành Trình Đáng Nhớ</h2>
+      <p class="sec-sub" style="color:rgba(255,255,255,.55)">Mỗi chuyến đi là một câu chuyện — đây là những gì khách hàng chia sẻ sau khi đồng hành cùng SaigonTeam</p>
+    </div>
+  </div>
+  <div class="rv-scroll-wrap">
+    <div class="rv-track">
+      <!-- Set A -->
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Chuyến đi Phú Quốc do SaigonTeam tổ chức thật sự tuyệt vời. Mọi thứ đều chu đáo từ xe đón đến khách sạn. Gia đình tôi rất hài lòng và chắc chắn sẽ đặt tour tiếp!"</p><div class="rv-author"><div class="rv-av">L</div><div><div class="rv-nm">Nguyễn Thị Lan</div><div class="rv-loc">TP. Hồ Chí Minh</div></div></div><div class="rv-service"><i class="fas fa-suitcase"></i> Tour Phú Quốc 4N3Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Team building công ty chúng tôi với hơn 80 người, SaigonTeam xử lý cực kỳ chuyên nghiệp. Các hoạt động sáng tạo, nhân viên nhiệt tình — sẽ hợp tác lại lần sau!"</p><div class="rv-author"><div class="rv-av">M</div><div><div class="rv-nm">Trần Minh Khoa</div><div class="rv-loc">Giám đốc HR · Công ty FPT</div></div></div><div class="rv-service"><i class="fas fa-users"></i> TeamBuilding 80 người</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt combo Đà Nẵng bay + khách sạn, giá rẻ hơn tự đặt mà được phục vụ tận tình. Hướng dẫn viên hiểu biết, vui tính. Cảm ơn SaigonTeam!"</p><div class="rv-author"><div class="rv-av">H</div><div><div class="rv-nm">Lê Hoàng Phúc</div><div class="rv-loc">Bình Dương</div></div></div><div class="rv-service"><i class="fas fa-plane"></i> Combo Đà Nẵng 3N2Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★☆</div><p class="rv-quote">"Sự kiện hội nghị 200 khách được tổ chức bài bản, âm thanh ánh sáng chuyên nghiệp. Chỉ thiếu 1 sao vì trời mưa hôm đó, nhưng team xử lý rất linh hoạt!"</p><div class="rv-author"><div class="rv-av">T</div><div><div class="rv-nm">Phạm Thu Hương</div><div class="rv-loc">Trưởng phòng Marketing</div></div></div><div class="rv-service"><i class="fas fa-calendar-star"></i> Tổ Chức Sự Kiện</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Thuê xe du lịch 16 chỗ đi Đà Lạt, xe sạch sẽ, tài xế thân thiện và đúng giờ. Giá cả hợp lý, sẽ tiếp tục sử dụng dịch vụ cho các chuyến sau."</p><div class="rv-author"><div class="rv-av">D</div><div><div class="rv-nm">Đinh Văn Dũng</div><div class="rv-loc">Đồng Nai</div></div></div><div class="rv-service"><i class="fas fa-bus"></i> Cho Thuê Xe 16 Chỗ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Mua vé máy bay qua SaigonTeam tiết kiệm hơn đặt trực tiếp. Hỗ trợ nhanh, xuất vé ngay trong ngày. Tư vấn nhiệt tình, chuyên nghiệp!"</p><div class="rv-author"><div class="rv-av">A</div><div><div class="rv-nm">Võ Thị Anh</div><div class="rv-loc">Cần Thơ</div></div></div><div class="rv-service"><i class="fas fa-ticket-alt"></i> Vé Máy Bay</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Tour Hạ Long 2 ngày 1 đêm trên du thuyền — trải nghiệm đỉnh nhất từ trước đến nay. SaigonTeam tư vấn rất kỹ, không bị 'chặt chém' như mấy chỗ khác."</p><div class="rv-author"><div class="rv-av">B</div><div><div class="rv-nm">Nguyễn Bảo Long</div><div class="rv-loc">Hà Nội</div></div></div><div class="rv-service"><i class="fas fa-ship"></i> Tour Hạ Long 2N1Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt tour cho nhóm 15 người, SaigonTeam linh hoạt điều chỉnh lịch trình theo yêu cầu. Dịch vụ cá nhân hóa rất tốt. Khuyến khích mọi người thử!"</p><div class="rv-author"><div class="rv-av">N</div><div><div class="rv-nm">Trịnh Ngọc Mai</div><div class="rv-loc">Vũng Tàu</div></div></div><div class="rv-service"><i class="fas fa-map-marked-alt"></i> Tour Theo Yêu Cầu</div></div>
+
+      <!-- Set B (duplicate for seamless loop) -->
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Chuyến đi Phú Quốc do SaigonTeam tổ chức thật sự tuyệt vời. Mọi thứ đều chu đáo từ xe đón đến khách sạn. Gia đình tôi rất hài lòng và chắc chắn sẽ đặt tour tiếp!"</p><div class="rv-author"><div class="rv-av">L</div><div><div class="rv-nm">Nguyễn Thị Lan</div><div class="rv-loc">TP. Hồ Chí Minh</div></div></div><div class="rv-service"><i class="fas fa-suitcase"></i> Tour Phú Quốc 4N3Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Team building công ty chúng tôi với hơn 80 người, SaigonTeam xử lý cực kỳ chuyên nghiệp. Các hoạt động sáng tạo, nhân viên nhiệt tình — sẽ hợp tác lại lần sau!"</p><div class="rv-author"><div class="rv-av">M</div><div><div class="rv-nm">Trần Minh Khoa</div><div class="rv-loc">Giám đốc HR · Công ty FPT</div></div></div><div class="rv-service"><i class="fas fa-users"></i> TeamBuilding 80 người</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt combo Đà Nẵng bay + khách sạn, giá rẻ hơn tự đặt mà được phục vụ tận tình. Hướng dẫn viên hiểu biết, vui tính. Cảm ơn SaigonTeam!"</p><div class="rv-author"><div class="rv-av">H</div><div><div class="rv-nm">Lê Hoàng Phúc</div><div class="rv-loc">Bình Dương</div></div></div><div class="rv-service"><i class="fas fa-plane"></i> Combo Đà Nẵng 3N2Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★☆</div><p class="rv-quote">"Sự kiện hội nghị 200 khách được tổ chức bài bản, âm thanh ánh sáng chuyên nghiệp. Chỉ thiếu 1 sao vì trời mưa hôm đó, nhưng team xử lý rất linh hoạt!"</p><div class="rv-author"><div class="rv-av">T</div><div><div class="rv-nm">Phạm Thu Hương</div><div class="rv-loc">Trưởng phòng Marketing</div></div></div><div class="rv-service"><i class="fas fa-calendar-star"></i> Tổ Chức Sự Kiện</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Thuê xe du lịch 16 chỗ đi Đà Lạt, xe sạch sẽ, tài xế thân thiện và đúng giờ. Giá cả hợp lý, sẽ tiếp tục sử dụng dịch vụ cho các chuyến sau."</p><div class="rv-author"><div class="rv-av">D</div><div><div class="rv-nm">Đinh Văn Dũng</div><div class="rv-loc">Đồng Nai</div></div></div><div class="rv-service"><i class="fas fa-bus"></i> Cho Thuê Xe 16 Chỗ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Mua vé máy bay qua SaigonTeam tiết kiệm hơn đặt trực tiếp. Hỗ trợ nhanh, xuất vé ngay trong ngày. Tư vấn nhiệt tình, chuyên nghiệp!"</p><div class="rv-author"><div class="rv-av">A</div><div><div class="rv-nm">Võ Thị Anh</div><div class="rv-loc">Cần Thơ</div></div></div><div class="rv-service"><i class="fas fa-ticket-alt"></i> Vé Máy Bay</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Tour Hạ Long 2 ngày 1 đêm trên du thuyền — trải nghiệm đỉnh nhất từ trước đến nay. SaigonTeam tư vấn rất kỹ, không bị 'chặt chém' như mấy chỗ khác."</p><div class="rv-author"><div class="rv-av">B</div><div><div class="rv-nm">Nguyễn Bảo Long</div><div class="rv-loc">Hà Nội</div></div></div><div class="rv-service"><i class="fas fa-ship"></i> Tour Hạ Long 2N1Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt tour cho nhóm 15 người, SaigonTeam linh hoạt điều chỉnh lịch trình theo yêu cầu. Dịch vụ cá nhân hóa rất tốt. Khuyến khích mọi người thử!"</p><div class="rv-author"><div class="rv-av">N</div><div><div class="rv-nm">Trịnh Ngọc Mai</div><div class="rv-loc">Vũng Tàu</div></div></div><div class="rv-service"><i class="fas fa-map-marked-alt"></i> Tour Theo Yêu Cầu</div></div>
+    </div>
+  </div>
+</section>
+
 <!-- GALLERY -->
 <section id="gallery" style="padding:64px 0;background:var(--gy)">
   <div class="container">
@@ -1394,67 +1478,64 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
     <div class="glr-grid">
 
-      <!-- 1: Large — Hạ Long -->
-      <div class="gi" onclick="openLb(this)" data-lbl="Vịnh Hạ Long · Di Sản Thiên Nhiên Thế Giới">
-        <img src="images/vinhhalong.png"
-             alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-map-marker-alt"></i> Vịnh Hạ Long</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 1: Featured 2×2 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình 1" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FF8C42)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 2: Ninh Bình -->
-      <div class="gi" onclick="openLb(this)" data-lbl="Ninh Bình · Tràng An Di Sản Thế Giới">
-        <img src="images/ninhbinh.jpg"
-             alt="Ninh Bình" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-map-marker-alt"></i> Ninh Bình</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 2 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-2.jpg" alt="Hành Trình 2" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 3: Phú Quốc -->
-      <div class="gi" onclick="openLb(this)" data-lbl="Phú Quốc · Đảo Ngọc Thiên Đường">
-        <img src="images/du-lich-phu-quoc.jpg"
-             alt="Phú Quốc" onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 3 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Hành Trình 3" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 4: Núi rừng Việt Nam -->
-      <div class="gi" onclick="openLb(this)" data-lbl="Núi Rừng Tây Bắc · Ruộng Bậc Thang">
-        <img src="images/mountains-in-Vietnam-banner.jpg"
-             alt="Núi Rừng" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-map-marker-alt"></i> Tây Bắc</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 4 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-4.jpg" alt="Hành Trình 4" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 5: TeamBuilding -->
-      <div class="gi" onclick="openLb(this)" data-lbl="TeamBuilding SaigonTeam · Hoạt Động Ngoài Trời">
-        <img src="images/teambuilding-1.jpg"
-             alt="TeamBuilding" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-users"></i> TeamBuilding</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 5 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-5.jpg" alt="Hành Trình 5" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 6: SaigonTeam Events -->
-      <div class="gi" onclick="openLb(this)" data-lbl="SaigonTeam Events · Khoảnh Khắc Đáng Nhớ">
-        <img src="images/teambuilding-2.jpg"
-             alt="Events" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FF8C42)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-star"></i> Sự Kiện</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 6 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-6.jpg" alt="Hành Trình 6" onerror="this.parentElement.style.background='linear-gradient(135deg,#FFB703,#FB8500)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 7: Wide — Đà Nẵng -->
-      <div class="gi" onclick="openLb(this)" data-lbl="Đà Nẵng · Thành Phố Đáng Sống">
-        <img src="images/dia-diem-du-lich-da-nang-thumb.jpg"
-             alt="Đà Nẵng" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
-        <div class="gi-ov"></div>
-        <div class="gi-lbl"><i class="fas fa-map-marker-alt"></i> Đà Nẵng</div>
-        <div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      <!-- 7 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-7.jpg" alt="Hành Trình 7" onerror="this.parentElement.style.background='linear-gradient(135deg,#7C3AED,#3730A3)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <!-- 8: Featured 2×2 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-8.jpg" alt="Hành Trình 8" onerror="this.parentElement.style.background='linear-gradient(135deg,#059669,#0D9488)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <!-- 9 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-9.jpg" alt="Hành Trình 9" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#C44B00)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
+      </div>
+
+      <!-- 10 -->
+      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
+        <img src="images/hanhtrinhcuanhungkyniem-10.jpg" alt="Hành Trình 10" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.style.display='none'">
+        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
     </div>
@@ -1627,6 +1708,21 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 </div>
 
 <script>
+// Announcement bar
+(function(){
+  const bar = document.getElementById('topBar');
+  if(bar && !sessionStorage.getItem('barDismissed')){
+    document.body.classList.add('bar-on');
+  } else if(bar){
+    bar.classList.add('hidden');
+  }
+})();
+function dismissBar(){
+  document.getElementById('topBar').classList.add('hidden');
+  document.body.classList.remove('bar-on');
+  sessionStorage.setItem('barDismissed','1');
+}
+
 // Nav scroll
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
