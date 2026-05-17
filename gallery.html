@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Viện Ảnh — SaigonTeam</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--or:#E85D04;--or2:#C44B00;--or3:#FF8C42;--nv:#1B2A4A;--nv2:#243660;--gd:#FFB703;--cr:#FFF8F0;--gy:#F4F6F9;--tx:#2D2D2D;--tl:#6B7280}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--tx);overflow-x:hidden;background:#FAFAFA}
+img{display:block;max-width:100%}
+a{text-decoration:none}
+
+/* Top bar */
+.top-bar{position:fixed;top:0;left:0;width:100%;z-index:950;background:linear-gradient(90deg,var(--or2),var(--or),#FF6B08,var(--or));background-size:300% 100%;animation:gradShift 6s ease infinite;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 48px 9px 16px;text-align:center}
+.top-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.top-bar-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-family:inherit}
+.top-bar.hidden{display:none}
+body.bar-on #nav{top:42px}
+@media(max-width:480px){.top-bar{font-size:.7rem;padding:8px 40px 8px 12px}}
+
+/* Nav */
+#nav{position:fixed;top:0;width:100%;z-index:900;padding:14px 0;background:rgba(27,42,74,.96);backdrop-filter:blur(12px);box-shadow:0 2px 24px rgba(0,0,0,.15);transition:top .3s}
+.container{max-width:1280px;margin:0 auto;padding:0 36px}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-ico{width:42px;height:42px;flex-shrink:0}
+.logo-nm{font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:.5px;line-height:1}
+.logo-sl{font-size:.56rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
+.nav-ul{list-style:none;display:flex;gap:30px;align-items:center}
+.nav-ul a{color:rgba(255,255,255,.88);font-size:.875rem;font-weight:500;position:relative;transition:color .3s}
+.nav-ul a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
+.nav-ul a:hover{color:#fff}
+.nav-ul a:hover::after,.nav-ul a.active::after{width:100%}
+.nav-ul a.active{color:#fff}
+.nav-cta{background:var(--or)!important;color:#fff!important;padding:9px 22px;border-radius:30px}
+.nav-cta:hover{background:var(--or2)!important;box-shadow:0 5px 16px rgba(232,93,4,.4)}
+.nav-cta::after{display:none!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+
+/* Mobile nav */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;opacity:0;visibility:hidden;transition:all .3s}
+.overlay.on{opacity:1;visibility:visible}
+.mnav{position:fixed;top:0;right:0;bottom:0;width:285px;background:var(--nv);z-index:900;padding:68px 22px 32px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.3);overflow-y:auto}
+.mnav.on{transform:translateX(0)}
+.mnav ul{list-style:none}
+.mnav > ul > li{border-bottom:1px solid rgba(255,255,255,.07)}
+.mnav > ul > li > a{display:block;padding:15px 0;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600}
+.mnav > ul > li > a:hover,.mnav > ul > li > a.active{color:var(--gd)}
+.mnav-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:1.1rem;cursor:pointer;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* Page hero */
+.page-hero{padding:140px 0 70px;background:
+  linear-gradient(120deg,rgba(4,10,24,.92) 0%,rgba(4,10,24,.78) 45%,rgba(4,10,24,.55) 100%),
+  url('images/hanhtrinhcuanhungkyniem-3.jpg') center/cover no-repeat fixed;
+  text-align:center;color:#fff;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(232,93,4,.3),transparent 60%);pointer-events:none}
+.ph-tag{display:inline-block;background:rgba(255,183,3,.18);color:var(--gd);font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:18px;border:1px solid rgba(255,183,3,.3);position:relative;z-index:2}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.15;margin-bottom:18px;position:relative;z-index:2;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.ph-title em{font-style:normal;background:linear-gradient(125deg,#FF8C42,#FFB703,#E85D04,#FF8C42);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 4s ease infinite}
+.ph-sub{font-size:1rem;color:rgba(255,255,255,.85);max-width:680px;margin:0 auto;line-height:1.85;position:relative;z-index:2}
+.ph-breadcrumb{display:flex;justify-content:center;gap:10px;margin-top:24px;font-size:.78rem;color:rgba(255,255,255,.6);position:relative;z-index:2}
+.ph-breadcrumb a{color:rgba(255,255,255,.85);transition:color .3s}
+.ph-breadcrumb a:hover{color:var(--gd)}
+.ph-breadcrumb i{font-size:.6rem;opacity:.5;align-self:center}
+
+/* Filter bar */
+.filter-section{position:sticky;top:62px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);z-index:100;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);box-shadow:0 4px 20px rgba(0,0,0,.04)}
+body.bar-on .filter-section{top:104px}
+.filter-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.ftab{padding:9px 20px;border-radius:30px;border:1.5px solid #E5E7EB;background:#fff;color:var(--tl);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
+.ftab i{font-size:.72rem}
+.ftab.active,.ftab:hover{background:var(--or);color:#fff;border-color:var(--or);box-shadow:0 4px 14px rgba(232,93,4,.3);transform:translateY(-2px)}
+.ftab .count{background:rgba(255,255,255,.25);padding:1px 8px;border-radius:10px;font-size:.7rem;margin-left:4px}
+.ftab:not(.active) .count{background:rgba(0,0,0,.08);color:var(--tl)}
+
+/* Stats strip */
+.stats-strip{display:flex;justify-content:center;gap:50px;padding:32px 0;background:#fff;border-bottom:1px solid rgba(0,0,0,.05)}
+.ss-item{text-align:center}
+.ss-n{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--or);line-height:1}
+.ss-l{font-size:.7rem;color:var(--tl);text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
+
+/* Masonry */
+.gallery-main{padding:50px 0 80px}
+.masonry{column-count:4;column-gap:14px}
+@media(max-width:1100px){.masonry{column-count:3}}
+@media(max-width:768px){.masonry{column-count:2;column-gap:10px}}
+@media(max-width:480px){.masonry{column-count:1}}
+.m-item{break-inside:avoid;margin-bottom:14px;border-radius:14px;overflow:hidden;position:relative;cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.08);transition:transform .35s,box-shadow .35s;background:#1B2A4A;animation:itemIn .5s ease both}
+.m-item:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(0,0,0,.18)}
+.m-item img{width:100%;height:auto;display:block;transition:transform .6s}
+.m-item:hover img{transform:scale(1.06)}
+.m-item-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.78) 0%,rgba(0,0,0,.15) 45%,transparent 70%);opacity:0;transition:opacity .35s;pointer-events:none}
+.m-item:hover .m-item-ov{opacity:1}
+.m-item-info{position:absolute;bottom:14px;left:16px;right:16px;color:#fff;transform:translateY(10px);opacity:0;transition:all .4s;z-index:2}
+.m-item:hover .m-item-info{transform:translateY(0);opacity:1}
+.m-item-cat{font-size:.66rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gd);margin-bottom:4px}
+.m-item-ttl{font-size:.9rem;font-weight:700;line-height:1.4}
+.m-item-zoom{position:absolute;top:14px;right:14px;width:36px;height:36px;background:rgba(255,255,255,.95);color:var(--nv);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.78rem;opacity:0;transform:scale(.7);transition:all .3s;z-index:3}
+.m-item:hover .m-item-zoom{opacity:1;transform:scale(1)}
+.m-item.hidden{display:none}
+@keyframes itemIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;background:rgba(8,12,28,.96);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:30px;backdrop-filter:blur(8px)}
+.lb.on{opacity:1;visibility:visible}
+.lb-img{max-width:88vw;max-height:82vh;border-radius:14px;object-fit:contain;transform:scale(.92);transition:transform .35s;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb.on .lb-img{transform:scale(1)}
+.lb-close,.lb-prev,.lb-next{position:absolute;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:inherit;backdrop-filter:blur(8px)}
+.lb-close{top:24px;right:28px;width:50px;height:50px;font-size:1.4rem}
+.lb-prev,.lb-next{top:50%;transform:translateY(-50%);width:54px;height:54px;font-size:1.3rem}
+.lb-prev{left:28px}.lb-next{right:28px}
+.lb-close:hover{background:var(--or);transform:scale(1.08)}
+.lb-prev:hover,.lb-next:hover{background:var(--or);transform:translateY(-50%) scale(1.08)}
+.lb-cap{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;color:#fff;max-width:80vw}
+.lb-cap .lb-cat{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gd);margin-bottom:4px}
+.lb-cap .lb-ttl{font-size:1rem;font-weight:600;line-height:1.4}
+.lb-counter{position:absolute;top:28px;left:28px;color:rgba(255,255,255,.7);font-size:.85rem;font-weight:600;background:rgba(0,0,0,.4);padding:8px 14px;border-radius:20px;backdrop-filter:blur(8px)}
+@media(max-width:768px){.lb-prev,.lb-next{width:44px;height:44px;font-size:1rem}.lb-prev{left:14px}.lb-next{right:14px}.lb-close{top:14px;right:14px;width:42px;height:42px;font-size:1.1rem}.lb-counter{top:14px;left:14px;font-size:.75rem;padding:6px 12px}}
+
+/* Footer */
+footer{background:var(--nv);color:#fff;padding:50px 0 24px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:36px;margin-bottom:36px}
+.ft-dsc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.8;margin:14px 0 18px}
+.ft-ttl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gd);margin-bottom:16px}
+.ft-ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-ul a{color:rgba(255,255,255,.55);font-size:.82rem;transition:all .3s}
+.ft-ul a:hover{color:#fff;padding-left:4px}
+.ft-cl{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-cl li{display:flex;align-items:flex-start;gap:9px;font-size:.77rem;color:rgba(255,255,255,.55);line-height:1.5}
+.ft-cl li i{color:var(--or);width:13px;margin-top:1px;flex-shrink:0}
+.ft-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:rgba(255,255,255,.35)}
+.socials{display:flex;gap:10px;margin-top:18px}
+.soc{width:38px;height:38px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;transition:all .3s}
+.soc:hover{background:var(--or);transform:translateY(-3px)}
+
+/* Float social */
+.float-social{position:fixed;bottom:28px;right:22px;z-index:800;display:flex;flex-direction:column;gap:10px}
+.fsoc{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;text-decoration:none;position:relative;transition:transform .25s}
+.fsoc::before{content:'';position:absolute;inset:-5px;border-radius:50%;animation:socRing 2.4s ease-out infinite;opacity:0}
+.fsoc:hover{transform:scale(1.15) translateX(-5px)}
+.fsoc.fb{background:#1877F2;box-shadow:0 5px 18px rgba(24,119,242,.55)}
+.fsoc.ph{background:linear-gradient(135deg,var(--or),#FF5E14);box-shadow:0 5px 18px rgba(232,93,4,.55)}
+.fsoc.za{background:#0068FF;box-shadow:0 5px 18px rgba(0,104,255,.55)}
+.fsoc.gm{background:#EA4335;box-shadow:0 5px 18px rgba(234,67,53,.55)}
+.zalo-ltr{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.88rem;letter-spacing:-.5px}
+.fsoc.fb::before{border:2.5px solid rgba(24,119,242,.7)}
+.fsoc.ph::before{border:2.5px solid rgba(232,93,4,.7);animation-delay:.5s}
+.fsoc.za::before{border:2.5px solid rgba(0,104,255,.7);animation-delay:.85s}
+.fsoc.gm::before{border:2.5px solid rgba(234,67,53,.7);animation-delay:1.6s}
+@keyframes socRing{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.8);opacity:0}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+/* Responsive */
+@media(max-width:1100px){.ft-grid{grid-template-columns:1fr 1fr}.stats-strip{gap:30px}.ss-n{font-size:1.6rem}}
+@media(max-width:768px){
+  .nav-ul{display:none}
+  .hbg{display:flex}
+  .container{padding:0 18px}
+  .page-hero{padding:120px 0 50px;background-attachment:scroll}
+  .ph-breadcrumb{font-size:.72rem}
+  .stats-strip{padding:24px 0;flex-wrap:wrap;gap:20px}
+  .ft-grid{grid-template-columns:1fr;gap:26px}
+  .ft-bot{flex-direction:column;gap:8px;text-align:center}
+  .float-social{bottom:14px;right:12px;gap:8px}
+  .fsoc{width:44px;height:44px;font-size:1rem}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar" id="topBar">
+  <span>🔥 Flash Sale — Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> | Đặt trước 30/6</span>
+  <a href="index.html#tours">Xem ngay →</a>
+  <button class="top-bar-close" onclick="dismissBar()">✕</button>
+</div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="index.html" class="logo">
+        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="11" fill="#E85D04"/>
+          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="21" r="4" fill="white"/>
+        </svg>
+        <div>
+          <div class="logo-nm">SAIGONTEAM</div>
+          <div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div>
+        </div>
+      </a>
+      <ul class="nav-ul">
+        <li><a href="index.html#about">Về Chúng Tôi</a></li>
+        <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+        <li><a href="index.html#services">Dịch Vụ</a></li>
+        <li><a href="gallery.html" class="active">Gallery</a></li>
+        <li><a href="videos.html">Video</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Liên Hệ Ngay</a></li>
+      </ul>
+      <button class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<div class="mnav" id="mnav">
+  <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-times"></i></button>
+  <ul>
+    <li><a href="index.html#about">Về Chúng Tôi</a></li>
+    <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+    <li><a href="index.html#services">Dịch Vụ</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="videos.html">Video</a></li>
+    <li><a href="index.html#contact">Liên Hệ</a></li>
+  </ul>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-tag">📸 Thư Viện Khoảnh Khắc</div>
+    <h1 class="ph-title">Hành Trình Của <em>Những Kỷ Niệm</em></h1>
+    <p class="ph-sub">Khám phá hàng nghìn khoảnh khắc đáng nhớ — từ những chuyến tour khám phá Việt Nam, đến các sự kiện teambuilding bùng nổ năng lượng. Mỗi bức ảnh là một câu chuyện của khách hàng SaigonTeam.</p>
+    <div class="ph-breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Thư Viện Ảnh</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="ss-item"><div class="ss-n">2.500+</div><div class="ss-l">Khoảnh Khắc</div></div>
+  <div class="ss-item"><div class="ss-n">120+</div><div class="ss-l">Hành Trình</div></div>
+  <div class="ss-item"><div class="ss-n">85+</div><div class="ss-l">Sự Kiện</div></div>
+  <div class="ss-item"><div class="ss-n">500+</div><div class="ss-l">Khách Hàng Vui</div></div>
+</div>
+
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="filterImages('all',this)"><i class="fas fa-th"></i> Tất Cả <span class="count">21</span></button>
+      <button class="ftab" onclick="filterImages('hanh-trinh',this)"><i class="fas fa-camera-retro"></i> Hành Trình <span class="count">10</span></button>
+      <button class="ftab" onclick="filterImages('diem-den',this)"><i class="fas fa-map-marker-alt"></i> Điểm Đến <span class="count">6</span></button>
+      <button class="ftab" onclick="filterImages('teambuilding',this)"><i class="fas fa-users"></i> TeamBuilding <span class="count">2</span></button>
+      <button class="ftab" onclick="filterImages('dich-vu',this)"><i class="fas fa-briefcase"></i> Dịch Vụ <span class="count">3</span></button>
+    </div>
+  </div>
+</div>
+
+<section class="gallery-main">
+  <div class="container">
+    <div class="masonry" id="masonry">
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình 1"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-2.jpg" alt="Hành Trình 2"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Hành Trình 3"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-4.jpg" alt="Hành Trình 4"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-5.jpg" alt="Hành Trình 5"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-6.jpg" alt="Hành Trình 6"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-7.jpg" alt="Hành Trình 7"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-8.jpg" alt="Hành Trình 8"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-9.jpg" alt="Hành Trình 9"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="hanh-trinh" data-cap="Khoảnh Khắc Đáng Nhớ" data-catlabel="Hành Trình"><img src="images/hanhtrinhcuanhungkyniem-10.jpg" alt="Hành Trình 10"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Hành Trình</div><div class="m-item-ttl">Khoảnh Khắc Đáng Nhớ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Vịnh Hạ Long · Di Sản Thiên Nhiên" data-catlabel="Điểm Đến"><img src="images/vinhhalong.png" alt="Hạ Long"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Vịnh Hạ Long · Di Sản Thiên Nhiên</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Phú Quốc · Đảo Ngọc" data-catlabel="Điểm Đến"><img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Phú Quốc · Đảo Ngọc Thiên Đường</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Ninh Bình · Tràng An" data-catlabel="Điểm Đến"><img src="images/ninhbinh.jpg" alt="Ninh Bình"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Ninh Bình · Tràng An Di Sản</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Núi Rừng Tây Bắc" data-catlabel="Điểm Đến"><img src="images/mountains-in-Vietnam-banner.jpg" alt="Núi Rừng"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Núi Rừng Tây Bắc</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Đà Nẵng · Thành Phố Đáng Sống" data-catlabel="Điểm Đến"><img src="images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Đà Nẵng · Thành Phố Đáng Sống</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="diem-den" data-cap="Sài Gòn — Mũi Né 2N1Đ" data-catlabel="Điểm Đến"><img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="Mũi Né"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Điểm Đến</div><div class="m-item-ttl">Sài Gòn — Mũi Né 2N1Đ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="teambuilding" data-cap="TeamBuilding · Hoạt Động Ngoài Trời" data-catlabel="TeamBuilding"><img src="images/teambuilding-1.jpg" alt="TeamBuilding 1"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">TeamBuilding</div><div class="m-item-ttl">Hoạt Động Ngoài Trời</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="teambuilding" data-cap="TeamBuilding · Sự Kiện Doanh Nghiệp" data-catlabel="TeamBuilding"><img src="images/teambuilding-2.jpg" alt="TeamBuilding 2"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">TeamBuilding</div><div class="m-item-ttl">Sự Kiện Doanh Nghiệp</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="dich-vu" data-cap="Tư Vấn Viên Du Lịch Chuyên Nghiệp" data-catlabel="Dịch Vụ"><img src="images/tu-van-vien-du-lich-careerbuilder.jpg" alt="Tư Vấn"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Dịch Vụ</div><div class="m-item-ttl">Đội Ngũ Tư Vấn 24/7</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="dich-vu" data-cap="Vé Máy Bay Giá Rẻ" data-catlabel="Dịch Vụ"><img src="images/vemaybaygiare.jpg" alt="Vé Máy Bay"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Dịch Vụ</div><div class="m-item-ttl">Vé Máy Bay Giá Tốt</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+      <div class="m-item" data-cat="dich-vu" data-cap="Cho Thuê Xe Du Lịch" data-catlabel="Dịch Vụ"><img src="images/thue-xe-du-lic" alt="Thuê Xe" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.parentElement.style.minHeight='240px';this.style.display='none'"><div class="m-item-ov"></div><div class="m-item-info"><div class="m-item-cat">Dịch Vụ</div><div class="m-item-ttl">Cho Thuê Xe Du Lịch 4-45 Chỗ</div></div><div class="m-item-zoom"><i class="fas fa-search-plus"></i></div></div>
+    </div>
+  </div>
+</section>
+
+<div class="lb" id="lb" onclick="if(event.target===this)closeLb()">
+  <button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
+  <button class="lb-prev" onclick="navLb(-1)"><i class="fas fa-chevron-left"></i></button>
+  <button class="lb-next" onclick="navLb(1)"><i class="fas fa-chevron-right"></i></button>
+  <div class="lb-counter" id="lbCounter">1 / 21</div>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-cap"><div class="lb-cat" id="lbCat"></div><div class="lb-ttl" id="lbTtl"></div></div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="logo">
+          <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
+            <rect width="44" height="44" rx="11" fill="#E85D04"/>
+            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <circle cx="22" cy="21" r="4" fill="white"/>
+          </svg>
+          <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+        </div>
+        <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm.</p>
+        <div class="socials">
+          <a href="#" class="soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-ttl">Dịch Vụ</div>
+        <ul class="ft-ul">
+          <li><a href="index.html#services">Tour Khách Đoàn</a></li>
+          <li><a href="index.html#services">TeamBuilding</a></li>
+          <li><a href="index.html#services">Tổ Chức Sự Kiện</a></li>
+          <li><a href="index.html#services">Cho Thuê Xe</a></li>
+          <li><a href="index.html#services">Vé Máy Bay</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Khám Phá</div>
+        <ul class="ft-ul">
+          <li><a href="index.html">Trang Chủ</a></li>
+          <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+          <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+          <li><a href="videos.html">Thư Viện Video</a></li>
+          <li><a href="index.html#contact">Liên Hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Liên Hệ</div>
+        <ul class="ft-cl">
+          <li><i class="fas fa-map-marker-alt"></i>Số 14/149, Ấp 32 Phạm Hùng, Bình Hưng, TP. HCM</li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" style="color:var(--or);font-weight:700">0908.940.903</a></li>
+          <li><i class="fas fa-envelope"></i>Saigonteamtravel2021@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2024 SaigonTeam. All rights reserved.</span>
+      <span>Thiết kế chuyên nghiệp</span>
+    </div>
+  </div>
+</footer>
+
+<div class="float-social">
+  <a href="https://facebook.com/saigonteam" class="fsoc fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="tel:0908940903" class="fsoc ph"><i class="fas fa-phone-alt"></i></a>
+  <a href="https://zalo.me/0908940903" class="fsoc za" target="_blank"><span class="zalo-ltr">Za</span></a>
+  <a href="https://maps.google.com/?q=Phạm+Hùng+Bình+Hưng+TP.HCM" class="fsoc gm" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+</div>
+
+<script>
+(function(){const bar=document.getElementById('topBar');if(bar&&!sessionStorage.getItem('barDismissed')){document.body.classList.add('bar-on');}else if(bar){bar.classList.add('hidden');}})();
+function dismissBar(){document.getElementById('topBar').classList.add('hidden');document.body.classList.remove('bar-on');sessionStorage.setItem('barDismissed','1');}
+function toggleNav(){document.getElementById('mnav').classList.toggle('on');document.getElementById('overlay').classList.toggle('on');}
+function filterImages(cat,btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.m-item').forEach(item=>{const match=cat==='all'||item.dataset.cat===cat;item.classList.toggle('hidden',!match);});}
+let lbItems=[],lbIdx=0;
+function rebuildLbItems(){lbItems=Array.from(document.querySelectorAll('.m-item:not(.hidden)'));}
+document.querySelectorAll('.m-item').forEach(item=>{item.addEventListener('click',()=>{rebuildLbItems();lbIdx=lbItems.indexOf(item);showLb();});});
+function showLb(){const item=lbItems[lbIdx];const img=item.querySelector('img');document.getElementById('lbImg').src=img.src;document.getElementById('lbCat').textContent=item.dataset.catlabel;document.getElementById('lbTtl').textContent=item.dataset.cap;document.getElementById('lbCounter').textContent=(lbIdx+1)+' / '+lbItems.length;document.getElementById('lb').classList.add('on');document.body.style.overflow='hidden';}
+function closeLb(){document.getElementById('lb').classList.remove('on');document.body.style.overflow='';}
+function navLb(dir){lbIdx=(lbIdx+dir+lbItems.length)%lbItems.length;showLb();}
+document.addEventListener('keydown',e=>{if(!document.getElementById('lb').classList.contains('on'))return;if(e.key==='Escape')closeLb();if(e.key==='ArrowLeft')navLb(-1);if(e.key==='ArrowRight')navLb(1);});
+document.querySelectorAll('.m-item').forEach((el,i)=>{el.style.animationDelay=(i*40)+'ms'});
+</script>
+</body>
+</html>

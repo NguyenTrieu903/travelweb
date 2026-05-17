@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thư Viện Video — SaigonTeam</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root{--or:#E85D04;--or2:#C44B00;--or3:#FF8C42;--nv:#1B2A4A;--nv2:#243660;--gd:#FFB703;--cr:#FFF8F0;--gy:#F4F6F9;--tx:#2D2D2D;--tl:#6B7280}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--tx);overflow-x:hidden;background:#FAFAFA}
+img{display:block;max-width:100%}
+a{text-decoration:none}
+
+.top-bar{position:fixed;top:0;left:0;width:100%;z-index:950;background:linear-gradient(90deg,var(--or2),var(--or),#FF6B08,var(--or));background-size:300% 100%;animation:gradShift 6s ease infinite;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 48px 9px 16px;text-align:center}
+.top-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.top-bar-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-family:inherit}
+.top-bar.hidden{display:none}
+body.bar-on #nav{top:42px}
+@media(max-width:480px){.top-bar{font-size:.7rem;padding:8px 40px 8px 12px}}
+
+#nav{position:fixed;top:0;width:100%;z-index:900;padding:14px 0;background:rgba(27,42,74,.96);backdrop-filter:blur(12px);box-shadow:0 2px 24px rgba(0,0,0,.15);transition:top .3s}
+.container{max-width:1280px;margin:0 auto;padding:0 36px}
+.nav-in{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:11px}
+.logo-ico{width:42px;height:42px;flex-shrink:0}
+.logo-nm{font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:.5px;line-height:1}
+.logo-sl{font-size:.56rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
+.nav-ul{list-style:none;display:flex;gap:30px;align-items:center}
+.nav-ul a{color:rgba(255,255,255,.88);font-size:.875rem;font-weight:500;position:relative;transition:color .3s}
+.nav-ul a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
+.nav-ul a:hover,.nav-ul a.active{color:#fff}
+.nav-ul a:hover::after,.nav-ul a.active::after{width:100%}
+.nav-cta{background:var(--or)!important;color:#fff!important;padding:9px 22px;border-radius:30px}
+.nav-cta:hover{background:var(--or2)!important;box-shadow:0 5px 16px rgba(232,93,4,.4)}
+.nav-cta::after{display:none!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;opacity:0;visibility:hidden;transition:all .3s}
+.overlay.on{opacity:1;visibility:visible}
+.mnav{position:fixed;top:0;right:0;bottom:0;width:285px;background:var(--nv);z-index:900;padding:68px 22px 32px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.3);overflow-y:auto}
+.mnav.on{transform:translateX(0)}
+.mnav ul{list-style:none}
+.mnav > ul > li{border-bottom:1px solid rgba(255,255,255,.07)}
+.mnav > ul > li > a{display:block;padding:15px 0;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600}
+.mnav > ul > li > a:hover,.mnav > ul > li > a.active{color:var(--gd)}
+.mnav-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:1.1rem;cursor:pointer;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+.page-hero{padding:140px 0 80px;background:
+  linear-gradient(135deg,rgba(4,10,24,.94) 0%,rgba(27,42,74,.88) 50%,rgba(232,93,4,.35) 100%),
+  url('images/teambuilding-1.jpg') center/cover no-repeat;
+  text-align:center;color:#fff;position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,183,3,.18),transparent 55%);pointer-events:none}
+.page-hero::after{content:'';position:absolute;top:50%;left:50%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(232,93,4,.35) 0%,transparent 65%);transform:translate(-50%,-50%);filter:blur(40px);animation:heroPulse 5s ease-in-out infinite;z-index:1}
+@keyframes heroPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+.ph-tag{display:inline-block;background:rgba(232,93,4,.22);color:#FFB703;font-size:.72rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:18px;border:1px solid rgba(255,183,3,.4);position:relative;z-index:3}
+.ph-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4rem);font-weight:700;line-height:1.15;margin-bottom:18px;position:relative;z-index:3;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.ph-title em{font-style:normal;background:linear-gradient(125deg,#FF8C42,#FFB703,#E85D04,#FF8C42);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradShift 4s ease infinite}
+.ph-sub{font-size:1rem;color:rgba(255,255,255,.85);max-width:680px;margin:0 auto;line-height:1.85;position:relative;z-index:3}
+.ph-breadcrumb{display:flex;justify-content:center;gap:10px;margin-top:24px;font-size:.78rem;color:rgba(255,255,255,.6);position:relative;z-index:3}
+.ph-breadcrumb a{color:rgba(255,255,255,.85);transition:color .3s}
+.ph-breadcrumb a:hover{color:var(--gd)}
+.ph-breadcrumb i{font-size:.6rem;opacity:.5;align-self:center}
+
+.featured-video{padding:60px 0 40px;background:#fff}
+.fv-wrap{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center}
+.fv-player{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 24px 60px rgba(27,42,74,.2);aspect-ratio:16/9;cursor:pointer;background:#000}
+.fv-player img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.fv-player:hover img{transform:scale(1.04)}
+.fv-player::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,93,4,.25),transparent 60%,rgba(0,0,0,.5));pointer-events:none}
+.fv-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:90px;height:90px;background:var(--or);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.7rem;padding-left:5px;box-shadow:0 16px 40px rgba(232,93,4,.6);z-index:3;animation:playPulse 2.2s ease-in-out infinite;transition:transform .3s;border:none;cursor:pointer}
+.fv-player:hover .fv-play{transform:translate(-50%,-50%) scale(1.1)}
+@keyframes playPulse{0%,100%{box-shadow:0 16px 40px rgba(232,93,4,.6),0 0 0 0 rgba(232,93,4,.5)}50%{box-shadow:0 16px 40px rgba(232,93,4,.8),0 0 0 20px rgba(232,93,4,0)}}
+.fv-info .fv-cat{display:inline-block;background:rgba(232,93,4,.12);color:var(--or);font-size:.7rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;padding:6px 14px;border-radius:20px;margin-bottom:14px}
+.fv-info h2{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;color:var(--nv);line-height:1.25;margin-bottom:16px}
+.fv-info p{font-size:.9rem;color:var(--tl);line-height:1.85;margin-bottom:22px}
+.fv-meta{display:flex;gap:22px;flex-wrap:wrap;margin-bottom:22px}
+.fv-meta-item{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--nv);font-weight:600}
+.fv-meta-item i{color:var(--or);font-size:.85rem}
+.fv-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--or),#FF6B08);color:#fff;padding:14px 28px;border-radius:30px;font-weight:700;font-size:.9rem;box-shadow:0 8px 24px rgba(232,93,4,.4);transition:all .3s;cursor:pointer;border:none;font-family:inherit}
+.fv-btn:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(232,93,4,.55)}
+
+.filter-section{position:sticky;top:62px;background:rgba(255,255,255,.95);backdrop-filter:blur(12px);z-index:100;padding:18px 0;border-bottom:1px solid rgba(0,0,0,.06);box-shadow:0 4px 20px rgba(0,0,0,.04)}
+body.bar-on .filter-section{top:104px}
+.filter-tabs{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.ftab{padding:9px 20px;border-radius:30px;border:1.5px solid #E5E7EB;background:#fff;color:var(--tl);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Montserrat',sans-serif;display:flex;align-items:center;gap:6px}
+.ftab i{font-size:.72rem}
+.ftab.active,.ftab:hover{background:var(--or);color:#fff;border-color:var(--or);box-shadow:0 4px 14px rgba(232,93,4,.3);transform:translateY(-2px)}
+.ftab .count{background:rgba(255,255,255,.25);padding:1px 8px;border-radius:10px;font-size:.7rem;margin-left:4px}
+.ftab:not(.active) .count{background:rgba(0,0,0,.08);color:var(--tl)}
+
+.sec-head-row{padding:48px 0 28px;text-align:center}
+.sec-head-row h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.3rem);color:var(--nv);font-weight:700;margin-bottom:8px}
+.sec-head-row p{font-size:.9rem;color:var(--tl)}
+
+.videos-main{padding:0 0 70px}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+@media(max-width:1100px){.video-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.video-grid{grid-template-columns:1fr;gap:18px}}
+.vcard{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.07);transition:all .35s;cursor:pointer;animation:vCardIn .5s ease both}
+.vcard:hover{transform:translateY(-7px);box-shadow:0 18px 44px rgba(0,0,0,.15)}
+.vcard.hidden{display:none}
+.vc-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#1B2A4A}
+.vc-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
+.vcard:hover .vc-thumb img{transform:scale(1.08)}
+.vc-thumb::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.1) 0%,transparent 50%,rgba(0,0,0,.45) 100%)}
+.vc-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:62px;height:62px;background:rgba(255,255,255,.95);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:1.15rem;padding-left:4px;box-shadow:0 10px 28px rgba(0,0,0,.3);z-index:3;transition:all .3s;border:none}
+.vcard:hover .vc-play{transform:translate(-50%,-50%) scale(1.15);background:var(--or);color:#fff}
+.vc-dur{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.75);color:#fff;font-size:.7rem;font-weight:700;padding:3px 10px;border-radius:6px;z-index:2;backdrop-filter:blur(4px)}
+.vc-badge{position:absolute;top:10px;left:10px;background:var(--or);color:#fff;font-size:.65rem;font-weight:800;letter-spacing:.5px;text-transform:uppercase;padding:4px 10px;border-radius:6px;z-index:2}
+.vc-badge.new{background:#10B981}
+.vc-badge.hot{background:#EF4444}
+.vc-body{padding:18px 20px}
+.vc-cat{font-size:.66rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:6px}
+.vc-ttl{font-size:.98rem;font-weight:700;color:var(--nv);line-height:1.45;margin-bottom:8px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.84rem}
+.vc-dsc{font-size:.8rem;color:var(--tl);line-height:1.7;margin-bottom:12px;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.vc-foot{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid #F0F2F5;font-size:.72rem;color:var(--tl)}
+.vc-foot i{color:var(--or);margin-right:4px}
+@keyframes vCardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.vmodal{position:fixed;inset:0;background:rgba(8,12,28,.96);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:30px;backdrop-filter:blur(8px)}
+.vmodal.on{opacity:1;visibility:visible}
+.vmodal-content{width:100%;max-width:1100px;aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);background:#000;transform:scale(.92);transition:transform .35s}
+.vmodal.on .vmodal-content{transform:scale(1)}
+.vmodal-content iframe{width:100%;height:100%;border:none;display:block}
+.vmodal-close{position:absolute;top:24px;right:28px;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;transition:all .3s;font-family:inherit;backdrop-filter:blur(8px)}
+.vmodal-close:hover{background:var(--or);transform:scale(1.08)}
+.vmodal-cap{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);text-align:center;color:#fff;max-width:80vw}
+.vmodal-cap .vmc-cat{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gd);margin-bottom:5px}
+.vmodal-cap .vmc-ttl{font-size:1rem;font-weight:600;line-height:1.4}
+@media(max-width:768px){.vmodal-close{top:14px;right:14px;width:42px;height:42px;font-size:1.1rem}.vmodal-cap{display:none}.vmodal{padding:12px}}
+
+.cta-section{background:linear-gradient(135deg,var(--nv),var(--nv2));padding:60px 0;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 25% 50%,rgba(232,93,4,.18),transparent 55%),radial-gradient(circle at 75% 50%,rgba(255,183,3,.12),transparent 55%);pointer-events:none}
+.cta-section h2{font-family:'Playfair Display',serif;font-size:clamp(1.7rem,3vw,2.4rem);font-weight:700;margin-bottom:14px;position:relative;z-index:2}
+.cta-section p{color:rgba(255,255,255,.7);margin-bottom:26px;max-width:600px;margin-left:auto;margin-right:auto;font-size:.95rem;line-height:1.85;position:relative;z-index:2}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.cta-btns a{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:30px;font-weight:700;font-size:.9rem;transition:all .3s}
+.cta-pr{background:linear-gradient(135deg,var(--or),#FF6B08);color:#fff;box-shadow:0 8px 24px rgba(232,93,4,.45)}
+.cta-pr:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(232,93,4,.6)}
+.cta-ol{background:rgba(255,255,255,.08);color:#fff;border:1.5px solid rgba(255,255,255,.3)}
+.cta-ol:hover{background:rgba(255,255,255,.16);border-color:#fff;transform:translateY(-3px)}
+
+footer{background:var(--nv);color:#fff;padding:50px 0 24px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:36px;margin-bottom:36px}
+.ft-dsc{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.8;margin:14px 0 18px}
+.ft-ttl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gd);margin-bottom:16px}
+.ft-ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ft-ul a{color:rgba(255,255,255,.55);font-size:.82rem;transition:all .3s}
+.ft-ul a:hover{color:#fff;padding-left:4px}
+.ft-cl{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ft-cl li{display:flex;align-items:flex-start;gap:9px;font-size:.77rem;color:rgba(255,255,255,.55);line-height:1.5}
+.ft-cl li i{color:var(--or);width:13px;margin-top:1px;flex-shrink:0}
+.ft-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:rgba(255,255,255,.35)}
+.socials{display:flex;gap:10px;margin-top:18px}
+.soc{width:38px;height:38px;background:rgba(255,255,255,.08);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.9rem;transition:all .3s}
+.soc:hover{background:var(--or);transform:translateY(-3px)}
+
+.float-social{position:fixed;bottom:28px;right:22px;z-index:800;display:flex;flex-direction:column;gap:10px}
+.fsoc{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;text-decoration:none;position:relative;transition:transform .25s}
+.fsoc::before{content:'';position:absolute;inset:-5px;border-radius:50%;animation:socRing 2.4s ease-out infinite;opacity:0}
+.fsoc:hover{transform:scale(1.15) translateX(-5px)}
+.fsoc.fb{background:#1877F2;box-shadow:0 5px 18px rgba(24,119,242,.55)}
+.fsoc.ph{background:linear-gradient(135deg,var(--or),#FF5E14);box-shadow:0 5px 18px rgba(232,93,4,.55)}
+.fsoc.za{background:#0068FF;box-shadow:0 5px 18px rgba(0,104,255,.55)}
+.fsoc.gm{background:#EA4335;box-shadow:0 5px 18px rgba(234,67,53,.55)}
+.zalo-ltr{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.88rem;letter-spacing:-.5px}
+.fsoc.fb::before{border:2.5px solid rgba(24,119,242,.7)}
+.fsoc.ph::before{border:2.5px solid rgba(232,93,4,.7);animation-delay:.5s}
+.fsoc.za::before{border:2.5px solid rgba(0,104,255,.7);animation-delay:.85s}
+.fsoc.gm::before{border:2.5px solid rgba(234,67,53,.7);animation-delay:1.6s}
+@keyframes socRing{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.8);opacity:0}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+@media(max-width:1100px){.fv-wrap{grid-template-columns:1fr;gap:28px}.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){
+  .nav-ul{display:none}
+  .hbg{display:flex}
+  .container{padding:0 18px}
+  .page-hero{padding:120px 0 60px}
+  .fv-play{width:70px;height:70px;font-size:1.4rem}
+  .ft-grid{grid-template-columns:1fr;gap:26px}
+  .ft-bot{flex-direction:column;gap:8px;text-align:center}
+  .float-social{bottom:14px;right:12px;gap:8px}
+  .fsoc{width:44px;height:44px;font-size:1rem}
+  .cta-btns a{width:100%;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar" id="topBar">
+  <span>🔥 Flash Sale — Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> | Đặt trước 30/6</span>
+  <a href="index.html#tours">Xem ngay →</a>
+  <button class="top-bar-close" onclick="dismissBar()">✕</button>
+</div>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="index.html" class="logo">
+        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="11" fill="#E85D04"/>
+          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+          <circle cx="22" cy="21" r="4" fill="white"/>
+        </svg>
+        <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+      </a>
+      <ul class="nav-ul">
+        <li><a href="index.html#about">Về Chúng Tôi</a></li>
+        <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+        <li><a href="index.html#services">Dịch Vụ</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="videos.html" class="active">Video</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Liên Hệ Ngay</a></li>
+      </ul>
+      <button class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<div class="mnav" id="mnav">
+  <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-times"></i></button>
+  <ul>
+    <li><a href="index.html#about">Về Chúng Tôi</a></li>
+    <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+    <li><a href="index.html#services">Dịch Vụ</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="videos.html" class="active">Video</a></li>
+    <li><a href="index.html#contact">Liên Hệ</a></li>
+  </ul>
+</div>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="ph-tag">🎬 Thư Viện Video</div>
+    <h1 class="ph-title">Khoảnh Khắc <em>Sống Động</em> Trên Mỗi Hành Trình</h1>
+    <p class="ph-sub">Xem lại không khí bùng nổ của các chuyến tour, teambuilding và sự kiện do SaigonTeam tổ chức. Mỗi video là một câu chuyện thật, một niềm vui được lưu giữ.</p>
+    <div class="ph-breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a>
+      <i class="fas fa-chevron-right"></i>
+      <span>Thư Viện Video</span>
+    </div>
+  </div>
+</section>
+
+<section class="featured-video">
+  <div class="container">
+    <div class="fv-wrap">
+      <div class="fv-player" onclick="openVideo('dQw4w9WgXcQ','Highlight Tour Phú Quốc 2024','Tour Nổi Bật')">
+        <img src="images/du-lich-phu-quoc.jpg" alt="Featured Video">
+        <button class="fv-play" aria-label="Play"><i class="fas fa-play"></i></button>
+      </div>
+      <div class="fv-info">
+        <div class="fv-cat"><i class="fas fa-fire"></i> Video Nổi Bật</div>
+        <h2>Highlight Tour Phú Quốc 4N3Đ — Đảo Ngọc Của Việt Nam</h2>
+        <p>Hành trình 4 ngày 3 đêm cùng 50 khách hàng trải nghiệm Phú Quốc thiên đường — lặn ngắm san hô, safari thú hoang, và chuyến đi biển đáng nhớ tại Bãi Sao.</p>
+        <div class="fv-meta">
+          <div class="fv-meta-item"><i class="fas fa-clock"></i> 3:24</div>
+          <div class="fv-meta-item"><i class="fas fa-eye"></i> 12.5K lượt xem</div>
+          <div class="fv-meta-item"><i class="fas fa-calendar"></i> Tháng 4, 2024</div>
+        </div>
+        <button class="fv-btn" onclick="openVideo('dQw4w9WgXcQ','Highlight Tour Phú Quốc 2024','Tour Nổi Bật')"><i class="fas fa-play-circle"></i> Xem Ngay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="filter-section">
+  <div class="container">
+    <div class="filter-tabs">
+      <button class="ftab active" onclick="filterVideos('all',this)"><i class="fas fa-th"></i> Tất Cả <span class="count">9</span></button>
+      <button class="ftab" onclick="filterVideos('tour',this)"><i class="fas fa-suitcase-rolling"></i> Tour Du Lịch <span class="count">4</span></button>
+      <button class="ftab" onclick="filterVideos('teambuilding',this)"><i class="fas fa-users"></i> TeamBuilding <span class="count">3</span></button>
+      <button class="ftab" onclick="filterVideos('event',this)"><i class="fas fa-calendar-star"></i> Sự Kiện <span class="count">2</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="sec-head-row">
+    <h2>Tất Cả Video</h2>
+    <p>Hơn 50+ video chia sẻ trải nghiệm thật của khách hàng SaigonTeam</p>
+  </div>
+</div>
+
+<section class="videos-main">
+  <div class="container">
+    <div class="video-grid">
+
+      <div class="vcard" data-cat="tour" onclick="openVideo('dQw4w9WgXcQ','Tour Hạ Long 2N1Đ — Du Thuyền 5 Sao','Tour Du Lịch')">
+        <div class="vc-thumb">
+          <img src="images/vinhhalong.png" alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
+          <span class="vc-badge hot">HOT</span>
+          <span class="vc-dur">4:12</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Tour Du Lịch</div>
+          <h3 class="vc-ttl">Tour Hạ Long 2N1Đ — Du Thuyền 5 Sao</h3>
+          <p class="vc-dsc">Trải nghiệm Vịnh Hạ Long trên du thuyền 5 sao với 45 khách hàng từ TP. HCM.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 8.2K lượt xem</span><span><i class="fas fa-calendar"></i> 03/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="tour" onclick="openVideo('dQw4w9WgXcQ','Khám Phá Đà Lạt Mộng Mơ','Tour Du Lịch')">
+        <div class="vc-thumb">
+          <img src="images/mountains-in-Vietnam-banner.jpg" alt="Đà Lạt" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
+          <span class="vc-badge new">MỚI</span>
+          <span class="vc-dur">5:38</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Tour Du Lịch</div>
+          <h3 class="vc-ttl">Khám Phá Đà Lạt Mộng Mơ — Hành Trình Mùa Xuân</h3>
+          <p class="vc-dsc">Cùng nhóm 35 khách hàng khám phá thung lũng tình yêu, đồi chè Cầu Đất và LangBiang.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 5.4K lượt xem</span><span><i class="fas fa-calendar"></i> 05/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="tour" onclick="openVideo('dQw4w9WgXcQ','Sài Gòn — Mũi Né 2N1Đ','Tour Du Lịch')">
+        <div class="vc-thumb">
+          <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="Mũi Né" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FFB703)';this.style.display='none'">
+          <span class="vc-dur">3:55</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Tour Du Lịch</div>
+          <h3 class="vc-ttl">Sài Gòn — Mũi Né 2N1Đ — Đồi Cát Bay &amp; Bình Minh</h3>
+          <p class="vc-dsc">Chuyến đi cuối tuần cho 30 khách lẻ với đồi cát vàng, suối Tiên và resort biển 4 sao.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 7.1K lượt xem</span><span><i class="fas fa-calendar"></i> 02/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="tour" onclick="openVideo('dQw4w9WgXcQ','Ninh Bình — Tràng An Cổ Tích','Tour Du Lịch')">
+        <div class="vc-thumb">
+          <img src="images/ninhbinh.jpg" alt="Ninh Bình" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
+          <span class="vc-dur">4:48</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Tour Du Lịch</div>
+          <h3 class="vc-ttl">Ninh Bình — Tràng An Cổ Tích &amp; Hang Múa Hùng Vĩ</h3>
+          <p class="vc-dsc">Tour 3N2Đ khám phá vịnh Hạ Long trên cạn — Tràng An, Hang Múa, chùa Bái Đính.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 6.8K lượt xem</span><span><i class="fas fa-calendar"></i> 01/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="teambuilding" onclick="openVideo('dQw4w9WgXcQ','TeamBuilding Vũng Tàu','TeamBuilding')">
+        <div class="vc-thumb">
+          <img src="images/teambuilding-1.jpg" alt="TeamBuilding" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
+          <span class="vc-badge hot">HOT</span>
+          <span class="vc-dur">6:24</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">TeamBuilding</div>
+          <h3 class="vc-ttl">TeamBuilding Vũng Tàu — Năng Lượng Bùng Nổ Cùng 80+ Nhân Viên</h3>
+          <p class="vc-dsc">Sự kiện 2 ngày 1 đêm với hoạt động ngoài trời, đốt lửa trại và mini game thú vị.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 14.2K lượt xem</span><span><i class="fas fa-calendar"></i> 04/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="teambuilding" onclick="openVideo('dQw4w9WgXcQ','Building Activities Indoor','TeamBuilding')">
+        <div class="vc-thumb">
+          <img src="images/teambuilding-2.jpg" alt="TeamBuilding Indoor" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FF8C42)';this.style.display='none'">
+          <span class="vc-dur">5:12</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">TeamBuilding</div>
+          <h3 class="vc-ttl">Building Activities Indoor — Khám Phá Tinh Thần Đồng Đội</h3>
+          <p class="vc-dsc">Hoạt động indoor sáng tạo cho 60 thành viên — game tư duy, kỹ năng team work.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 9.5K lượt xem</span><span><i class="fas fa-calendar"></i> 03/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="teambuilding" onclick="openVideo('dQw4w9WgXcQ','Hybrid TeamBuilding Đà Nẵng','TeamBuilding')">
+        <div class="vc-thumb">
+          <img src="images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng TB" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
+          <span class="vc-badge new">MỚI</span>
+          <span class="vc-dur">4:36</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">TeamBuilding</div>
+          <h3 class="vc-ttl">Hybrid TeamBuilding Đà Nẵng — Sáng Tạo Không Giới Hạn</h3>
+          <p class="vc-dsc">Mô hình hybrid kết hợp indoor + outdoor cho 100 nhân viên doanh nghiệp lớn.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 4.8K lượt xem</span><span><i class="fas fa-calendar"></i> 05/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="event" onclick="openVideo('dQw4w9WgXcQ','Gala Dinner Cuối Năm 2023','Sự Kiện')">
+        <div class="vc-thumb">
+          <img src="images/hanhtrinhcuanhungkyniem-5.jpg" alt="Gala" onerror="this.parentElement.style.background='linear-gradient(135deg,#7C3AED,#3730A3)';this.style.display='none'">
+          <span class="vc-badge hot">HOT</span>
+          <span class="vc-dur">8:15</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Sự Kiện</div>
+          <h3 class="vc-ttl">Gala Dinner Cuối Năm 2023 — Đêm Hoàng Gia Lộng Lẫy</h3>
+          <p class="vc-dsc">Tổ chức gala 250 khách với MC, ban nhạc, ánh sáng chuyên nghiệp tại khách sạn 5 sao.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 18.6K lượt xem</span><span><i class="fas fa-calendar"></i> 12/2023</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="event" onclick="openVideo('dQw4w9WgXcQ','Hội Nghị Khách Hàng 2024','Sự Kiện')">
+        <div class="vc-thumb">
+          <img src="images/hanhtrinhcuanhungkyniem-9.jpg" alt="Hội Nghị" onerror="this.parentElement.style.background='linear-gradient(135deg,#059669,#0D9488)';this.style.display='none'">
+          <span class="vc-dur">6:48</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">Sự Kiện</div>
+          <h3 class="vc-ttl">Hội Nghị Khách Hàng 2024 — Sự Kiện 500+ Người Hoành Tráng</h3>
+          <p class="vc-dsc">Lên kế hoạch và thực hiện trọn gói hội nghị khách hàng quy mô lớn.</p>
+          <div class="vc-foot"><span><i class="fas fa-eye"></i> 11.3K lượt xem</span><span><i class="fas fa-calendar"></i> 02/2024</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <h2>Bạn Cũng Muốn Trải Nghiệm?</h2>
+    <p>Liên hệ ngay với SaigonTeam để được tư vấn miễn phí. Mỗi tour, mỗi sự kiện đều được thiết kế riêng cho từng khách hàng.</p>
+    <div class="cta-btns">
+      <a href="index.html#tours" class="cta-pr"><i class="fas fa-compass"></i> Xem Tour Hot</a>
+      <a href="tel:0908940903" class="cta-ol"><i class="fas fa-phone-alt"></i> Gọi: 0908.940.903</a>
+    </div>
+  </div>
+</section>
+
+<div class="vmodal" id="vmodal" onclick="if(event.target===this)closeVideo()">
+  <button class="vmodal-close" onclick="closeVideo()"><i class="fas fa-times"></i></button>
+  <div class="vmodal-content">
+    <iframe id="vmIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+  <div class="vmodal-cap"><div class="vmc-cat" id="vmcCat"></div><div class="vmc-ttl" id="vmcTtl"></div></div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="logo">
+          <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
+            <rect width="44" height="44" rx="11" fill="#E85D04"/>
+            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+            <circle cx="22" cy="21" r="4" fill="white"/>
+          </svg>
+          <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+        </div>
+        <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm.</p>
+        <div class="socials">
+          <a href="#" class="soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-ttl">Dịch Vụ</div>
+        <ul class="ft-ul">
+          <li><a href="index.html#services">Tour Khách Đoàn</a></li>
+          <li><a href="index.html#services">TeamBuilding</a></li>
+          <li><a href="index.html#services">Tổ Chức Sự Kiện</a></li>
+          <li><a href="index.html#services">Cho Thuê Xe</a></li>
+          <li><a href="index.html#services">Vé Máy Bay</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Khám Phá</div>
+        <ul class="ft-ul">
+          <li><a href="index.html">Trang Chủ</a></li>
+          <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+          <li><a href="gallery.html">Thư Viện Ảnh</a></li>
+          <li><a href="videos.html">Thư Viện Video</a></li>
+          <li><a href="index.html#contact">Liên Hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Liên Hệ</div>
+        <ul class="ft-cl">
+          <li><i class="fas fa-map-marker-alt"></i>Số 14/149, Ấp 32 Phạm Hùng, Bình Hưng, TP. HCM</li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" style="color:var(--or);font-weight:700">0908.940.903</a></li>
+          <li><i class="fas fa-envelope"></i>Saigonteamtravel2021@gmail.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2024 SaigonTeam. All rights reserved.</span>
+      <span>Thiết kế chuyên nghiệp</span>
+    </div>
+  </div>
+</footer>
+
+<div class="float-social">
+  <a href="https://facebook.com/saigonteam" class="fsoc fb" target="_blank"><i class="fab fa-facebook-f"></i></a>
+  <a href="tel:0908940903" class="fsoc ph"><i class="fas fa-phone-alt"></i></a>
+  <a href="https://zalo.me/0908940903" class="fsoc za" target="_blank"><span class="zalo-ltr">Za</span></a>
+  <a href="https://maps.google.com/?q=Phạm+Hùng+Bình+Hưng+TP.HCM" class="fsoc gm" target="_blank"><i class="fas fa-map-marker-alt"></i></a>
+</div>
+
+<script>
+(function(){const bar=document.getElementById('topBar');if(bar&&!sessionStorage.getItem('barDismissed')){document.body.classList.add('bar-on');}else if(bar){bar.classList.add('hidden');}})();
+function dismissBar(){document.getElementById('topBar').classList.add('hidden');document.body.classList.remove('bar-on');sessionStorage.setItem('barDismissed','1');}
+function toggleNav(){document.getElementById('mnav').classList.toggle('on');document.getElementById('overlay').classList.toggle('on');}
+function filterVideos(cat,btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.vcard').forEach(c=>{const match=cat==='all'||c.dataset.cat===cat;c.classList.toggle('hidden',!match);});}
+function openVideo(ytId,title,cat){document.getElementById('vmIframe').src='https://www.youtube.com/embed/'+ytId+'?autoplay=1&rel=0';document.getElementById('vmcTtl').textContent=title||'';document.getElementById('vmcCat').textContent=cat||'';document.getElementById('vmodal').classList.add('on');document.body.style.overflow='hidden';}
+function closeVideo(){document.getElementById('vmIframe').src='';document.getElementById('vmodal').classList.remove('on');document.body.style.overflow='';}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo();});
+document.querySelectorAll('.vcard').forEach((el,i)=>{el.style.animationDelay=(i*60)+'ms'});
+</script>
+</body>
+</html>
