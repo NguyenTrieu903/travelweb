@@ -274,9 +274,9 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
 <div class="filter-section">
   <div class="container">
     <div class="filter-tabs">
-      <button class="ftab active" onclick="filterVideos('all',this)"><i class="fas fa-th"></i> Tất Cả <span class="count">9</span></button>
+      <button class="ftab active" onclick="filterVideos('all',this)"><i class="fas fa-th"></i> Tất Cả <span class="count">10</span></button>
       <button class="ftab" onclick="filterVideos('tour',this)"><i class="fas fa-suitcase-rolling"></i> Tour Du Lịch <span class="count">4</span></button>
-      <button class="ftab" onclick="filterVideos('teambuilding',this)"><i class="fas fa-users"></i> TeamBuilding <span class="count">3</span></button>
+      <button class="ftab" onclick="filterVideos('teambuilding',this)"><i class="fas fa-users"></i> TeamBuilding <span class="count">4</span></button>
       <button class="ftab" onclick="filterVideos('event',this)"><i class="fas fa-calendar-star"></i> Sự Kiện <span class="count">2</span></button>
     </div>
   </div>
@@ -348,6 +348,21 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
           <h3 class="vc-ttl">Ninh Bình — Tràng An Cổ Tích &amp; Hang Múa Hùng Vĩ</h3>
           <p class="vc-dsc">Tour 3N2Đ khám phá vịnh Hạ Long trên cạn — Tràng An, Hang Múa, chùa Bái Đính.</p>
           <div class="vc-foot"><span><i class="fas fa-eye"></i> 6.8K lượt xem</span><span><i class="fas fa-calendar"></i> 01/2024</span></div>
+        </div>
+      </div>
+
+      <div class="vcard" data-cat="teambuilding" onclick="openVideo('videos/ACECOOK NHA TRANG_TEAM.mp4','TeamBuilding Acecook — Nha Trang Biển Xanh','TeamBuilding',true)">
+        <div class="vc-thumb">
+          <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Acecook Nha Trang" onerror="this.parentElement.style.background='linear-gradient(135deg,#0096C7,#0077B6)';this.style.display='none'">
+          <span class="vc-badge new">THỰC TẾ</span>
+          <span class="vc-dur"><i class="fas fa-video" style="font-size:.65rem"></i> Local</span>
+          <button class="vc-play"><i class="fas fa-play"></i></button>
+        </div>
+        <div class="vc-body">
+          <div class="vc-cat">TeamBuilding</div>
+          <h3 class="vc-ttl">TeamBuilding Acecook — Nha Trang Biển Xanh</h3>
+          <p class="vc-dsc">Video thực tế chương trình teambuilding Acecook tại Nha Trang — hoạt động biển sôi động, gắn kết đội nhóm.</p>
+          <div class="vc-foot"><span><i class="fas fa-film"></i> Video thực tế</span><span><i class="fas fa-map-marker-alt"></i> Nha Trang</span></div>
         </div>
       </div>
 
@@ -443,6 +458,7 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
   <button class="vmodal-close" onclick="closeVideo()"><i class="fas fa-times"></i></button>
   <div class="vmodal-content">
     <iframe id="vmIframe" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <video id="vmVideo" src="" controls playsinline style="display:none;width:100%;height:100%;object-fit:contain;background:#000"></video>
   </div>
   <div class="vmodal-cap"><div class="vmc-cat" id="vmcCat"></div><div class="vmc-ttl" id="vmcTtl"></div></div>
 </div>
@@ -515,8 +531,30 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
 function dismissBar(){document.getElementById('topBar').classList.add('hidden');document.body.classList.remove('bar-on');sessionStorage.setItem('barDismissed','1');}
 function toggleNav(){document.getElementById('mnav').classList.toggle('on');document.getElementById('overlay').classList.toggle('on');}
 function filterVideos(cat,btn){document.querySelectorAll('.ftab').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.vcard').forEach(c=>{const match=cat==='all'||c.dataset.cat===cat;c.classList.toggle('hidden',!match);});}
-function openVideo(ytId,title,cat){document.getElementById('vmIframe').src='https://www.youtube.com/embed/'+ytId+'?autoplay=1&rel=0';document.getElementById('vmcTtl').textContent=title||'';document.getElementById('vmcCat').textContent=cat||'';document.getElementById('vmodal').classList.add('on');document.body.style.overflow='hidden';}
-function closeVideo(){document.getElementById('vmIframe').src='';document.getElementById('vmodal').classList.remove('on');document.body.style.overflow='';}
+function openVideo(src,title,cat,isLocal){
+  const iframe=document.getElementById('vmIframe');
+  const video=document.getElementById('vmVideo');
+  if(isLocal){
+    iframe.src='';iframe.style.display='none';
+    video.src=src;video.style.display='block';
+    video.play();
+  }else{
+    video.pause();video.src='';video.style.display='none';
+    iframe.style.display='block';
+    iframe.src='https://www.youtube.com/embed/'+src+'?autoplay=1&rel=0';
+  }
+  document.getElementById('vmcTtl').textContent=title||'';
+  document.getElementById('vmcCat').textContent=cat||'';
+  document.getElementById('vmodal').classList.add('on');
+  document.body.style.overflow='hidden';
+}
+function closeVideo(){
+  document.getElementById('vmIframe').src='';
+  const v=document.getElementById('vmVideo');v.pause();v.src='';v.style.display='none';
+  document.getElementById('vmIframe').style.display='block';
+  document.getElementById('vmodal').classList.remove('on');
+  document.body.style.overflow='';
+}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVideo();});
 document.querySelectorAll('.vcard').forEach((el,i)=>{el.style.animationDelay=(i*60)+'ms'});
 </script>

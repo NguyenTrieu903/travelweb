@@ -601,13 +601,18 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 .gi:nth-child(8){grid-column:3/5;grid-row:3/5}
 
 /* LIGHTBOX */
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
 .lb.on{opacity:1;visibility:visible}
 .lb-img{max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;transform:scale(.92);transition:transform .35s}
 .lb.on .lb-img{transform:scale(1)}
-.lb-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.4rem;cursor:pointer;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;font-family:inherit}
-.lb-close:hover{background:rgba(255,255,255,.25)}
-.lb-cap{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600;letter-spacing:1px;white-space:nowrap}
+.lb-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.4rem;cursor:pointer;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;font-family:inherit;z-index:2}
+.lb-close:hover{background:rgba(255,255,255,.28)}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.45);color:#fff;font-size:1.2rem;cursor:pointer;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;z-index:2;font-family:inherit}
+.lb-prev{left:14px}
+.lb-next{right:14px}
+.lb-prev:hover,.lb-next:hover{background:var(--or);border-color:var(--or)}
+.lb-cap{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600;letter-spacing:1px;white-space:nowrap}
+.lb-counter{position:absolute;bottom:22px;right:24px;color:rgba(255,255,255,.55);font-size:.78rem;font-weight:600}
 
 /* DEST HIGHLIGHTS */
 #destinations{padding:80px 0;background:#fff}
@@ -779,47 +784,6 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
           <a href="#tours" class="htag">✈️ Bangkok</a>
         </div>
       </div>
-
-      <!-- RIGHT: Photo stack visual -->
-      <div class="hero-vis">
-        <div class="hv-stack">
-          <!-- Back card — client memory photo -->
-          <div class="hv-card hv-c1">
-            <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình SaigonTeam"
-                 onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
-            <div class="hv-card-lbl"><i class="fas fa-camera"></i> Hành Trình Của Những Kỷ Niệm</div>
-          </div>
-          <!-- Front card — destination hero -->
-          <div class="hv-card hv-c2">
-            <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc"
-                 onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
-            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Việt Nam</div>
-          </div>
-          <!-- Floating rating badge -->
-          <div class="hv-badge">
-            <div class="hv-badge-ico"><i class="fas fa-star"></i></div>
-            <div>
-              <div class="hv-badge-n">4.9 / 5.0</div>
-              <div class="hv-badge-l">Đánh giá trung bình</div>
-            </div>
-          </div>
-        </div>
-        <!-- Glassmorphism stats row -->
-        <div class="hv-stats">
-          <div class="hv-st">
-            <div class="hv-st-n"><span class="cnt" data-t="500">0</span><span style="color:var(--gd)">+</span></div>
-            <div class="hv-st-l">Khách hàng</div>
-          </div>
-          <div class="hv-st">
-            <div class="hv-st-n"><span style="color:var(--gd)">5</span></div>
-            <div class="hv-st-l">Năm kinh nghiệm</div>
-          </div>
-          <div class="hv-st">
-            <div class="hv-st-n"><span class="cnt" data-t="1000">0</span><span style="color:var(--gd)">+</span></div>
-            <div class="hv-st-l">Tour đã thực hiện</div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -845,7 +809,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
     <div class="srv-grid">
 
-      <div class="srv reveal">
+      <div class="srv reveal" onclick="location.href='service-detail.html?id=tour-doan-le'" style="cursor:pointer">
         <div class="srv-top g1">
           <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
           <i class="fas fa-route" style="position:relative;z-index:2"></i>
@@ -861,7 +825,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" style="position:relative">
+      <div class="srv reveal" style="position:relative;cursor:pointer" onclick="location.href='service-detail.html?id=teambuilding'">
         <div class="srv-top g2">
           <img src="images/teambuilding-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:0">
           <i class="fas fa-users" style="position:relative;z-index:2"></i>
@@ -879,7 +843,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal">
+      <div class="srv reveal" onclick="location.href='service-detail.html?id=su-kien'" style="cursor:pointer">
         <div class="srv-top g3">
           <img src="images/teambuilding-2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;z-index:0">
           <i class="fas fa-star" style="position:relative;z-index:2"></i>
@@ -895,7 +859,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal">
+      <div class="srv reveal" onclick="location.href='service-detail.html?id=thue-xe'" style="cursor:pointer">
         <div class="srv-top g4">
           <img src="images/thue-xe-du-lic" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
           <i class="fas fa-bus-alt" style="position:relative;z-index:2"></i>
@@ -911,7 +875,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal">
+      <div class="srv reveal" onclick="location.href='service-detail.html?id=ve-may-bay'" style="cursor:pointer">
         <div class="srv-top g5">
           <img src="images/vemaybaygiare.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
           <i class="fas fa-plane-departure" style="position:relative;z-index:2"></i>
@@ -1026,7 +990,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     <div class="tour-grid">
 
       <!-- Tour 1: Đà Lạt -->
-      <div class="tcard reveal" data-cat="nam">
+      <div class="tcard reveal" data-cat="nam" onclick="location.href='tour-detail.html?id=dalat'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1559628129-67cf63b72248?w=500&q=82&fit=crop&h=280"
                alt="Đà Lạt" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
@@ -1061,7 +1025,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 2: Phú Quốc -->
-      <div class="tcard reveal" data-cat="nam">
+      <div class="tcard reveal" data-cat="nam" onclick="location.href='tour-detail.html?id=phuquoc'" style="cursor:pointer">
         <div class="tc-img">
           <img src="images/du-lich-phu-quoc.jpg"
                alt="Phú Quốc" onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
@@ -1096,7 +1060,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 3: Hội An -->
-      <div class="tcard reveal" data-cat="trung">
+      <div class="tcard reveal" data-cat="trung" onclick="location.href='tour-detail.html?id=hoian'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=82&fit=crop&h=280"
                alt="Hội An" onerror="this.parentElement.style.background='linear-gradient(135deg,#FFB703,#FB8500)';this.style.display='none'">
@@ -1131,7 +1095,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 4: Hạ Long -->
-      <div class="tcard reveal" data-cat="bac">
+      <div class="tcard reveal" data-cat="bac" onclick="location.href='tour-detail.html?id=halong'" style="cursor:pointer">
         <div class="tc-img">
           <img src="images/vinhhalong.png"
                alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
@@ -1166,7 +1130,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 5: Sapa -->
-      <div class="tcard reveal" data-cat="bac">
+      <div class="tcard reveal" data-cat="bac" onclick="location.href='tour-detail.html?id=sapa'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=82&fit=crop&h=280"
                alt="Sapa" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
@@ -1201,7 +1165,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 6: Nha Trang -->
-      <div class="tcard reveal" data-cat="trung">
+      <div class="tcard reveal" data-cat="trung" onclick="location.href='tour-detail.html?id=nhatrang'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=500&q=82&fit=crop&h=280"
                alt="Nha Trang" onerror="this.parentElement.style.background='linear-gradient(135deg,#0096C7,#0077B6)';this.style.display='none'">
@@ -1235,7 +1199,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 7: Bangkok -->
-      <div class="tcard reveal" data-cat="quocte">
+      <div class="tcard reveal" data-cat="quocte" onclick="location.href='tour-detail.html?id=bangkok'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1563492065-03696f837f77?w=500&q=82&fit=crop&h=280"
                alt="Bangkok" onerror="this.parentElement.style.background='linear-gradient(135deg,#7209B7,#3A0CA3)';this.style.display='none'">
@@ -1270,7 +1234,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 8: Singapore -->
-      <div class="tcard reveal" data-cat="quocte">
+      <div class="tcard reveal" data-cat="quocte" onclick="location.href='tour-detail.html?id=singapore'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=500&q=82&fit=crop&h=280"
                alt="Singapore" onerror="this.parentElement.style.background='linear-gradient(135deg,#E63946,#1D3557)';this.style.display='none'">
@@ -1305,7 +1269,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Tour 9: Bali -->
-      <div class="tcard reveal" data-cat="quocte">
+      <div class="tcard reveal" data-cat="quocte" onclick="location.href='tour-detail.html?id=bali'" style="cursor:pointer">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=82&fit=crop&h=280"
                alt="Bali" onerror="this.parentElement.style.background='linear-gradient(135deg,#FB8500,#E85D04)';this.style.display='none'">
@@ -1357,7 +1321,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     <div class="combo-grid">
 
       <!-- Combo 1: Phú Quốc -->
-      <div class="ccard reveal">
+      <div class="ccard reveal" onclick="location.href='combo-detail.html?id=combo-phuquoc'" style="cursor:pointer">
         <div class="cc-img">
           <img src="images/du-lich-phu-quoc.jpg"
                alt="Phú Quốc Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#0096C7,#0077B6)';this.style.display='none'">
@@ -1386,7 +1350,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Combo 2: Đà Nẵng -->
-      <div class="ccard reveal">
+      <div class="ccard reveal" onclick="location.href='combo-detail.html?id=combo-danang'" style="cursor:pointer">
         <div class="cc-img">
           <img src="images/dia-diem-du-lich-da-nang-thumb.jpg"
                alt="Đà Nẵng Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
@@ -1415,7 +1379,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       </div>
 
       <!-- Combo 3: Hà Nội + Hạ Long -->
-      <div class="ccard reveal">
+      <div class="ccard reveal" onclick="location.href='combo-detail.html?id=combo-halong'" style="cursor:pointer">
         <div class="cc-img">
           <img src="images/vinhhalong.png"
                alt="Hà Nội Hạ Long Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#219EBC)';this.style.display='none'">
@@ -1497,7 +1461,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 </section>
 
 <!-- GALLERY -->
-<section id="gallery" style="padding:64px 0;background:var(--gy)">
+<!-- <section id="gallery" style="padding:64px 0;background:var(--gy)">
   <div class="container">
     <div class="sec-head">
       <div class="sec-tag">Khoảnh Khắc Lữ Hành</div>
@@ -1506,61 +1470,51 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
     <div class="glr-grid">
 
-      <!-- 1: Featured 2×2 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình 1" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FF8C42)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 2 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-2.jpg" alt="Hành Trình 2" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 3 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Hành Trình 3" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 4 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-4.jpg" alt="Hành Trình 4" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 5 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-5.jpg" alt="Hành Trình 5" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 6 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-6.jpg" alt="Hành Trình 6" onerror="this.parentElement.style.background='linear-gradient(135deg,#FFB703,#FB8500)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 7 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-7.jpg" alt="Hành Trình 7" onerror="this.parentElement.style.background='linear-gradient(135deg,#7C3AED,#3730A3)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 8: Featured 2×2 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-8.jpg" alt="Hành Trình 8" onerror="this.parentElement.style.background='linear-gradient(135deg,#059669,#0D9488)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 9 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-9.jpg" alt="Hành Trình 9" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#C44B00)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
       </div>
 
-      <!-- 10 -->
       <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
         <img src="images/hanhtrinhcuanhungkyniem-10.jpg" alt="Hành Trình 10" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.style.display='none'">
         <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
@@ -1572,13 +1526,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       <a href="#contact" class="btn btn-pr"><i class="fas fa-images"></i> Xem Thêm Hành Trình</a>
     </div>
   </div>
-</section>
+</section> -->
 
 <!-- LIGHTBOX -->
 <div class="lb" id="lb" onclick="closeLb(event)">
   <button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
+  <button class="lb-prev" onclick="navLb(-1);event.stopPropagation()"><i class="fas fa-chevron-left"></i></button>
   <img class="lb-img" id="lb-img" src="" alt="">
+  <button class="lb-next" onclick="navLb(1);event.stopPropagation()"><i class="fas fa-chevron-right"></i></button>
   <div class="lb-cap" id="lb-cap"></div>
+  <div class="lb-counter" id="lb-counter"></div>
 </div>
 
 <!-- CONTACT -->
@@ -1855,20 +1812,51 @@ document.addEventListener('click', e => {
 });
 
 // Lightbox
+let lbItems = [], lbIdx = 0, lbTouchX = 0;
+
 function openLb(el) {
-  const img = el.querySelector('img');
-  const cap = el.dataset.lbl || '';
-  document.getElementById('lb-img').src = img.src.replace(/w=\d+/, 'w=1400').replace(/h=\d+/, '');
-  document.getElementById('lb-cap').textContent = cap;
+  lbItems = Array.from(document.querySelectorAll('.gi'));
+  lbIdx = lbItems.indexOf(el);
+  _showLb();
   document.getElementById('lb').classList.add('on');
   document.body.style.overflow = 'hidden';
 }
+
+function _showLb() {
+  const el = lbItems[lbIdx];
+  const img = el.querySelector('img');
+  document.getElementById('lb-img').src = img.src.replace(/w=\d+/, 'w=1400').replace(/h=\d+/, '');
+  document.getElementById('lb-cap').textContent = el.dataset.lbl || '';
+  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
+}
+
+function navLb(dir) {
+  lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
+  _showLb();
+}
+
 function closeLb(e) {
   if (e && e.target !== document.getElementById('lb') && !e.target.closest('.lb-close')) return;
   document.getElementById('lb').classList.remove('on');
   document.body.style.overflow = '';
 }
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb({target: document.getElementById('lb')}); });
+
+document.addEventListener('keydown', e => {
+  if (!document.getElementById('lb').classList.contains('on')) return;
+  if (e.key === 'Escape') closeLb({target: document.getElementById('lb')});
+  if (e.key === 'ArrowLeft') navLb(-1);
+  if (e.key === 'ArrowRight') navLb(1);
+});
+
+// Touch swipe
+(function() {
+  const lb = document.getElementById('lb');
+  lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - lbTouchX;
+    if (Math.abs(dx) > 50) navLb(dx < 0 ? 1 : -1);
+  }, {passive:true});
+})();
 
 // Form
 function submitForm(btn) {
