@@ -15,18 +15,44 @@ img{display:block;max-width:100%}
 a{text-decoration:none}
 .container{max-width:1280px;margin:0 auto;padding:0 36px}
 
+/* TOP BAR */
+.top-bar{position:fixed;top:0;left:0;width:100%;z-index:950;background:linear-gradient(90deg,var(--or2),var(--or),#FF6B08,var(--or));background-size:300% 100%;animation:gradShift 6s ease infinite;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 48px 9px 16px;text-align:center}
+.top-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
+.top-bar-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-family:inherit}
+.top-bar.hidden{display:none}
+body.bar-on #nav{top:42px}
+body.bar-on .breadcrumb{margin-top:110px}
+@media(max-width:480px){.top-bar{font-size:.7rem;padding:8px 40px 8px 12px}}
 /* NAV */
-#nav{position:fixed;top:0;width:100%;z-index:900;background:rgba(27,42,74,.97);backdrop-filter:blur(12px);padding:14px 0;box-shadow:0 2px 24px rgba(0,0,0,.2)}
+#nav{position:fixed;top:0;width:100%;z-index:900;background:rgba(27,42,74,.97);backdrop-filter:blur(12px);padding:14px 0;box-shadow:0 2px 24px rgba(0,0,0,.2);transition:top .3s}
 .nav-in{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:11px}
+.logo-ico-img{width:40px;height:40px;object-fit:contain;border-radius:8px;flex-shrink:0}
 .logo-ico{width:40px;height:40px;flex-shrink:0}
 .logo-nm{font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:.5px;line-height:1}
 .logo-sl{font-size:.56rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
-.nav-back{display:flex;align-items:center;gap:8px;color:rgba(255,255,255,.8);font-size:.875rem;font-weight:600;transition:color .3s}
-.nav-back:hover{color:#fff}
-.nav-back i{font-size:.8rem}
-.nav-cta-btn{background:var(--or);color:#fff;padding:10px 22px;border-radius:30px;font-weight:700;font-size:.85rem;border:none;cursor:pointer;transition:all .3s;font-family:'Montserrat',sans-serif}
-.nav-cta-btn:hover{background:var(--or2);box-shadow:0 5px 16px rgba(232,93,4,.4)}
+.nav-ul{list-style:none;display:flex;gap:30px;align-items:center}
+.nav-ul a{color:rgba(255,255,255,.88);font-size:.875rem;font-weight:500;position:relative;transition:color .3s}
+.nav-ul a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
+.nav-ul a:hover{color:#fff}
+.nav-ul a:hover::after{width:100%}
+.nav-cta{background:var(--or)!important;color:#fff!important;padding:9px 22px;border-radius:30px}
+.nav-cta:hover{background:var(--or2)!important;box-shadow:0 5px 16px rgba(232,93,4,.4)}
+.nav-cta::after{display:none!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{display:block;width:24px;height:2px;background:#fff;border-radius:2px}
+/* MOBILE NAV */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;opacity:0;visibility:hidden;transition:all .3s}
+.overlay.on{opacity:1;visibility:visible}
+.mnav{position:fixed;top:0;right:0;bottom:0;width:285px;background:var(--nv);z-index:900;padding:68px 22px 32px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.3);overflow-y:auto}
+.mnav.on{transform:translateX(0)}
+.mnav ul{list-style:none}
+.mnav > ul > li{border-bottom:1px solid rgba(255,255,255,.07)}
+.mnav > ul > li > a{display:block;padding:15px 0;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600}
+.mnav > ul > li > a:hover{color:var(--gd)}
+.mnav-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:1.1rem;cursor:pointer;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+@media(max-width:768px){.nav-ul{display:none}.hbg{display:flex}}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 
 /* BREADCRUMB */
 .breadcrumb{background:var(--wh);border-bottom:1px solid rgba(0,0,0,.06);padding:12px 0;margin-top:68px}
@@ -203,29 +229,75 @@ footer{background:var(--nv);color:#fff;padding:56px 0 24px}
 .success-sub{font-size:.85rem;color:var(--tl);line-height:1.8}
 
 @media(max-width:1024px){.main-layout{grid-template-columns:1fr}.sidebar{position:static}.rel-grid{grid-template-columns:repeat(2,1fr)}.ft-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:768px){.container{padding:0 18px}.hero{height:360px}.hero-content{padding:24px 18px}.ov-highlights{grid-template-columns:1fr}.ft-grid{grid-template-columns:1fr}.ft-bot{flex-direction:column;gap:6px}.qitem{padding:12px 16px}}
-@media(max-width:480px){.rel-grid{grid-template-columns:1fr 1fr}.hero-title{font-size:1.5rem}}
+@media(max-width:768px){
+  .container{padding:0 16px}
+  .hero{height:300px}
+  .hero-content{padding:18px 16px}
+  .hero-title{font-size:1.3rem}
+  .hero-sub{font-size:.82rem}
+  .hero-badge{font-size:.65rem;padding:5px 11px}
+  .qbar-inner{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));overflow-x:unset}
+  .qitem{flex-shrink:unset;padding:10px 12px;white-space:normal;border-right:none;border-bottom:1px solid #f0f0f0;gap:8px}
+  .qitem:last-child{border-bottom:none}
+  .qitem-icon{width:28px;height:28px;font-size:.72rem}
+  .qitem-label{font-size:.58rem;letter-spacing:.2px}
+  .qitem-value{font-size:.76rem}
+  .tab-btn{padding:13px 10px;font-size:.76rem}
+  .tab-panel{padding:18px 14px}
+  .ov-highlights{grid-template-columns:1fr}
+  .main-layout{padding:12px 0 32px;gap:16px}
+  .ft-grid{grid-template-columns:1fr}
+  .ft-bot{flex-direction:column;gap:6px}
+  .rel-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .hero{height:240px}
+  .hero-title{font-size:1.18rem}
+  .hero-sub{display:none}
+  .tab-btn{font-size:.72rem;padding:11px 8px;min-width:70px}
+}
 </style>
 </head>
 <body>
+
+<div class="top-bar" id="topBar">
+  <span>🔥 Flash Sale — Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> | Đặt trước 30/6</span>
+  <a href="index.html#tours">Xem ngay →</a>
+  <button class="top-bar-close" onclick="dismissBar()">✕</button>
+</div>
 
 <nav id="nav">
   <div class="container">
     <div class="nav-in">
       <a href="index.html" class="logo">
-        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
-          <rect width="44" height="44" rx="11" fill="#E85D04"/>
-          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-          <circle cx="22" cy="21" r="4" fill="white"/>
-        </svg>
-        <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ & Sự Kiện</div></div>
+        <img src="images/logo-3.png" alt="SaigonTeam Travel" class="logo-ico-img">
+        <div><div class="logo-nm">SAIGONTEAM TRAVEL.JSC</div><div class="logo-sl">Cùng Nhau Trải Nghiệm</div></div>
       </a>
-      <a href="index.html#services" class="nav-back"><i class="fas fa-arrow-left"></i> Quay lại Dịch Vụ</a>
-      <button class="nav-cta-btn" onclick="openModal()">Yêu Cầu Báo Giá</button>
+      <ul class="nav-ul">
+        <li><a href="index.html#about">Về Chúng Tôi</a></li>
+        <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+        <li><a href="index.html#services">Dịch Vụ</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="videos.html">Video</a></li>
+        <li><a href="index.html#contact" class="nav-cta">Liên Hệ Ngay</a></li>
+      </ul>
+      <button class="hbg" onclick="toggleNav()"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+
+<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<div class="mnav" id="mnav">
+  <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-times"></i></button>
+  <ul>
+    <li><a href="index.html#about">Về Chúng Tôi</a></li>
+    <li><a href="index.html#tours">Tour &amp; Combo</a></li>
+    <li><a href="index.html#services">Dịch Vụ</a></li>
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="videos.html">Video</a></li>
+    <li><a href="index.html#contact">Liên Hệ</a></li>
+  </ul>
+</div>
 
 <div class="breadcrumb">
   <div class="container">
@@ -360,13 +432,12 @@ footer{background:var(--nv);color:#fff;padding:56px 0 24px}
   <div class="container">
     <div class="ft-grid">
       <div>
-        <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px">
-          <svg width="40" height="40" viewBox="0 0 44 44" fill="none">
-            <rect width="44" height="44" rx="11" fill="#E85D04"/>
-            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" fill="none"/>
-            <circle cx="22" cy="21" r="4" fill="white"/>
-          </svg>
-          <div><div class="logo-nm" style="font-size:1.1rem">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ & Sự Kiện</div></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <img src="images/logo-3.png" alt="SaigonTeam" style="width:44px;height:44px;object-fit:contain;border-radius:8px;flex-shrink:0">
+          <div>
+            <div style="font-weight:900;font-size:1rem;color:#fff;letter-spacing:.3px;line-height:1.2">SAIGONTEAM TRAVEL.JSC</div>
+            <div style="font-size:.6rem;color:var(--gd);letter-spacing:2px;text-transform:uppercase;margin-top:4px">Cùng Nhau Trải Nghiệm</div>
+          </div>
         </div>
         <p class="ft-dsc">Công Ty TNHH Dịch Vụ & Sự Kiện SaigonTeam — đối tác du lịch & sự kiện tin cậy với hơn 5 năm kinh nghiệm phục vụ doanh nghiệp Việt Nam.</p>
         <div class="socials">
@@ -519,6 +590,9 @@ function closeModal(){document.getElementById('modal').classList.remove('on');do
 function closeModalOutside(e){if(e.target===document.getElementById('modal'))closeModal();}
 function submitRequest(){document.getElementById('modal-content').innerHTML='<div class="success-state"><div class="success-icon"><i class="fas fa-check"></i></div><div class="success-title">Yêu cầu đã được gửi!</div><div class="success-sub">Cảm ơn bạn đã liên hệ SaigonTeam.<br>Tư vấn viên sẽ gọi lại trong vòng <strong>30 phút</strong>.<br><br>Hotline: <strong>0908.940.903</strong></div></div>';setTimeout(closeModal,3500);}
 
+(function(){const bar=document.getElementById('topBar');if(bar&&!sessionStorage.getItem('barDismissed')){document.body.classList.add('bar-on');}else if(bar){bar.classList.add('hidden');}})();
+function dismissBar(){document.getElementById('topBar').classList.add('hidden');document.body.classList.remove('bar-on');sessionStorage.setItem('barDismissed','1');}
+function toggleNav(){document.getElementById('mnav').classList.toggle('on');document.getElementById('overlay').classList.toggle('on');}
 init();
 </script>
 </body>
