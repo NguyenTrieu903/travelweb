@@ -1,0 +1,41 @@
+/* =========================
+   Base — reset & defaults
+   ========================= */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-sans);
+  color: var(--tx);
+  overflow-x: hidden;
+  background: var(--wh);
+}
+
+img { display: block; max-width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+button { font-family: inherit; cursor: pointer; }
+
+ul { list-style: none; }
+.is-hidden { display: none !important; }
+
+/* Reveal-on-scroll animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* Animations */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes fdDown  { from { opacity:0; transform:translateY(-12px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fdLeft  { from { opacity:0; transform:translateX(-22px); } to { opacity:1; transform:translateX(0); } }
+@keyframes fdRight { from { opacity:0; transform:translateX(22px);  } to { opacity:1; transform:translateX(0); } }
+@keyframes fdUp    { from { opacity:0; transform:translateY(22px);  } to { opacity:1; transform:translateY(0); } }

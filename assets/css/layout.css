@@ -1,0 +1,53 @@
+/* =========================
+   Layout — container & sections
+   ========================= */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+@media (max-width: 768px) {
+  .container { padding: 0 var(--container-pad-mobile); }
+}
+
+/* Generic section padding */
+.sec { padding: 72px 0; }
+@media (max-width: 768px) { .sec { padding: 56px 0; } }
+
+/* Section header */
+.sec-head { text-align: center; margin-bottom: 48px; }
+.sec-tag {
+  display: inline-block;
+  background: rgba(232,93,4,.12);
+  color: var(--or);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 8px 20px;
+  border-radius: 30px;
+  margin-bottom: 16px;
+}
+.sec-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.1rem, 4vw, 3.2rem);
+  font-weight: 700;
+  color: var(--nv);
+  line-height: 1.18;
+  margin-bottom: 14px;
+}
+.sec-sub {
+  font-size: 1rem;
+  color: var(--tl);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.85;
+}
+
+/* Body offsets when top-bar is visible */
+body.bar-on #nav { top: 42px; }
+body.bar-on .mnav { padding-top: 110px; }
+
+/* Wave separator */
+.wave-sep { line-height: 0; }
+.wave-sep svg { width: 100%; height: 56px; display: block; }
