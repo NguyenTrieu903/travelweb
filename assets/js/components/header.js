@@ -25,12 +25,12 @@
     const logoImg   = base + 'images/logo-3.png';
 
     const desktopLinks = `
-      <li><a href="${indexHref}#about">Về Chúng Tôi</a></li>
-      <li><a href="${indexHref}#tours">Tour &amp; Combo</a></li>
-      <li><a href="${indexHref}#services">Dịch Vụ</a></li>
+      <li><a href="${pathOf(base,'about')}">Về Chúng Tôi</a></li>
+      <li><a href="${pathOf(base,'tours')}">Tour &amp; Combo</a></li>
+      <li><a href="${pathOf(base,'services')}">Dịch Vụ</a></li>
       <li><a href="${pathOf(base,'gallery')}">Gallery</a></li>
       <li><a href="${pathOf(base,'videos')}">Video</a></li>
-      <li><a href="${indexHref}#contact" class="nav-cta">Liên Hệ Ngay</a></li>`;
+      <li><a href="${pathOf(base,'contact')}" class="nav-cta">Liên Hệ Ngay</a></li>`;
 
     const mobileLinks = `
       <li class="has-msub">
@@ -39,10 +39,10 @@
           <i class="fas fa-chevron-down mnav-arrow"></i>
         </button>
         <ul class="mnav-sub">
-          <li><a href="${indexHref}#destinations" data-mnav-close><i class="fas fa-map-marker-alt"></i> Điểm Đến Nổi Bật</a></li>
-          <li><a href="${indexHref}#tours"        data-mnav-close><i class="fas fa-compass"></i> Tour Nội Địa</a></li>
-          <li><a href="${indexHref}#tours"        data-mnav-close><i class="fas fa-globe"></i> Tour Quốc Tế</a></li>
-          <li><a href="${indexHref}#combos"       data-mnav-close><i class="fas fa-tag"></i> Combo Bay + Khách Sạn</a></li>
+          <li><a href="${pathOf(base,'tours')}#destinations" data-mnav-close><i class="fas fa-map-marker-alt"></i> Điểm Đến Nổi Bật</a></li>
+          <li><a href="${pathOf(base,'tours')}"              data-mnav-close><i class="fas fa-compass"></i> Tour Nội Địa</a></li>
+          <li><a href="${pathOf(base,'tours')}"              data-mnav-close><i class="fas fa-globe"></i> Tour Quốc Tế</a></li>
+          <li><a href="${pathOf(base,'tours')}#combos"       data-mnav-close><i class="fas fa-tag"></i> Combo Bay + Khách Sạn</a></li>
         </ul>
       </li>
       <li class="has-msub">
@@ -51,18 +51,18 @@
           <i class="fas fa-chevron-down mnav-arrow"></i>
         </button>
         <ul class="mnav-sub">
-          <li><a href="${indexHref}#services" data-mnav-close><i class="fas fa-users"></i> Tổ Chức TeamBuilding</a></li>
-          <li><a href="${indexHref}#services" data-mnav-close><i class="fas fa-star"></i> Tổ Chức Sự Kiện</a></li>
-          <li><a href="${indexHref}#services" data-mnav-close><i class="fas fa-bus-alt"></i> Cho Thuê Xe Du Lịch</a></li>
-          <li><a href="${indexHref}#services" data-mnav-close><i class="fas fa-plane-departure"></i> Bán Vé Máy Bay</a></li>
-          <li><a href="${indexHref}#services" data-mnav-close><i class="fas fa-route"></i> Tour Khách Đoàn &amp; Lẻ</a></li>
+          <li><a href="${pathOf(base,'services')}" data-mnav-close><i class="fas fa-users"></i> Tổ Chức TeamBuilding</a></li>
+          <li><a href="${pathOf(base,'services')}" data-mnav-close><i class="fas fa-star"></i> Tổ Chức Sự Kiện</a></li>
+          <li><a href="${pathOf(base,'services')}" data-mnav-close><i class="fas fa-bus-alt"></i> Cho Thuê Xe Du Lịch</a></li>
+          <li><a href="${pathOf(base,'services')}" data-mnav-close><i class="fas fa-plane-departure"></i> Bán Vé Máy Bay</a></li>
+          <li><a href="${pathOf(base,'services')}" data-mnav-close><i class="fas fa-route"></i> Tour Khách Đoàn &amp; Lẻ</a></li>
         </ul>
       </li>
       <li><a href="${pathOf(base,'gallery')}" data-mnav-close>Gallery</a></li>
       <li><a href="${pathOf(base,'videos')}"  data-mnav-close>Video</a></li>
-      <li><a href="${indexHref}#contact"     data-mnav-close>Liên Hệ</a></li>
+      <li><a href="${pathOf(base,'contact')}"  data-mnav-close>Liên Hệ</a></li>
       <li class="mnav-cta-li">
-        <a href="${indexHref}#contact" data-mnav-close>
+        <a href="${pathOf(base,'contact')}" data-mnav-close>
           <i class="fas fa-phone-alt"></i>&nbsp; Liên Hệ Ngay
         </a>
       </li>`;
