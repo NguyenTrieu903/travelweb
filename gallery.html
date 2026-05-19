@@ -27,6 +27,7 @@ body.bar-on #nav{top:42px}
 .container{max-width:1280px;margin:0 auto;padding:0 36px}
 .nav-in{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:11px}
+.logo-ico-img{width:40px;height:40px;object-fit:contain;border-radius:8px;flex-shrink:0}
 .logo-ico{width:42px;height:42px;flex-shrink:0}
 .logo-nm{font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:.5px;line-height:1}
 .logo-sl{font-size:.56rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
@@ -108,18 +109,19 @@ body.bar-on .filter-section{top:104px}
 /* Lightbox */
 .lb{position:fixed;inset:0;background:rgba(8,12,28,.96);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:30px;backdrop-filter:blur(8px)}
 .lb.on{opacity:1;visibility:visible}
-.lb-img{max-width:88vw;max-height:82vh;border-radius:14px;object-fit:contain;transform:scale(.92);transition:transform .35s;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb-wrap{position:relative;display:inline-flex;align-items:center;justify-content:center}
+.lb-img{max-width:88vw;max-height:82vh;border-radius:14px;object-fit:contain;transform:scale(.92);transition:transform .35s;box-shadow:0 30px 80px rgba(0,0,0,.6);display:block}
 .lb.on .lb-img{transform:scale(1)}
 .lb-close{position:absolute;top:24px;right:28px;width:50px;height:50px;font-size:1.4rem;background:rgba(255,255,255,.12);border:none;color:#fff;cursor:pointer;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:all .3s;font-family:inherit;backdrop-filter:blur(8px)}
 .lb-close:hover{background:var(--or);transform:scale(1.08)}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:none;border:none;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:inherit;width:48px;height:48px;font-size:2.4rem;filter:drop-shadow(0 2px 8px rgba(0,0,0,.9))}
-.lb-prev{left:10px}.lb-next{right:10px}
-.lb-prev:hover,.lb-next:hover{transform:translateY(-50%) scale(1.2);filter:drop-shadow(0 2px 12px rgba(0,0,0,1))}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.5);border:1.5px solid rgba(255,255,255,.4);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .25s;font-family:inherit;width:46px;height:46px;font-size:1.4rem;border-radius:50%;z-index:2}
+.lb-prev{left:12px}.lb-next{right:12px}
+.lb-prev:hover,.lb-next:hover{background:var(--or);border-color:var(--or);transform:translateY(-50%) scale(1.1)}
 .lb-cap{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);text-align:center;color:#fff;max-width:80vw}
 .lb-cap .lb-cat{font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gd);margin-bottom:4px}
 .lb-cap .lb-ttl{font-size:1rem;font-weight:600;line-height:1.4}
 .lb-counter{position:absolute;top:28px;left:28px;color:rgba(255,255,255,.7);font-size:.85rem;font-weight:600;background:rgba(0,0,0,.4);padding:8px 14px;border-radius:20px;backdrop-filter:blur(8px)}
-@media(max-width:768px){.lb-prev,.lb-next{width:44px;height:44px;font-size:1rem}.lb-prev{left:14px}.lb-next{right:14px}.lb-close{top:14px;right:14px;width:42px;height:42px;font-size:1.1rem}.lb-counter{top:14px;left:14px;font-size:.75rem;padding:6px 12px}}
+@media(max-width:768px){.lb-close{top:14px;right:14px;width:42px;height:42px;font-size:1.1rem}.lb-counter{top:14px;left:14px;font-size:.75rem;padding:6px 12px}.lb-prev,.lb-next{width:44px;height:44px;font-size:1.3rem}.lb-prev{left:8px}.lb-next{right:8px}}
 
 /* Footer */
 footer{background:var(--nv);color:#fff;padding:50px 0 24px}
@@ -182,16 +184,8 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
   <div class="container">
     <div class="nav-in">
       <a href="index.html" class="logo">
-        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
-          <rect width="44" height="44" rx="11" fill="#E85D04"/>
-          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-          <circle cx="22" cy="21" r="4" fill="white"/>
-        </svg>
-        <div>
-          <div class="logo-nm">SAIGONTEAM</div>
-          <div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div>
-        </div>
+        <img src="images/logo-3.png" alt="SaigonTeam Travel" class="logo-ico-img">
+        <div><div class="logo-nm">SAIGONTEAM TRAVEL.JSC</div><div class="logo-sl">Cùng Nhau Trải Nghiệm</div></div>
       </a>
       <ul class="nav-ul">
         <li><a href="index.html#about">Về Chúng Tôi</a></li>
@@ -224,11 +218,6 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
     <div class="ph-tag">📸 Thư Viện Khoảnh Khắc</div>
     <h1 class="ph-title">Hành Trình Của <em>Những Kỷ Niệm</em></h1>
     <p class="ph-sub">Khám phá hàng nghìn khoảnh khắc đáng nhớ — từ những chuyến tour khám phá Việt Nam, đến các sự kiện teambuilding bùng nổ năng lượng. Mỗi bức ảnh là một câu chuyện của khách hàng SaigonTeam.</p>
-    <div class="ph-breadcrumb">
-      <a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a>
-      <i class="fas fa-chevron-right"></i>
-      <span>Thư Viện Ảnh</span>
-    </div>
   </div>
 </section>
 
@@ -281,10 +270,12 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
 
 <div class="lb" id="lb" onclick="if(event.target===this)closeLb()">
   <button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
-  <button class="lb-prev" onclick="navLb(-1)"><i class="fas fa-chevron-left"></i></button>
-  <button class="lb-next" onclick="navLb(1)"><i class="fas fa-chevron-right"></i></button>
   <div class="lb-counter" id="lbCounter">1 / 21</div>
-  <img class="lb-img" id="lbImg" src="" alt="">
+  <div class="lb-wrap">
+    <button class="lb-prev" onclick="navLb(-1);event.stopPropagation()"><i class="fas fa-chevron-left"></i></button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <button class="lb-next" onclick="navLb(1);event.stopPropagation()"><i class="fas fa-chevron-right"></i></button>
+  </div>
   <div class="lb-cap"><div class="lb-cat" id="lbCat"></div><div class="lb-ttl" id="lbTtl"></div></div>
 </div>
 
@@ -292,14 +283,12 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
   <div class="container">
     <div class="ft-grid">
       <div>
-        <div class="logo">
-          <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
-            <rect width="44" height="44" rx="11" fill="#E85D04"/>
-            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <circle cx="22" cy="21" r="4" fill="white"/>
-          </svg>
-          <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <img src="images/logo-3.png" alt="SaigonTeam" style="width:44px;height:44px;object-fit:contain;border-radius:8px;flex-shrink:0">
+          <div>
+            <div style="font-weight:900;font-size:1rem;color:#fff;letter-spacing:.3px;line-height:1.2">SAIGONTEAM TRAVEL.JSC</div>
+            <div style="font-size:.6rem;color:var(--gd);letter-spacing:2px;text-transform:uppercase;margin-top:4px">Cùng Nhau Trải Nghiệm</div>
+          </div>
         </div>
         <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm.</p>
         <div class="socials">

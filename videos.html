@@ -25,6 +25,7 @@ body.bar-on #nav{top:42px}
 .container{max-width:1280px;margin:0 auto;padding:0 36px}
 .nav-in{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:11px}
+.logo-ico-img{width:40px;height:40px;object-fit:contain;border-radius:8px;flex-shrink:0}
 .logo-ico{width:42px;height:42px;flex-shrink:0}
 .logo-nm{font-weight:900;font-size:1.1rem;color:#fff;letter-spacing:.5px;line-height:1}
 .logo-sl{font-size:.56rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
@@ -202,13 +203,8 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
   <div class="container">
     <div class="nav-in">
       <a href="index.html" class="logo">
-        <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
-          <rect width="44" height="44" rx="11" fill="#E85D04"/>
-          <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-          <circle cx="22" cy="21" r="4" fill="white"/>
-        </svg>
-        <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+        <img src="images/logo-3.png" alt="SaigonTeam Travel" class="logo-ico-img">
+        <div><div class="logo-nm">SAIGONTEAM TRAVEL.JSC</div><div class="logo-sl">Cùng Nhau Trải Nghiệm</div></div>
       </a>
       <ul class="nav-ul">
         <li><a href="index.html#about">Về Chúng Tôi</a></li>
@@ -241,11 +237,6 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
     <div class="ph-tag">🎬 Thư Viện Video</div>
     <h1 class="ph-title">Khoảnh Khắc <em>Sống Động</em> Trên Mỗi Hành Trình</h1>
     <p class="ph-sub">Xem lại không khí bùng nổ của các chuyến tour, teambuilding và sự kiện do SaigonTeam tổ chức. Mỗi video là một câu chuyện thật, một niềm vui được lưu giữ.</p>
-    <div class="ph-breadcrumb">
-      <a href="index.html"><i class="fas fa-home"></i> Trang Chủ</a>
-      <i class="fas fa-chevron-right"></i>
-      <span>Thư Viện Video</span>
-    </div>
   </div>
 </section>
 
@@ -467,14 +458,12 @@ footer{background:var(--nv);color:#fff;padding:50px 0 24px}
   <div class="container">
     <div class="ft-grid">
       <div>
-        <div class="logo">
-          <svg class="logo-ico" viewBox="0 0 44 44" fill="none">
-            <rect width="44" height="44" rx="11" fill="#E85D04"/>
-            <path d="M7 29L22 11L37 29" stroke="white" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            <path d="M13 29V36H31V29" stroke="white" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-            <circle cx="22" cy="21" r="4" fill="white"/>
-          </svg>
-          <div><div class="logo-nm">SAIGONTEAM</div><div class="logo-sl">Dịch Vụ &amp; Sự Kiện</div></div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
+          <img src="images/logo-3.png" alt="SaigonTeam" style="width:44px;height:44px;object-fit:contain;border-radius:8px;flex-shrink:0">
+          <div>
+            <div style="font-weight:900;font-size:1rem;color:#fff;letter-spacing:.3px;line-height:1.2">SAIGONTEAM TRAVEL.JSC</div>
+            <div style="font-size:.6rem;color:var(--gd);letter-spacing:2px;text-transform:uppercase;margin-top:4px">Cùng Nhau Trải Nghiệm</div>
+          </div>
         </div>
         <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm.</p>
         <div class="socials">
