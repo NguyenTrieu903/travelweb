@@ -6,632 +6,8 @@
     <title>SaigonTeam – Dịch Vụ & Sự Kiện</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-:root{--or:#E85D04;--or2:#C44B00;--or3:#FF8C42;--nv:#1B2A4A;--nv2:#243660;--gd:#FFB703;--cr:#FFF8F0;--gy:#F4F6F9;--tx:#2D2D2D;--tl:#6B7280;--wh:#FFFFFF}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Montserrat',sans-serif;color:var(--tx);overflow-x:hidden}
-img{display:block;max-width:100%}
-a{text-decoration:none}
-
-/* UTILS */
-.container{max-width:1280px;margin:0 auto;padding:0 36px}
-.sec{padding:72px 0}
-.sec-tag{display:inline-block;background:rgba(232,93,4,.12);color:var(--or);font-size:.74rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:16px}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,4vw,3.2rem);font-weight:700;color:var(--nv);line-height:1.18;margin-bottom:14px}
-.sec-sub{font-size:1rem;color:var(--tl);max-width:600px;margin:0 auto;line-height:1.85}
-.sec-head{text-align:center;margin-bottom:48px}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 32px;border-radius:50px;font-weight:700;font-size:.92rem;letter-spacing:.4px;cursor:pointer;transition:all .3s;border:none}
-.btn-pr{background:var(--or);color:#fff}
-.btn-pr:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,93,4,.35)}
-.btn-ol{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.7)}
-.btn-ol:hover{background:#fff;color:var(--or);transform:translateY(-2px)}
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
-.reveal.on{opacity:1;transform:translateY(0)}
-
-/* ANNOUNCEMENT BAR */
-.top-bar{position:fixed;top:0;left:0;width:100%;z-index:950;background:linear-gradient(90deg,var(--or2),var(--or),#FF6B08,var(--or));background-size:300% 100%;animation:gradientShift 6s ease infinite;color:#fff;font-size:.78rem;font-weight:700;display:flex;align-items:center;justify-content:center;gap:14px;padding:9px 48px 9px 16px;text-align:center;line-height:1.4;letter-spacing:.2px}
-.top-bar a{color:#fff;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
-.top-bar a:hover{opacity:.85}
-.top-bar-close{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.2);border:none;color:#fff;cursor:pointer;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;transition:background .2s;font-family:inherit;flex-shrink:0}
-.top-bar-close:hover{background:rgba(255,255,255,.35)}
-.top-bar-tag{background:rgba(255,255,255,.22);padding:2px 9px;border-radius:20px;font-size:.7rem;letter-spacing:1px;text-transform:uppercase;flex-shrink:0}
-.top-bar.hidden{display:none}
-body.bar-on #nav{top:42px}
-body.bar-on .mnav{padding-top:110px}
-@media(max-width:480px){.top-bar{font-size:.7rem;padding:8px 40px 8px 12px;gap:8px}.top-bar-tag{display:none}}
-
-/* REVIEWS CAROUSEL */
-#reviews{padding:72px 0;background:var(--nv);overflow:hidden;position:relative}
-#reviews::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 20% 50%,rgba(232,93,4,.15),transparent 50%),radial-gradient(circle at 80% 50%,rgba(255,183,3,.08),transparent 50%);pointer-events:none}
-.rv-scroll-wrap{overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent 0%,#fff 6%,#fff 94%,transparent 100%);mask:linear-gradient(90deg,transparent 0%,#fff 6%,#fff 94%,transparent 100%);margin-top:8px}
-.rv-track{display:flex;gap:20px;width:max-content;animation:destRoll 42s linear infinite;padding:8px 0 16px}
-.rv-track:hover{animation-play-state:paused}
-.rv-card{flex:0 0 300px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:24px;backdrop-filter:blur(8px);transition:transform .3s,background .3s}
-.rv-card:hover{transform:translateY(-5px);background:rgba(255,255,255,.11)}
-.rv-stars{color:var(--gd);font-size:.85rem;letter-spacing:1px;margin-bottom:12px}
-.rv-quote{font-size:.84rem;color:rgba(255,255,255,.82);line-height:1.75;margin-bottom:18px;font-style:italic}
-.rv-author{display:flex;align-items:center;gap:12px}
-.rv-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--or),var(--gd));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.95rem;color:#fff;flex-shrink:0}
-.rv-nm{font-size:.85rem;font-weight:700;color:#fff;line-height:1.2}
-.rv-loc{font-size:.72rem;color:rgba(255,255,255,.45);margin-top:2px}
-.rv-service{display:inline-block;margin-top:14px;font-size:.67rem;font-weight:700;color:var(--gd);text-transform:uppercase;letter-spacing:1px;border-top:1px solid rgba(255,255,255,.08);padding-top:12px;width:100%}
-
-/* NAV */
-#nav{position:fixed;top:0;width:100%;z-index:900;padding:18px 0;transition:all .35s}
-#nav.solid{background:rgba(27,42,74,.96);backdrop-filter:blur(12px);padding:12px 0;box-shadow:0 2px 24px rgba(0,0,0,.2)}
-.nav-in{display:flex;align-items:center;justify-content:space-between}
-.logo{display:flex;align-items:center;gap:11px}
-.logo-ico-img{width:40px;height:40px;object-fit:contain;border-radius:8px;flex-shrink:0}
-.logo-ico{width:44px;height:44px;flex-shrink:0}
-.logo-nm{font-weight:900;font-size:1.15rem;color:#fff;letter-spacing:.5px;line-height:1}
-.logo-sl{font-size:.58rem;color:var(--gd);letter-spacing:2.5px;text-transform:uppercase;margin-top:3px}
-.nav-ul{list-style:none;display:flex;gap:32px;align-items:center}
-.nav-ul a{color:rgba(255,255,255,.88);font-size:.875rem;font-weight:500;position:relative;transition:color .3s}
-.nav-ul a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--or);transition:width .3s}
-.nav-ul a:hover{color:#fff}
-.nav-ul a:hover::after{width:100%}
-.nav-cta{background:var(--or)!important;color:#fff!important;padding:10px 22px;border-radius:30px}
-.nav-cta:hover{background:var(--or2)!important;box-shadow:0 5px 16px rgba(232,93,4,.4)}
-.nav-cta::after{display:none!important}
-.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
-.hbg span{display:block;width:24px;height:2px;background:#fff;transition:all .3s;border-radius:2px}
-
-/* MOBILE NAV */
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:850;opacity:0;visibility:hidden;transition:all .3s}
-.overlay.on{opacity:1;visibility:visible}
-.mnav{position:fixed;top:0;right:0;bottom:0;width:285px;background:var(--nv);z-index:900;padding:68px 22px 32px;transform:translateX(100%);transition:transform .3s ease;box-shadow:-10px 0 40px rgba(0,0,0,.3);overflow-y:auto}
-.mnav.on{transform:translateX(0)}
-.mnav > ul{list-style:none;display:flex;flex-direction:column;gap:0}
-.mnav > ul > li{border-bottom:1px solid rgba(255,255,255,.07)}
-.mnav > ul > li > a{display:block;padding:15px 0;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600;transition:color .3s;letter-spacing:.2px}
-.mnav > ul > li > a:hover{color:var(--gd)}
-.mnav-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:1.1rem;cursor:pointer;padding:0;width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s}
-.mnav-close:hover{background:rgba(255,255,255,.2)}
-/* Sub-menu trigger */
-.mnav-link{display:flex;align-items:center;justify-content:space-between;padding:15px 0;color:rgba(255,255,255,.85);font-size:.95rem;font-weight:600;cursor:pointer;background:none;border:none;width:100%;font-family:'Montserrat',sans-serif;letter-spacing:.2px;transition:color .3s}
-.mnav-link:hover{color:var(--gd)}
-.mnav-arrow{font-size:.72rem;color:rgba(255,255,255,.4);transition:transform .3s;margin-left:4px;flex-shrink:0}
-.has-msub.open .mnav-arrow{transform:rotate(180deg)}
-/* Sub-menu panel */
-.mnav-sub{list-style:none;max-height:0;overflow:hidden;transition:max-height .35s ease;background:rgba(0,0,0,.2);border-radius:10px}
-.has-msub.open .mnav-sub{max-height:320px;margin:2px 0 8px}
-.mnav-sub li > a{display:flex;align-items:center;gap:9px;padding:10px 14px;color:rgba(255,255,255,.62);font-size:.875rem;font-weight:500;transition:all .25s;border-bottom:1px solid rgba(255,255,255,.05)}
-.mnav-sub li:last-child > a{border-bottom:none}
-.mnav-sub li > a:hover{color:#fff;background:rgba(255,255,255,.07);padding-left:18px}
-.mnav-sub li > a i{font-size:.68rem;color:var(--or);width:14px;flex-shrink:0}
-/* CTA in mobile nav */
-.mnav-cta-li > a{display:block;text-align:center;background:var(--or)!important;color:#fff!important;padding:13px 20px!important;border-radius:30px;margin-top:16px;font-weight:700!important;font-size:.9rem!important;box-shadow:0 4px 16px rgba(232,93,4,.4);letter-spacing:.3px}
-
-/* HERO */
-#hero{
-  min-height:100vh;
-  background:
-    linear-gradient(105deg,rgba(4,10,24,.97) 0%,rgba(4,10,24,.90) 28%,rgba(4,10,24,.52) 50%,rgba(4,10,24,.08) 70%,transparent 86%),
-    linear-gradient(to top,rgba(0,0,0,.5) 0%,transparent 38%),
-    url('images/du-lich-phu-quoc.jpg') right center/cover no-repeat;
-  display:flex;align-items:center;position:relative;overflow:hidden
-}
-#hero::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(0,0,0,.14) 0%,transparent 55%);
-  z-index:0;pointer-events:none
-}
-#hero .container,#hero .scroll-hint{position:relative;z-index:1}
-.hero-glow{display:none}
-.hero-dots{display:none}
-.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:120px 0 90px}
-.hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.12);border:1.5px solid rgba(255,255,255,.25);color:#fff;padding:7px 16px;border-radius:30px;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:22px;animation:fdDown .8s ease both;backdrop-filter:blur(8px)}
-.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5vw,4.4rem);font-weight:700;color:#fff;line-height:1.14;margin-bottom:20px;animation:fdLeft .8s ease .2s both;text-shadow:0 2px 40px rgba(0,0,0,.8),0 4px 80px rgba(0,0,0,.5)}
-.hero-h1 em{font-style:normal;display:inline;background:linear-gradient(125deg,#FF8C42,#FFB703,#E85D04,#FF8C42);background-size:300% 300%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradientShift 4s ease infinite}
-.hero-p{font-size:1rem;color:rgba(255,255,255,.88);line-height:1.9;margin-bottom:28px;animation:fdLeft .8s ease .38s both;max-width:500px;text-shadow:0 1px 12px rgba(0,0,0,.6)}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;animation:fdLeft .8s ease .5s both;margin-bottom:24px}
-.btn-ol-dk{background:rgba(255,255,255,.1);color:#fff;border:2px solid rgba(255,255,255,.45);padding:12px 26px;border-radius:50px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:8px;transition:all .3s;cursor:pointer;backdrop-filter:blur(6px)}
-.btn-ol-dk:hover{background:rgba(255,255,255,.2);border-color:#fff;transform:translateY(-2px)}
-
-/* ── Hero CTA: maximum attention ── */
-/* Primary: fire gradient + shimmer sweep + pulsing glow ring */
-.hero-btns .btn-pr{
-  position:relative;overflow:hidden;
-  background:linear-gradient(135deg,#FF4800,var(--or),#FF8C42,var(--gd));
-  background-size:250% 250%;
-  animation:btnGradAnim 3s ease infinite,btnOrangePulse 2.2s ease-in-out infinite;
-  box-shadow:0 8px 32px rgba(232,93,4,.7);
-  padding:15px 36px;font-size:.96rem;letter-spacing:.3px;border:none
-}
-.hero-btns .btn-pr::before{
-  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.38),transparent);
-  animation:btnSweep 3s ease-in-out infinite;pointer-events:none
-}
-.hero-btns .btn-pr:hover{
-  transform:translateY(-5px) scale(1.07)!important;
-  box-shadow:0 22px 52px rgba(232,93,4,.95)!important;
-  animation:none!important
-}
-/* Secondary: electric cyan glow + sweep + pulse */
-.hero-btns .btn-ol-dk{
-  position:relative;overflow:hidden;
-  background:rgba(0,212,255,.07);
-  border:2px solid rgba(0,212,255,.7)!important;
-  box-shadow:0 0 24px rgba(0,212,255,.35),inset 0 1px 0 rgba(0,212,255,.12);
-  animation:btnCyanPulse 2.5s ease-in-out infinite;
-  padding:15px 36px;font-size:.96rem;letter-spacing:.2px
-}
-.hero-btns .btn-ol-dk::before{
-  content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;
-  background:linear-gradient(90deg,transparent,rgba(0,212,255,.28),transparent);
-  animation:btnSweep 3s ease-in-out .85s infinite;pointer-events:none
-}
-.hero-btns .btn-ol-dk:hover{
-  background:rgba(0,212,255,.16)!important;
-  border-color:rgba(0,212,255,.95)!important;
-  box-shadow:0 0 44px rgba(0,212,255,.7),inset 0 0 22px rgba(0,212,255,.1)!important;
-  transform:translateY(-5px) scale(1.06)!important;
-  color:#7EF0FF!important;animation:none!important
-}
-@keyframes btnGradAnim{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes btnSweep{0%{left:-100%}48%,100%{left:150%}}
-@keyframes btnOrangePulse{0%,100%{box-shadow:0 8px 32px rgba(232,93,4,.7),0 0 0 0 rgba(232,93,4,.45)}50%{box-shadow:0 8px 32px rgba(232,93,4,.85),0 0 0 12px rgba(232,93,4,0)}}
-@keyframes btnCyanPulse{0%,100%{box-shadow:0 0 24px rgba(0,212,255,.35),inset 0 1px 0 rgba(0,212,255,.12)}50%{box-shadow:0 0 42px rgba(0,212,255,.6),inset 0 0 18px rgba(0,212,255,.1)}}
-/* Search strip — white pill nổi trên ảnh */
-.hero-search{display:flex;align-items:center;background:rgba(255,255,255,.97);border-radius:60px;box-shadow:0 12px 48px rgba(0,0,0,.25);padding:6px;gap:0;animation:fdLeft .8s ease .65s both;max-width:540px;border:1.5px solid rgba(255,255,255,.6)}
-.hs-field{display:flex;flex-direction:column;padding:6px 16px;flex:1;cursor:pointer;border-right:1px solid #eee;min-width:0}
-.hs-field:last-of-type{border-right:none}
-.hs-lbl{font-size:.59rem;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--tl);margin-bottom:2px}
-.hs-sel{border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:600;color:var(--nv);background:transparent;cursor:pointer;width:100%;-webkit-appearance:none;appearance:none}
-.hs-inp{border:none;outline:none;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:600;color:var(--nv);background:transparent;width:100%}
-.hs-btn{background:linear-gradient(135deg,var(--or),#FF6B08);color:#fff;border:none;border-radius:50px;padding:12px 22px;font-family:'Montserrat',sans-serif;font-size:.82rem;font-weight:700;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .3s;white-space:nowrap;flex-shrink:0;box-shadow:0 4px 16px rgba(232,93,4,.5)}
-.hs-btn:hover{box-shadow:0 6px 24px rgba(232,93,4,.6);transform:scale(1.02)}
-/* Destination chips */
-.hero-tags{display:flex;align-items:center;gap:8px;flex-wrap:wrap;animation:fdLeft .8s ease .8s both;margin-top:16px}
-.ht-lbl{font-size:.73rem;color:rgba(255,255,255,.7);font-weight:600;flex-shrink:0}
-.htag{padding:5px 13px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);border-radius:30px;font-size:.73rem;font-weight:600;color:#fff;transition:all .3s;backdrop-filter:blur(6px)}
-.htag:hover{background:var(--or);border-color:var(--or);transform:translateY(-2px);box-shadow:0 4px 16px rgba(232,93,4,.5)}
-/* Hero visual — clean stacked card design */
-.hero-vis{position:relative;animation:fdRight .8s ease .3s both;display:flex;flex-direction:column;gap:16px}
-.hv-stack{position:relative;height:430px;flex-shrink:0}
-/* Card base */
-.hv-card{position:absolute;border-radius:22px;overflow:hidden;cursor:default}
-.hv-card img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.hv-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 58%);pointer-events:none}
-.hv-card-lbl{position:absolute;bottom:14px;left:16px;color:#fff;font-size:.78rem;font-weight:700;z-index:2;display:flex;align-items:center;gap:6px;letter-spacing:.2px}
-.hv-card-lbl i{color:var(--or3);font-size:.7rem}
-/* Card positions */
-.hv-c1{width:83%;height:64%;top:0;right:0;transform:rotate(3.5deg);box-shadow:0 24px 60px rgba(0,0,0,.25);z-index:1;background:linear-gradient(135deg,var(--nv),var(--nv2))}
-.hv-c2{width:80%;height:68%;bottom:0;left:0;transform:rotate(-2deg);box-shadow:0 32px 72px rgba(0,0,0,.3);z-index:2;background:linear-gradient(135deg,#0B6E4F,#219EBC)}
-.hv-c1:hover img{transform:scale(1.06) rotate(-1deg)}
-.hv-c2:hover img{transform:scale(1.06) rotate(1deg)}
-/* Rating badge */
-.hv-badge{position:absolute;top:42%;right:-20px;transform:translateY(-50%);background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 12px 40px rgba(0,0,0,.2);display:flex;align-items:center;gap:10px;z-index:10;animation:float 4.5s ease-in-out infinite;white-space:nowrap}
-.hv-badge-ico{width:36px;height:36px;background:linear-gradient(135deg,#FFB703,#FB8500);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:#fff;flex-shrink:0}
-.hv-badge-n{font-size:.95rem;font-weight:900;color:var(--nv);line-height:1}
-.hv-badge-l{font-size:.62rem;color:var(--tl);margin-top:2px}
-/* Stats row */
-.hv-stats{display:flex;border-radius:14px;overflow:hidden;background:rgba(255,255,255,.1);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.18)}
-.hv-st{flex:1;padding:13px 10px;text-align:center;border-right:1px solid rgba(255,255,255,.12);transition:background .3s}
-.hv-st:last-child{border-right:none}
-.hv-st:hover{background:rgba(255,255,255,.08)}
-.hv-st-n{font-size:1.2rem;font-weight:900;color:#fff;line-height:1}
-.hv-st-n span{color:var(--gd)}
-.hv-st-l{font-size:.6rem;color:rgba(255,255,255,.55);margin-top:3px;letter-spacing:.6px;text-transform:uppercase}
-.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);text-align:center;color:rgba(255,255,255,.45);animation:bob 2s ease-in-out infinite;z-index:2}
-.scroll-hint span{display:block;font-size:.62rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
-
-/* ABOUT */
-#about{padding:96px 0;background:#fff}
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.about-vis{position:relative}
-.about-main{height:440px;border-radius:20px;overflow:hidden;background:linear-gradient(135deg,var(--nv),var(--nv2))}
-.about-main img{width:100%;height:100%;object-fit:cover}
-.about-acc{position:absolute;bottom:-28px;right:-28px;width:170px;height:170px;border-radius:14px;overflow:hidden;border:5px solid #fff;box-shadow:0 10px 36px rgba(0,0,0,.14);background:linear-gradient(135deg,var(--or),var(--gd))}
-.about-acc img{width:100%;height:100%;object-fit:cover}
-.about-yr{position:absolute;top:28px;left:-18px;background:var(--or);color:#fff;padding:14px 18px;border-radius:14px;text-align:center;box-shadow:0 10px 28px rgba(232,93,4,.4)}
-.about-yn{font-size:2.2rem;font-weight:900;line-height:1}
-.about-yt{font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:.9}
-.info-list{display:flex;flex-direction:column;gap:14px;margin:26px 0}
-.info-row{display:flex;align-items:flex-start;gap:13px}
-.info-ico{width:40px;height:40px;background:rgba(232,93,4,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:.95rem;flex-shrink:0}
-.info-tx strong{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.8px;color:var(--tl);margin-bottom:2px}
-.info-tx span{font-size:.9rem;font-weight:500;color:var(--tx);line-height:1.5}
-.hl-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
-.hl{padding:13px 15px;background:var(--gy);border-radius:10px;border-left:3px solid var(--or);display:flex;align-items:center;gap:9px}
-.hl i{color:var(--or);font-size:.85rem}
-.hl span{font-size:.82rem;font-weight:600;color:var(--nv)}
-
-/* SERVICES */
-#services{padding:96px 0;background:var(--cr)}
-.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.srv{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 3px 18px rgba(0,0,0,.06);transition:all .4s;cursor:default}
-.srv:hover{transform:translateY(-8px);box-shadow:0 20px 50px rgba(0,0,0,.12)}
-.srv-top{height:190px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.srv-top i{display:none}
-.srv-top::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.1) 0%,rgba(0,0,0,.55) 100%);z-index:1}
-.srv-top img{opacity:1!important;z-index:0!important}
-.g1,.g2,.g3,.g4,.g5,.g6{background:#1B2A4A}
-.srv-body{padding:22px}
-.srv-ttl{font-size:1.05rem;font-weight:700;color:var(--nv);margin-bottom:9px}
-.srv-dsc{font-size:.82rem;color:var(--tl);line-height:1.75;margin-bottom:13px}
-.srv-tags{display:flex;flex-wrap:wrap;gap:5px}
-.srv-tag{padding:3px 10px;background:rgba(232,93,4,.09);color:var(--or);border-radius:20px;font-size:.72rem;font-weight:600}
-.srv-hot{position:absolute;top:14px;right:14px;background:var(--gd);color:var(--nv);font-size:.65rem;font-weight:800;padding:4px 10px;border-radius:20px;z-index:3;letter-spacing:.5px}
-
-/* STATS */
-#stats{padding:80px 0;background:var(--nv);position:relative;overflow:hidden}
-#stats::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 50%,rgba(232,93,4,.2),transparent 50%),radial-gradient(circle at 85% 50%,rgba(255,183,3,.1),transparent 50%)}
-.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative;z-index:2}
-.stat{text-align:center;padding:28px 16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);transition:all .3s}
-.stat:hover{background:rgba(255,255,255,.09);transform:translateY(-4px)}
-.stat-ic{font-size:1.9rem;color:var(--or);margin-bottom:14px}
-.stat-n{font-size:2.8rem;font-weight:900;color:#fff;line-height:1;margin-bottom:4px}
-.stat-n span{color:var(--gd)}
-.stat-l{font-size:.75rem;color:rgba(255,255,255,.55);text-transform:uppercase;letter-spacing:1.2px}
-
-/* WHY */
-#why{padding:96px 0;background:#fff}
-.why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.why-card{padding:30px 22px;border-radius:18px;background:var(--gy);transition:all .35s;text-align:center}
-.why-card:hover{background:var(--nv);transform:translateY(-6px);box-shadow:0 16px 44px rgba(27,42,74,.2)}
-.why-card:hover .why-ico{background:rgba(232,93,4,.2);color:var(--or3)}
-.why-card:hover .why-ttl{color:#fff}
-.why-card:hover .why-dsc{color:rgba(255,255,255,.65)}
-.why-ico{width:60px;height:60px;border-radius:16px;background:rgba(232,93,4,.1);color:var(--or);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin:0 auto 18px;transition:all .35s}
-.why-ttl{font-size:1rem;font-weight:700;color:var(--nv);margin-bottom:10px;transition:color .35s}
-.why-dsc{font-size:.82rem;color:var(--tl);line-height:1.75;transition:color .35s}
-
-/* PARTNERS */
-#partners{padding:80px 0;background:var(--cr)}
-.marq-wrap{overflow:hidden;position:relative;margin-top:0}
-.marq-wrap::before,.marq-wrap::after{content:'';position:absolute;top:0;bottom:0;width:140px;z-index:2;pointer-events:none}
-.marq-wrap::before{left:0;background:linear-gradient(to right,var(--cr),transparent)}
-.marq-wrap::after{right:0;background:linear-gradient(to left,var(--cr),transparent)}
-.marq-track{display:flex;gap:18px;width:max-content;animation:marq 32s linear infinite}
-.marq-track:hover{animation-play-state:paused}
-.p-logo{display:flex;align-items:center;justify-content:center;width:175px;height:72px;background:#fff;border-radius:12px;border:1.5px solid #e8eaf0;font-weight:700;font-size:.8rem;color:var(--nv);letter-spacing:.5px;flex-shrink:0;transition:all .3s;box-shadow:0 2px 10px rgba(0,0,0,.05)}
-.p-logo:hover{background:var(--nv);color:#fff;border-color:var(--nv)}
-
-/* LANGUAGES */
-#languages{padding:80px 0;background:#fff}
-.lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.lang-card{background:var(--gy);border-radius:16px;padding:28px 20px;text-align:center;transition:all .35s;border:2px solid transparent}
-.lang-card:hover{transform:translateY(-5px);border-color:var(--or);box-shadow:0 12px 36px rgba(232,93,4,.12)}
-.lang-card.main{border-color:var(--or);background:rgba(232,93,4,.05)}
-.lang-flag{font-size:2.8rem;margin-bottom:11px}
-.lang-nm{font-size:1rem;font-weight:700;color:var(--nv);margin-bottom:4px}
-.lang-native{font-size:.78rem;color:var(--tl)}
-
-/* CONTACT */
-#contact{padding:96px 0;background:var(--cr)}
-.ct-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:60px}
-.ct-items{display:flex;flex-direction:column;gap:22px;margin:28px 0}
-.ct-row{display:flex;align-items:flex-start;gap:15px}
-.ct-ico{width:48px;height:48px;background:rgba(232,93,4,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:1.05rem;flex-shrink:0}
-.ct-tx strong{display:block;font-size:.8rem;font-weight:700;color:var(--nv);margin-bottom:3px;text-transform:uppercase;letter-spacing:.5px}
-.ct-tx span,.ct-tx a{font-size:.88rem;color:var(--tl);line-height:1.6}
-.ct-tx a{color:var(--or);font-weight:600}
-.socials{display:flex;gap:10px;margin-top:26px}
-.soc{width:42px;height:42px;background:var(--gy);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--nv);font-size:.95rem;transition:all .3s}
-.soc:hover{background:var(--or);color:#fff;transform:translateY(-3px)}
-.ct-form{background:#fff;border-radius:22px;padding:38px;box-shadow:0 4px 24px rgba(0,0,0,.07)}
-.form-ttl{font-size:1.3rem;font-weight:700;color:var(--nv);margin-bottom:22px}
-.f-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--tx);margin-bottom:5px}
-.fg input,.fg select,.fg textarea{width:100%;padding:11px 14px;border:1.5px solid #E8EAF0;border-radius:10px;font-family:'Montserrat',sans-serif;font-size:.875rem;color:var(--tx);outline:none;transition:border-color .3s;background:#fff}
-.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--or)}
-.fg textarea{height:110px;resize:vertical}
-.f-btn{width:100%;padding:14px;background:var(--or);color:#fff;border:none;border-radius:50px;font-family:'Montserrat',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;transition:all .3s;display:flex;align-items:center;justify-content:center;gap:8px}
-.f-btn:hover{background:var(--or2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,93,4,.35)}
-
-/* FOOTER */
-footer{background:var(--nv);color:#fff;padding:60px 0 28px}
-.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:36px;margin-bottom:40px}
-.ft-dsc{font-size:.83rem;color:rgba(255,255,255,.55);line-height:1.85;margin:14px 0 20px}
-.ft-ttl{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--gd);margin-bottom:18px}
-.ft-ul{list-style:none;display:flex;flex-direction:column;gap:9px}
-.ft-ul a{color:rgba(255,255,255,.55);font-size:.83rem;transition:all .3s}
-.ft-ul a:hover{color:#fff;padding-left:5px}
-.ft-cl{list-style:none;display:flex;flex-direction:column;gap:11px}
-.ft-cl li{display:flex;align-items:flex-start;gap:9px;font-size:.78rem;color:rgba(255,255,255,.55);line-height:1.5}
-.ft-cl li i{color:var(--or);width:13px;margin-top:1px;flex-shrink:0}
-.ft-bot{border-top:1px solid rgba(255,255,255,.09);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:.77rem;color:rgba(255,255,255,.35)}
-
-/* FLOAT SOCIAL */
-.float-social{position:fixed;bottom:28px;right:22px;z-index:800;display:flex;flex-direction:column;align-items:center;gap:10px}
-.fsoc{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.15rem;text-decoration:none;position:relative;transition:transform .25s,box-shadow .25s;flex-shrink:0}
-.fsoc::before{content:'';position:absolute;inset:-5px;border-radius:50%;animation:socRing 2.4s ease-out infinite;opacity:0;pointer-events:none}
-.fsoc:hover{transform:scale(1.18) translateX(-5px)!important;animation:none!important}
-.fsoc:hover::before{display:none}
-/* Tooltip label */
-.fsoc::after{content:attr(data-tip);position:absolute;right:calc(100% + 11px);background:rgba(20,20,20,.82);color:#fff;font-size:.71rem;font-weight:700;white-space:nowrap;padding:5px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .2s;font-family:'Montserrat',sans-serif;letter-spacing:.2px}
-.fsoc:hover::after{opacity:1}
-/* Colors & shadows */
-.fsoc.fb{background:#1877F2;box-shadow:0 5px 18px rgba(24,119,242,.55);animation:socBob 3.5s ease-in-out infinite}
-.fsoc.fb::before{border:2.5px solid rgba(24,119,242,.7)}
-.fsoc.ph{background:linear-gradient(135deg,var(--or),#FF5E14);box-shadow:0 5px 18px rgba(232,93,4,.55);animation:socShake 3s ease-in-out 1.5s infinite}
-.fsoc.ph::before{border:2.5px solid rgba(232,93,4,.7);animation-delay:.5s}
-.fsoc.za{background:#0068FF;box-shadow:0 5px 18px rgba(0,104,255,.55);animation:socBob 3.5s ease-in-out .85s infinite}
-.fsoc.za::before{border:2.5px solid rgba(0,104,255,.7);animation-delay:.85s}
-.fsoc.gm{background:#EA4335;box-shadow:0 5px 18px rgba(234,67,53,.55);animation:socBob 3.5s ease-in-out 1.6s infinite}
-.fsoc.gm::before{border:2.5px solid rgba(234,67,53,.7);animation-delay:1.6s}
-.zalo-ltr{font-family:'Montserrat',sans-serif;font-weight:900;font-size:.88rem;letter-spacing:-.5px;line-height:1}
-
-/* KEYFRAMES */
-@keyframes fdDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
-@keyframes fdLeft{from{opacity:0;transform:translateX(-28px)}to{opacity:1;transform:translateX(0)}}
-@keyframes fdRight{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:translateX(0)}}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-@keyframes marq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes pulse{0%,100%{box-shadow:0 8px 24px rgba(232,93,4,.5),0 0 0 0 rgba(232,93,4,.4)}50%{box-shadow:0 8px 24px rgba(232,93,4,.5),0 0 0 14px rgba(232,93,4,0)}}
-@keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-@keyframes destRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
-@keyframes scaleIn{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
-@keyframes badgePulse{0%,100%{box-shadow:0 0 0 0 rgba(255,183,3,.4)}60%{box-shadow:0 0 0 10px rgba(255,183,3,0)}}
-@keyframes waveMove{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes socRing{0%{transform:scale(1);opacity:.75}100%{transform:scale(1.8);opacity:0}}
-@keyframes socBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes socShake{0%,85%,100%{transform:rotate(0)}88%{transform:rotate(-15deg)}92%{transform:rotate(15deg)}96%{transform:rotate(-8deg)}}
-
-/* Destinations mosaic */
-#destinations{padding:72px 0 80px;background:#fff}
-.dest-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px}
-.dest-filter{display:flex;gap:8px}
-.df-btn{padding:9px 24px;border-radius:30px;font-size:.84rem;font-weight:700;cursor:pointer;transition:all .28s;font-family:'Montserrat',sans-serif;border:2px solid #E5E7EB;background:#fff;color:var(--tl)}
-.df-btn.active{background:#1D4ED8;color:#fff;border-color:#1D4ED8;box-shadow:0 4px 14px rgba(29,78,216,.22)}
-.df-btn:hover:not(.active){border-color:var(--nv);color:var(--nv)}
-.dest-mosaic{display:grid;grid-template-columns:1.1fr 1fr 1fr;grid-template-rows:240px 240px;gap:14px}
-.dm-card{border-radius:16px;overflow:hidden;position:relative;cursor:pointer}
-.dm-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.dm-card:hover img{transform:scale(1.07)}
-.dm-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.68) 0%,rgba(0,0,0,.08) 55%,transparent 100%)}
-.dm-large{grid-row:1/3}
-.dm-info{position:absolute;bottom:18px;left:18px;color:#fff;z-index:2}
-.dm-name{font-size:1.05rem;font-weight:800;margin-bottom:4px;text-shadow:0 1px 6px rgba(0,0,0,.4)}
-.dm-large .dm-name{font-size:1.55rem}
-.dm-count{font-size:.75rem;color:rgba(255,255,255,.82)}
-.dm-badge{position:absolute;top:14px;left:14px;background:rgba(0,0,0,.38);backdrop-filter:blur(6px);color:#fff;font-size:.66rem;font-weight:700;padding:4px 11px;border-radius:20px;z-index:2;border:1px solid rgba(255,255,255,.25)}
-@media(max-width:900px){.dest-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}.dm-large{grid-row:auto;height:240px}.dm-card{height:200px}}
-@media(max-width:480px){.dest-mosaic{grid-template-columns:1fr}.dm-card,.dm-large{height:200px}}
-
-/* Wave section dividers */
-.wave-sep{display:block;width:100%;overflow:hidden;line-height:0;height:56px;margin-top:-1px}
-.wave-sep svg{display:block;width:100%;height:100%}
-
-/* Service card image layer */
-.srv-top{position:relative}
-
-/* Tour cards 3D hover */
-.tcard{transition:transform .35s,box-shadow .35s}
-.tcard:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 22px 52px rgba(0,0,0,.14)}
-
-/* Price number shimmer */
-.new-pr{background:linear-gradient(90deg,var(--or),#FF6B08,var(--or));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 2.5s linear infinite}
-
-/* Hero badge glow pulse */
-.hero-badge{animation:fdDown .8s ease both,badgePulse 3s ease-in-out 1.2s infinite!important}
-
-/* Hero badge float animation */
-.hv-badge{animation:float 4.5s ease-in-out infinite}
-
-/* Stats counter pop */
-.stat-n,.st-n{transition:transform .3s}
-
-/* Section subtle bg pattern overlay */
-#tours{background:var(--gy) url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231B2A4A' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
-
-/* Combo card enhanced */
-.ccard:hover{transform:translateY(-8px) scale(1.015);box-shadow:0 22px 52px rgba(0,0,0,.12);border-color:rgba(232,93,4,.25)}
-
-/* RESPONSIVE */
-@media(max-width:1100px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-vis{display:none}
-  .hero-grid{padding:120px 0 64px}
-  .about-grid{grid-template-columns:1fr}
-  .about-vis{display:none}
-  .srv-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
-  .why-grid{grid-template-columns:repeat(2,1fr)}
-  .ft-grid{grid-template-columns:1fr 1fr}
-  .hero-search{max-width:100%}
-}
-/* Hero search: wrap to 2-row at mid tablet */
-@media(max-width:900px){
-  .hero-search{flex-wrap:wrap;border-radius:18px;padding:10px 10px 6px;gap:0}
-  .hs-field{flex:1 1 44%;border-right:none;border-bottom:1px solid #eee;padding:8px 12px;min-width:0}
-  .hs-field:nth-child(2){border-bottom:none}
-  .hs-btn{flex:1 1 100%;justify-content:center;border-radius:12px;margin-top:4px;padding:13px}
-}
-@media(max-width:768px){
-  .nav-ul{display:none}
-  .hbg{display:flex}
-  .container{padding:0 18px}
-  .hero-grid{padding:100px 0 48px}
-  .srv-grid{grid-template-columns:1fr}
-  .lang-grid{grid-template-columns:repeat(2,1fr)}
-  .ct-grid{grid-template-columns:1fr}
-  .f-row{grid-template-columns:1fr}
-  .ft-grid{grid-template-columns:1fr}
-  .ft-bot{flex-direction:column;gap:8px;text-align:center}
-  .float-social{bottom:20px;right:16px;gap:9px}
-  .fsoc{width:46px;height:46px;font-size:1.05rem}
-  .tour-grid{grid-template-columns:repeat(2,1fr)}
-  .combo-grid{grid-template-columns:1fr}
-  .glr-grid{grid-template-columns:repeat(2,1fr);grid-template-rows:auto}
-  .gi:nth-child(1),.gi:nth-child(8){grid-column:auto;grid-row:auto}
-  .gi{height:180px}
-  .dest-grid{grid-template-columns:repeat(2,1fr)}
-  .hl-grid{grid-template-columns:1fr}
-  .ft-grid{gap:24px}
-  /* Disable all card hover transforms on touch screens */
-  .tcard,.ccard,.srv{transform:none!important;will-change:auto!important}
-  .tcard:hover,.ccard:hover,.srv:hover{transform:none!important;box-shadow:0 4px 18px rgba(0,0,0,.09)!important}
-}
-/* Small mobile (≤480px) */
-@media(max-width:480px){
-  .container{padding:0 14px}
-  /* Hero */
-  .hero-grid{padding:82px 0 36px;gap:0}
-  .hero-h1{font-size:clamp(1.7rem,7.5vw,2.2rem);margin-bottom:14px}
-  .hero-badge{font-size:.63rem;padding:6px 12px;margin-bottom:16px}
-  .hero-p{font-size:.86rem;margin-bottom:18px;line-height:1.75}
-  .hero-btns{gap:8px;flex-direction:column;align-items:flex-start}
-  .hero-btns .btn,.btn-ol-dk{width:100%;justify-content:center;padding:12px 16px;font-size:.85rem}
-  /* Hero search: full-stack */
-  .hero-search{flex-direction:column;border-radius:14px;padding:10px;gap:0;margin-top:12px}
-  .hs-field{flex:1 1 100%;border-right:none;border-bottom:1px solid #eee;padding:9px 12px;width:100%}
-  .hs-field:nth-child(2){border-bottom:1px solid #eee}
-  .hs-field:last-of-type{border-bottom:none}
-  .hs-btn{width:100%;justify-content:center;border-radius:10px;margin-top:6px;padding:13px}
-  .hero-tags{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
-  .hero-tags::-webkit-scrollbar{display:none}
-  /* Sections */
-  .sec{padding:56px 0}
-  .sec-title{font-size:clamp(1.55rem,5vw,1.9rem)}
-  .sec-head{margin-bottom:36px}
-  /* Grids → single column */
-  .tour-grid{grid-template-columns:1fr!important}
-  .dest-grid{grid-template-columns:1fr}
-  .glr-grid{grid-template-columns:1fr}
-  .combo-grid{grid-template-columns:1fr!important}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  /* Tour filter tabs */
-  .filter-tabs{gap:6px}
-  .ftab{padding:7px 13px;font-size:.74rem}
-  /* Cards — reset any stuck transforms */
-  .tcard,.ccard,.srv{transform:none!important;transition:box-shadow .3s!important}
-  .tcard:hover,.ccard:hover,.srv:hover{transform:none!important}
-  .tcard,.ccard{margin:0;width:100%}
-  .tc-img{height:200px}
-  .cc-img{height:180px}
-  .gi{height:200px}
-  /* Price shimmer fallback: ensure text always visible */
-  .new-pr,.cc-new{color:var(--or)!important}
-  /* Footer */
-  .ft-grid{grid-template-columns:1fr;gap:20px}
-  .ft-bot{font-size:.72rem}
-  /* Nav */
-  #nav{padding:14px 0}
-  #nav.solid{padding:10px 0}
-  .logo-nm{font-size:1rem}
-  .logo-ico{width:38px;height:38px}
-  /* Contact form */
-  .f-row{grid-template-columns:1fr}
-  /* Floating social */
-  .float-social{bottom:14px;right:12px;gap:8px}
-  .fsoc{width:44px;height:44px;font-size:1rem}
-  .fsoc::after{display:none}
-}
-
-/* ===== TOURS ===== */
-#tours{padding:96px 0;background:#fff}
-.filter-tabs{display:flex;justify-content:center;gap:10px;margin-bottom:44px;flex-wrap:wrap}
-.ftab{padding:9px 22px;border-radius:30px;border:1.5px solid #e5e7eb;background:#fff;color:var(--tl);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .3s;font-family:'Montserrat',sans-serif}
-.ftab.active,.ftab:hover{background:var(--or);color:#fff;border-color:var(--or);box-shadow:0 4px 14px rgba(232,93,4,.25)}
-.tour-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.tcard{background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 3px 16px rgba(0,0,0,.07);transition:all .4s;cursor:default}
-.tcard:hover{transform:translateY(-7px);box-shadow:0 20px 50px rgba(0,0,0,.13)}
-.tcard[data-cat]{transition:opacity .3s,transform .3s}
-.tcard.hidden{display:none}
-.tc-img{height:210px;position:relative;overflow:hidden}
-.tc-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.tcard:hover .tc-img img{transform:scale(1.08)}
-.tc-badges{position:absolute;top:12px;left:12px;display:flex;gap:6px;z-index:2}
-.tbadge{padding:4px 10px;border-radius:20px;font-size:.67rem;font-weight:800;letter-spacing:.5px}
-.tbadge.hot{background:#EF4444;color:#fff}
-.tbadge.sale{background:var(--or);color:#fff}
-.tbadge.dur{background:rgba(0,0,0,.55);color:#fff;backdrop-filter:blur(4px)}
-.tbadge.newt{background:#10B981;color:#fff}
-.tc-fav{position:absolute;top:12px;right:12px;width:32px;height:32px;background:rgba(255,255,255,.9);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--or);font-size:.85rem;z-index:2;cursor:pointer;transition:all .3s;border:none;font-family:inherit}
-.tc-fav:hover{background:var(--or);color:#fff}
-.tc-dest-bar{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.6),transparent);padding:18px 14px 10px}
-.tc-dest{font-size:.7rem;font-weight:700;color:rgba(255,255,255,.9);letter-spacing:1.5px;text-transform:uppercase}
-.tc-body{padding:16px 18px 18px}
-.tc-name{font-size:.95rem;font-weight:700;color:var(--nv);margin-bottom:10px;line-height:1.45;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;height:2.9rem}
-.tc-meta{display:flex;gap:14px;margin-bottom:9px;flex-wrap:wrap}
-.tc-meta span{font-size:.73rem;color:var(--tl);display:flex;align-items:center;gap:4px}
-.tc-meta i{color:var(--or);font-size:.68rem}
-.tc-rating{display:flex;align-items:center;gap:5px;margin-bottom:12px}
-.stars{color:var(--gd);font-size:.73rem}
-.r-num{font-size:.78rem;font-weight:700;color:var(--nv)}
-.r-cnt{font-size:.7rem;color:var(--tl)}
-.tc-footer{display:flex;align-items:center;justify-content:space-between;padding-top:12px;border-top:1px solid #f0f2f5}
-.tc-price{display:flex;flex-direction:column;gap:1px}
-.old-pr{font-size:.73rem;color:var(--tl);text-decoration:line-through}
-.new-pr{font-size:1.1rem;font-weight:900;color:var(--or);line-height:1.1}
-.per-pr{font-size:.67rem;color:var(--tl)}
-.btn-book{padding:9px 18px;background:var(--or);color:#fff;border:none;border-radius:30px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;white-space:nowrap;flex-shrink:0}
-.btn-book:hover{background:var(--or2);transform:scale(1.04)}
-.view-all-wrap{text-align:center;margin-top:44px}
-
-/* ===== COMBOS ===== */
-#combos{padding:80px 0;background:var(--cr);position:relative;overflow:hidden}
-#combos::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 95% 0%,rgba(232,93,4,.07),transparent 45%),radial-gradient(ellipse at 5% 100%,rgba(255,183,3,.07),transparent 45%);pointer-events:none}
-.combo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:2}
-.ccard{background:#fff;border:1.5px solid #EEF0F5;border-radius:20px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.06);transition:all .4s}
-.ccard:hover{transform:translateY(-7px);box-shadow:0 20px 52px rgba(0,0,0,.11);border-color:rgba(232,93,4,.2)}
-.cc-img{height:190px;overflow:hidden;position:relative}
-.cc-img img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.ccard:hover .cc-img img{transform:scale(1.07)}
-.cc-tag{position:absolute;top:12px;left:12px;background:var(--gd);color:var(--nv);font-size:.67rem;font-weight:800;padding:4px 12px;border-radius:20px;letter-spacing:.5px;z-index:2}
-.cc-save{position:absolute;top:12px;right:12px;background:#EF4444;color:#fff;font-size:.67rem;font-weight:800;padding:4px 12px;border-radius:20px;z-index:2}
-.cc-body{padding:18px}
-.cc-dest{font-size:.7rem;font-weight:700;color:var(--or);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:5px}
-.cc-name{font-size:1rem;font-weight:700;color:var(--nv);margin-bottom:13px;line-height:1.4}
-.cc-inc{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
-.cc-inc li{display:flex;align-items:center;gap:8px;font-size:.77rem;color:var(--tl);list-style:none}
-.cc-inc li i{color:var(--or);width:13px;font-size:.72rem;flex-shrink:0}
-.cc-foot{display:flex;align-items:flex-end;justify-content:space-between;padding-top:12px;border-top:1px solid #F0F2F5}
-.cc-pr-wrap{display:flex;flex-direction:column;gap:1px}
-.cc-old{font-size:.78rem;color:var(--tl);text-decoration:line-through}
-.cc-new{font-size:1.25rem;font-weight:900;color:var(--or)}
-.cc-per{font-size:.67rem;color:var(--tl)}
-.btn-combo{padding:10px 20px;background:var(--or);color:#fff;border:none;border-radius:30px;font-size:.8rem;font-weight:700;cursor:pointer;font-family:'Montserrat',sans-serif;transition:all .3s;white-space:nowrap;flex-shrink:0}
-.btn-combo:hover{background:var(--or2);box-shadow:0 6px 18px rgba(232,93,4,.3)}
-
-/* ===== GALLERY ===== */
-#gallery{padding:80px 0;background:var(--cr)}
-.glr-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,200px);gap:12px}
-.gi{border-radius:14px;overflow:hidden;position:relative;cursor:pointer}
-.gi img{width:100%;height:100%;object-fit:cover;transition:transform .55s}
-.gi:hover img{transform:scale(1.09)}
-.gi-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6) 0%,transparent 55%);opacity:0;transition:opacity .35s}
-.gi:hover .gi-ov{opacity:1}
-.gi-lbl{position:absolute;bottom:13px;left:14px;color:#fff;font-size:.8rem;font-weight:700;transform:translateY(6px);opacity:0;transition:all .35s;z-index:2}
-.gi:hover .gi-lbl{opacity:1;transform:translateY(0)}
-.gi-zoom{position:absolute;top:12px;right:12px;width:30px;height:30px;background:rgba(255,255,255,.92);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--nv);font-size:.7rem;opacity:0;transition:all .35s;z-index:2}
-.gi:hover .gi-zoom{opacity:1}
-.gi:nth-child(1){grid-column:1/3;grid-row:1/3}
-.gi:nth-child(8){grid-column:3/5;grid-row:3/5}
-
-/* LIGHTBOX */
-.lb{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:all .3s;padding:20px}
-.lb.on{opacity:1;visibility:visible}
-.lb-img{max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;transform:scale(.92);transition:transform .35s}
-.lb.on .lb-img{transform:scale(1)}
-.lb-close{position:absolute;top:20px;right:24px;background:rgba(255,255,255,.15);border:none;color:#fff;font-size:1.4rem;cursor:pointer;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;font-family:inherit;z-index:2}
-.lb-close:hover{background:rgba(255,255,255,.28)}
-.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.55);border:1.5px solid rgba(255,255,255,.45);color:#fff;font-size:1.2rem;cursor:pointer;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .3s;z-index:2;font-family:inherit}
-.lb-prev{left:14px}
-.lb-next{right:14px}
-.lb-prev:hover,.lb-next:hover{background:var(--or);border-color:var(--or)}
-.lb-cap{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.8);font-size:.85rem;font-weight:600;letter-spacing:1px;white-space:nowrap}
-.lb-counter{position:absolute;bottom:22px;right:24px;color:rgba(255,255,255,.55);font-size:.78rem;font-weight:600}
-
-/* DEST HIGHLIGHTS */
-#destinations{padding:80px 0;background:#fff}
-.dest-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.dest-card{position:relative;border-radius:16px;overflow:hidden;height:240px;cursor:pointer}
-.dest-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
-.dest-card:hover img{transform:scale(1.1)}
-.dest-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.65) 0%,transparent 55%)}
-.dest-info{position:absolute;bottom:16px;left:16px;color:#fff;z-index:2}
-.dest-name{font-size:1rem;font-weight:700;margin-bottom:3px}
-.dest-cnt{font-size:.72rem;color:rgba(255,255,255,.75)}
-.dest-card:hover .dest-name{color:var(--gd)}
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
 </head>
 <body>
 
@@ -640,7 +16,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
   <span class="top-bar-tag">🔥 Flash Sale</span>
   <span>Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> — Đặt trước 30/6 còn chỗ!</span>
   <a href="#tours">Xem ngay →</a>
-  <button class="top-bar-close" onclick="dismissBar()" title="Đóng">✕</button>
+  <button class="top-bar-close" data-dismiss-bar title="Đóng">✕</button>
 </div>
 
 <!-- NAV -->
@@ -659,46 +35,46 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         <li><a href="pages/videos.html">Video</a></li>
         <li><a href="pages/contact.html" class="nav-cta">Liên Hệ Ngay</a></li>
       </ul>
-      <div class="hbg" onclick="toggleNav()">
+      <div class="hbg" data-nav-toggle>
         <span></span><span></span><span></span>
       </div>
     </div>
   </div>
 </nav>
 
-<div class="overlay" id="overlay" onclick="toggleNav()"></div>
+<div class="overlay" id="overlay" data-nav-toggle></div>
 <div class="mnav" id="mnav">
-  <button class="mnav-close" onclick="toggleNav()"><i class="fas fa-times"></i></button>
+  <button class="mnav-close" data-nav-toggle><i class="fas fa-times"></i></button>
   <ul>
     <li class="has-msub">
-      <button class="mnav-link" onclick="toggleMsub(this)">
+      <button class="mnav-link" data-msub-toggle>
         Tour &amp; Điểm Đến
         <i class="fas fa-chevron-down mnav-arrow"></i>
       </button>
       <ul class="mnav-sub">
-        <li><a href="pages/tours.html#destinations" onclick="toggleNav()"><i class="fas fa-map-marker-alt"></i> Điểm Đến Nổi Bật</a></li>
-        <li><a href="pages/tours.html" onclick="toggleNav()"><i class="fas fa-compass"></i> Tour Nội Địa</a></li>
-        <li><a href="pages/tours.html" onclick="toggleNav()"><i class="fas fa-globe"></i> Tour Quốc Tế</a></li>
-        <li><a href="pages/tours.html#combos" onclick="toggleNav()"><i class="fas fa-tag"></i> Combo Bay + Khách Sạn</a></li>
+        <li><a href="pages/tours.html#destinations" data-nav-toggle><i class="fas fa-map-marker-alt"></i> Điểm Đến Nổi Bật</a></li>
+        <li><a href="pages/tours.html" data-nav-toggle><i class="fas fa-compass"></i> Tour Nội Địa</a></li>
+        <li><a href="pages/tours.html" data-nav-toggle><i class="fas fa-globe"></i> Tour Quốc Tế</a></li>
+        <li><a href="pages/tours.html#combos" data-nav-toggle><i class="fas fa-tag"></i> Combo Bay + Khách Sạn</a></li>
       </ul>
     </li>
     <li class="has-msub">
-      <button class="mnav-link" onclick="toggleMsub(this)">
+      <button class="mnav-link" data-msub-toggle>
         Dịch Vụ
         <i class="fas fa-chevron-down mnav-arrow"></i>
       </button>
       <ul class="mnav-sub">
-        <li><a href="pages/services.html" onclick="toggleNav()"><i class="fas fa-users"></i> Tổ Chức TeamBuilding</a></li>
-        <li><a href="pages/services.html" onclick="toggleNav()"><i class="fas fa-star"></i> Tổ Chức Sự Kiện</a></li>
-        <li><a href="pages/services.html" onclick="toggleNav()"><i class="fas fa-bus-alt"></i> Cho Thuê Xe Du Lịch</a></li>
-        <li><a href="pages/services.html" onclick="toggleNav()"><i class="fas fa-plane-departure"></i> Bán Vé Máy Bay</a></li>
-        <li><a href="pages/services.html" onclick="toggleNav()"><i class="fas fa-route"></i> Tour Khách Đoàn &amp; Lẻ</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-users"></i> Tổ Chức TeamBuilding</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-star"></i> Tổ Chức Sự Kiện</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-bus-alt"></i> Cho Thuê Xe Du Lịch</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-plane-departure"></i> Bán Vé Máy Bay</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-route"></i> Tour Khách Đoàn &amp; Lẻ</a></li>
       </ul>
     </li>
     <li><a href="pages/gallery.html">Gallery</a></li>
     <li><a href="pages/videos.html">Video</a></li>
-    <li><a href="pages/contact.html" onclick="toggleNav()">Liên Hệ</a></li>
-    <li class="mnav-cta-li"><a href="pages/contact.html" onclick="toggleNav()"><i class="fas fa-phone-alt"></i>&nbsp; Liên Hệ Ngay</a></li>
+    <li><a href="pages/contact.html" data-nav-toggle>Liên Hệ</a></li>
+    <li class="mnav-cta-li"><a href="pages/contact.html" data-nav-toggle><i class="fas fa-phone-alt"></i>&nbsp; Liên Hệ Ngay</a></li>
   </ul>
 </div>
 
@@ -713,7 +89,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
       <!-- LEFT: Content -->
       <div>
         <div class="hero-badge">
-          <i class="fas fa-star" style="color:var(--gd)"></i>
+          <i class="fas fa-star home-inline-1"></i>
           Đối tác tin cậy của 500+ doanh nghiệp
         </div>
 
@@ -732,7 +108,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
           <a href="#tours" class="btn btn-pr">
             <i class="fas fa-compass"></i> Xem Tour Hot
           </a>
-          <button class="btn-ol-dk" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          <button class="btn-ol-dk" data-scroll-target="contact">
             <i class="fas fa-phone-alt"></i> Tư Vấn Miễn Phí
           </button>
         </div>
@@ -767,7 +143,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <option>50+ người</option>
             </select>
           </div>
-          <button class="hs-btn" onclick="document.getElementById('tours').scrollIntoView({behavior:'smooth'})">
+          <button class="hs-btn" data-scroll-target="tours">
             <i class="fas fa-search"></i> Tìm Tour
           </button>
         </div>
@@ -788,12 +164,12 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         <div class="hv-stack">
           <div class="hv-card hv-c1">
             <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Tour Phú Quốc"
-                 onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#E85D04)';this.style.display='none'">
+                 data-fallback="linear-gradient(135deg,#1B2A4A,#E85D04)">
             <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Kiên Giang</div>
           </div>
           <div class="hv-card hv-c2">
             <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Tour Hội An"
-                 onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
+                 data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
             <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Hội An, Quảng Nam</div>
           </div>
           <div class="hv-badge">
@@ -822,13 +198,13 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 </section>
 
 <!-- Wave divider Hero → Services -->
-<div class="wave-sep" style="background:var(--cr)">
+<div class="wave-sep home-inline-2">
   <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M0,32 C240,56 480,8 720,32 C960,56 1200,8 1440,32 L1440,56 L0,56 Z" fill="#FFF8F0"/>
   </svg>
 </div>
 <!-- SERVICES -->
-<section id="services" style="padding:72px 0;background:var(--cr)">
+<section id="services" class="home-inline-3">
   <div class="container">
     <div class="sec-head">
       <div class="sec-tag">Dịch Vụ Chính</div>
@@ -837,10 +213,10 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
     <div class="srv-grid">
 
-      <div class="srv reveal" onclick="location.href='pages/service-detail.html?id=tour-doan-le'" style="cursor:pointer">
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=tour-doan-le">
         <div class="srv-top g1">
-          <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
-          <i class="fas fa-route" style="position:relative;z-index:2"></i>
+          <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="" class="home-inline-5">
+          <i class="fas fa-route home-inline-6"></i>
         </div>
         <div class="srv-body">
           <h3 class="srv-ttl">Tour Khách Đoàn &amp; Lẻ</h3>
@@ -853,11 +229,11 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" style="position:relative;cursor:pointer" onclick="location.href='pages/service-detail.html?id=teambuilding'">
+      <div class="srv reveal home-inline-7" data-href="pages/service-detail.html?id=teambuilding">
         <div class="srv-top g2">
-          <img src="images/teambuilding-1.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:0">
-          <i class="fas fa-users" style="position:relative;z-index:2"></i>
-          <div class="srv-hot" style="position:relative;z-index:2">PHỔ BIẾN</div>
+          <img src="images/teambuilding-1.jpg" alt="" class="home-inline-8">
+          <i class="fas fa-users home-inline-6"></i>
+          <div class="srv-hot home-inline-6">PHỔ BIẾN</div>
         </div>
         <div class="srv-body">
           <h3 class="srv-ttl">Tổ Chức TeamBuilding</h3>
@@ -871,10 +247,10 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" onclick="location.href='pages/service-detail.html?id=su-kien'" style="cursor:pointer">
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=su-kien">
         <div class="srv-top g3">
-          <img src="images/teambuilding-2.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4;z-index:0">
-          <i class="fas fa-star" style="position:relative;z-index:2"></i>
+          <img src="images/teambuilding-2.jpg" alt="" class="home-inline-9">
+          <i class="fas fa-star home-inline-6"></i>
         </div>
         <div class="srv-body">
           <h3 class="srv-ttl">Tổ Chức Sự Kiện</h3>
@@ -887,10 +263,10 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" onclick="location.href='pages/service-detail.html?id=thue-xe'" style="cursor:pointer">
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=thue-xe">
         <div class="srv-top g4">
-          <img src="images/thue-xe-du-lic" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
-          <i class="fas fa-bus-alt" style="position:relative;z-index:2"></i>
+          <img src="images/thue-xe-du-lic" alt="" class="home-inline-5">
+          <i class="fas fa-bus-alt home-inline-6"></i>
         </div>
         <div class="srv-body">
           <h3 class="srv-ttl">Cho Thuê Xe Du Lịch</h3>
@@ -903,10 +279,10 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" onclick="location.href='pages/service-detail.html?id=ve-may-bay'" style="cursor:pointer">
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=ve-may-bay">
         <div class="srv-top g5">
-          <img src="images/vemaybaygiare.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.42;z-index:0">
-          <i class="fas fa-plane-departure" style="position:relative;z-index:2"></i>
+          <img src="images/vemaybaygiare.jpg" alt="" class="home-inline-5">
+          <i class="fas fa-plane-departure home-inline-6"></i>
         </div>
         <div class="srv-body">
           <h3 class="srv-ttl">Bán Vé Máy Bay</h3>
@@ -919,15 +295,15 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         </div>
       </div>
 
-      <div class="srv reveal" style="background:var(--nv)">
+      <div class="srv reveal home-inline-10">
         <div class="srv-top g6">
-          <img src="images/tu-van-vien-du-lich-careerbuilder.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.35;z-index:0">
-          <i class="fas fa-headset" style="position:relative;z-index:2"></i>
+          <img src="images/tu-van-vien-du-lich-careerbuilder.jpg" alt="" class="home-inline-11">
+          <i class="fas fa-headset home-inline-6"></i>
         </div>
         <div class="srv-body">
-          <h3 class="srv-ttl" style="color:#fff">Tư Vấn &amp; Hỗ Trợ 24/7</h3>
-          <p class="srv-dsc" style="color:rgba(255,255,255,.6)">Đội ngũ tư vấn nhiệt tình, chuyên nghiệp. Liên hệ ngay để được báo giá và hỗ trợ nhanh nhất.</p>
-          <a href="tel:0908940903" class="btn btn-pr" style="margin-top:8px;padding:10px 20px;font-size:.82rem">
+          <h3 class="srv-ttl home-inline-12">Tư Vấn &amp; Hỗ Trợ 24/7</h3>
+          <p class="srv-dsc home-inline-13">Đội ngũ tư vấn nhiệt tình, chuyên nghiệp. Liên hệ ngay để được báo giá và hỗ trợ nhanh nhất.</p>
+          <a class="btn btn-pr home-inline-14" href="tel:0908940903">
             <i class="fas fa-phone-alt"></i> 0908.940.903
           </a>
         </div>
@@ -940,7 +316,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 <!-- DESTINATIONS -->
 
 <!-- TOURS -->
-<section id="tours" style="padding:72px 0;background:var(--gy)">
+<section id="tours" class="home-inline-15">
   <div class="container">
     <div class="sec-head">
       <div class="sec-tag">Tour Nổi Bật</div>
@@ -949,20 +325,20 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
 
     <div class="filter-tabs">
-      <button class="ftab active" onclick="filterTours('all',this)">Tất Cả</button>
-      <button class="ftab" onclick="filterTours('nam',this)">Miền Nam</button>
-      <button class="ftab" onclick="filterTours('trung',this)">Miền Trung</button>
-      <button class="ftab" onclick="filterTours('bac',this)">Miền Bắc</button>
-      <button class="ftab" onclick="filterTours('quocte',this)">Quốc Tế</button>
+      <button class="ftab active" data-filter-tour="all">Tất Cả</button>
+      <button class="ftab" data-filter-tour="nam">Miền Nam</button>
+      <button class="ftab" data-filter-tour="trung">Miền Trung</button>
+      <button class="ftab" data-filter-tour="bac">Miền Bắc</button>
+      <button class="ftab" data-filter-tour="quocte">Quốc Tế</button>
     </div>
 
     <div class="tour-grid">
 
       <!-- Tour 1: Đà Lạt -->
-      <div class="tcard reveal" data-cat="nam" onclick="location.href='pages/tour-detail.html?id=dalat'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="nam" data-href="pages/tour-detail.html?id=dalat">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1559628129-67cf63b72248?w=500&q=82&fit=crop&h=280"
-               alt="Đà Lạt" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
+               alt="Đà Lạt" data-fallback="linear-gradient(135deg,#6B8F71,#3D5A3E)">
           <div class="tc-badges">
             <span class="tbadge hot">HOT</span>
             <span class="tbadge dur">3N2Đ</span>
@@ -988,16 +364,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">2.990.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Đà Lạt Mộng Mơ')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Đà Lạt Mộng Mơ">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 2: Phú Quốc -->
-      <div class="tcard reveal" data-cat="nam" onclick="location.href='pages/tour-detail.html?id=phuquoc'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="nam" data-href="pages/tour-detail.html?id=phuquoc">
         <div class="tc-img">
           <img src="images/du-lich-phu-quoc.jpg"
-               alt="Phú Quốc" onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
+               alt="Phú Quốc" data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
           <div class="tc-badges">
             <span class="tbadge hot">HOT</span>
             <span class="tbadge dur">4N3Đ</span>
@@ -1023,16 +399,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">5.490.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Phú Quốc Thiên Đường Biển')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Phú Quốc Thiên Đường Biển">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 3: Hội An -->
-      <div class="tcard reveal" data-cat="trung" onclick="location.href='pages/tour-detail.html?id=hoian'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="trung" data-href="pages/tour-detail.html?id=hoian">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=500&q=82&fit=crop&h=280"
-               alt="Hội An" onerror="this.parentElement.style.background='linear-gradient(135deg,#FFB703,#FB8500)';this.style.display='none'">
+               alt="Hội An" data-fallback="linear-gradient(135deg,#FFB703,#FB8500)">
           <div class="tc-badges">
             <span class="tbadge sale">SALE 15%</span>
             <span class="tbadge dur">4N3Đ</span>
@@ -1058,16 +434,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">3.690.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Hội An Phố Cổ')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Hội An Phố Cổ">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 4: Hạ Long -->
-      <div class="tcard reveal" data-cat="bac" onclick="location.href='pages/tour-detail.html?id=halong'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="bac" data-href="pages/tour-detail.html?id=halong">
         <div class="tc-img">
           <img src="images/vinhhalong.png"
-               alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
+               alt="Hạ Long" data-fallback="linear-gradient(135deg,#219EBC,#023047)">
           <div class="tc-badges">
             <span class="tbadge hot">HOT</span>
             <span class="tbadge dur">2N1Đ</span>
@@ -1093,16 +469,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">2.490.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Hạ Long Bay')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Hạ Long Bay">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 5: Sapa -->
-      <div class="tcard reveal" data-cat="bac" onclick="location.href='pages/tour-detail.html?id=sapa'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="bac" data-href="pages/tour-detail.html?id=sapa">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=82&fit=crop&h=280"
-               alt="Sapa" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
+               alt="Sapa" data-fallback="linear-gradient(135deg,#2D6A4F,#1B4332)">
           <div class="tc-badges">
             <span class="tbadge newt">MỚI</span>
             <span class="tbadge dur">3N2Đ</span>
@@ -1128,16 +504,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">3.290.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Sapa Núi Mây')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Sapa Núi Mây">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 6: Nha Trang -->
-      <div class="tcard reveal" data-cat="trung" onclick="location.href='pages/tour-detail.html?id=nhatrang'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="trung" data-href="pages/tour-detail.html?id=nhatrang">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1473186505569-9c61870c11f9?w=500&q=82&fit=crop&h=280"
-               alt="Nha Trang" onerror="this.parentElement.style.background='linear-gradient(135deg,#0096C7,#0077B6)';this.style.display='none'">
+               alt="Nha Trang" data-fallback="linear-gradient(135deg,#0096C7,#0077B6)">
           <div class="tc-badges">
             <span class="tbadge dur">3N2Đ</span>
           </div>
@@ -1162,16 +538,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">3.490.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Nha Trang Biển Xanh')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Nha Trang Biển Xanh">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 7: Bangkok -->
-      <div class="tcard reveal" data-cat="quocte" onclick="location.href='pages/tour-detail.html?id=bangkok'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="quocte" data-href="pages/tour-detail.html?id=bangkok">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1563492065-03696f837f77?w=500&q=82&fit=crop&h=280"
-               alt="Bangkok" onerror="this.parentElement.style.background='linear-gradient(135deg,#7209B7,#3A0CA3)';this.style.display='none'">
+               alt="Bangkok" data-fallback="linear-gradient(135deg,#7209B7,#3A0CA3)">
           <div class="tc-badges">
             <span class="tbadge hot">HOT</span>
             <span class="tbadge dur">5N4Đ</span>
@@ -1197,16 +573,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">9.990.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Bangkok – Pattaya')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Bangkok – Pattaya">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 8: Singapore -->
-      <div class="tcard reveal" data-cat="quocte" onclick="location.href='pages/tour-detail.html?id=singapore'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="quocte" data-href="pages/tour-detail.html?id=singapore">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1496939376851-89342e90adcd?w=500&q=82&fit=crop&h=280"
-               alt="Singapore" onerror="this.parentElement.style.background='linear-gradient(135deg,#E63946,#1D3557)';this.style.display='none'">
+               alt="Singapore" data-fallback="linear-gradient(135deg,#E63946,#1D3557)">
           <div class="tc-badges">
             <span class="tbadge newt">MỚI</span>
             <span class="tbadge dur">4N3Đ</span>
@@ -1232,16 +608,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">13.490.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Singapore')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Singapore">Đặt Tour</button>
           </div>
         </div>
       </div>
 
       <!-- Tour 9: Bali -->
-      <div class="tcard reveal" data-cat="quocte" onclick="location.href='pages/tour-detail.html?id=bali'" style="cursor:pointer">
+      <div class="tcard reveal home-inline-4" data-cat="quocte" data-href="pages/tour-detail.html?id=bali">
         <div class="tc-img">
           <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=82&fit=crop&h=280"
-               alt="Bali" onerror="this.parentElement.style.background='linear-gradient(135deg,#FB8500,#E85D04)';this.style.display='none'">
+               alt="Bali" data-fallback="linear-gradient(135deg,#FB8500,#E85D04)">
           <div class="tc-badges">
             <span class="tbadge sale">SALE 20%</span>
             <span class="tbadge dur">5N4Đ</span>
@@ -1267,7 +643,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="new-pr">11.900.000đ</span>
               <span class="per-pr">/người</span>
             </div>
-            <button class="btn-book" onclick="bookTour('Bali Đảo Thiên Đường')">Đặt Tour</button>
+            <button class="btn-book" data-book-tour="Bali Đảo Thiên Đường">Đặt Tour</button>
           </div>
         </div>
       </div>
@@ -1290,10 +666,10 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     <div class="combo-grid">
 
       <!-- Combo 1: Phú Quốc -->
-      <div class="ccard reveal" onclick="location.href='pages/combo-detail.html?id=combo-phuquoc'" style="cursor:pointer">
+      <div class="ccard reveal home-inline-4" data-href="pages/combo-detail.html?id=combo-phuquoc">
         <div class="cc-img">
           <img src="images/du-lich-phu-quoc.jpg"
-               alt="Phú Quốc Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#0096C7,#0077B6)';this.style.display='none'">
+               alt="Phú Quốc Combo" data-fallback="linear-gradient(135deg,#0096C7,#0077B6)">
           <div class="cc-tag">COMBO VIP</div>
           <div class="cc-save">TIẾT KIỆM 28%</div>
         </div>
@@ -1313,16 +689,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="cc-new">8.990.000đ</span>
               <span class="cc-per">/người · 2 người đặt cùng</span>
             </div>
-            <button class="btn-combo" onclick="bookTour('Combo Phú Quốc Paradise')">Đặt Combo</button>
+            <button class="btn-combo" data-book-tour="Combo Phú Quốc Paradise">Đặt Combo</button>
           </div>
         </div>
       </div>
 
       <!-- Combo 2: Đà Nẵng -->
-      <div class="ccard reveal" onclick="location.href='pages/combo-detail.html?id=combo-danang'" style="cursor:pointer">
+      <div class="ccard reveal home-inline-4" data-href="pages/combo-detail.html?id=combo-danang">
         <div class="cc-img">
           <img src="images/dia-diem-du-lich-da-nang-thumb.jpg"
-               alt="Đà Nẵng Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
+               alt="Đà Nẵng Combo" data-fallback="linear-gradient(135deg,#219EBC,#1B2A4A)">
           <div class="cc-tag">COMBO HOT</div>
           <div class="cc-save">TIẾT KIỆM 27%</div>
         </div>
@@ -1342,16 +718,16 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="cc-new">7.490.000đ</span>
               <span class="cc-per">/người · 2 người đặt cùng</span>
             </div>
-            <button class="btn-combo" onclick="bookTour('Combo Đà Nẵng Luxury')">Đặt Combo</button>
+            <button class="btn-combo" data-book-tour="Combo Đà Nẵng Luxury">Đặt Combo</button>
           </div>
         </div>
       </div>
 
       <!-- Combo 3: Hà Nội + Hạ Long -->
-      <div class="ccard reveal" onclick="location.href='pages/combo-detail.html?id=combo-halong'" style="cursor:pointer">
+      <div class="ccard reveal home-inline-4" data-href="pages/combo-detail.html?id=combo-halong">
         <div class="cc-img">
           <img src="images/vinhhalong.png"
-               alt="Hà Nội Hạ Long Combo" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#219EBC)';this.style.display='none'">
+               alt="Hà Nội Hạ Long Combo" data-fallback="linear-gradient(135deg,#1B2A4A,#219EBC)">
           <div class="cc-tag">BEST SELLER</div>
           <div class="cc-save">TIẾT KIỆM 29%</div>
         </div>
@@ -1371,7 +747,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
               <span class="cc-new">9.990.000đ</span>
               <span class="cc-per">/người · 2 người đặt cùng</span>
             </div>
-            <button class="btn-combo" onclick="bookTour('Combo Hà Nội – Hạ Long')">Đặt Combo</button>
+            <button class="btn-combo" data-book-tour="Combo Hà Nội – Hạ Long">Đặt Combo</button>
           </div>
         </div>
       </div>
@@ -1387,34 +763,34 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     <div class="dest-header">
       <div>
         <div class="sec-tag">Khám Phá Điểm Đến</div>
-        <h2 class="sec-title" style="margin-bottom:0">Xu Hướng 2026</h2>
+        <h2 class="sec-title home-inline-16">Xu Hướng 2026</h2>
       </div>
       <div class="dest-filter">
-        <button class="df-btn active" onclick="filterDest('domestic',this)">Trong nước</button>
-        <button class="df-btn" onclick="filterDest('international',this)">Nước ngoài</button>
+        <button class="df-btn active" data-filter-dest="domestic">Trong nước</button>
+        <button class="df-btn" data-filter-dest="international">Nước ngoài</button>
       </div>
     </div>
     <div class="dest-mosaic">
-      <div class="dm-card dm-large" onclick="location.href='pages/tour-list.html?destination=danang'">
-        <img src="images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
+      <div class="dm-card dm-large" data-href="pages/tour-list.html?destination=danang">
+        <img src="images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng" data-fallback="linear-gradient(135deg,#219EBC,#1B2A4A)">
         <div class="dm-badge">Xu hướng 2026</div>
         <div class="dm-info"><div class="dm-name">Đà Nẵng</div><div class="dm-count">22 tour khả dụng</div></div>
       </div>
-      <div class="dm-card" onclick="location.href='pages/tour-list.html?destination=hcm'">
-        <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="TP. Hồ Chí Minh" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#C44B00)';this.style.display='none'">
+      <div class="dm-card" data-href="pages/tour-list.html?destination=hcm">
+        <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="TP. Hồ Chí Minh" data-fallback="linear-gradient(135deg,#E85D04,#C44B00)">
         <div class="dm-badge">Phổ biến</div>
         <div class="dm-info"><div class="dm-name">TP. Hồ Chí Minh</div><div class="dm-count">4 tour khả dụng</div></div>
       </div>
-      <div class="dm-card" onclick="location.href='pages/tour-list.html?destination=phuquoc'">
-        <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc" onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
+      <div class="dm-card" data-href="pages/tour-list.html?destination=phuquoc">
+        <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc" data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
         <div class="dm-info"><div class="dm-name">Phú Quốc</div><div class="dm-count">19 tour khả dụng</div></div>
       </div>
-      <div class="dm-card" onclick="location.href='pages/tour-list.html?destination=hanoi'">
-        <img src="images/ninhbinh.jpg" alt="Hà Nội" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.style.display='none'">
+      <div class="dm-card" data-href="pages/tour-list.html?destination=hanoi">
+        <img src="images/ninhbinh.jpg" alt="Hà Nội" data-fallback="linear-gradient(135deg,#1B2A4A,#243660)">
         <div class="dm-info"><div class="dm-name">Hà Nội</div><div class="dm-count">24 tour khả dụng</div></div>
       </div>
-      <div class="dm-card" onclick="location.href='pages/tour-list.html?destination=halong'">
-        <img src="images/vinhhalong.png" alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#219EBC)';this.style.display='none'">
+      <div class="dm-card" data-href="pages/tour-list.html?destination=halong">
+        <img src="images/vinhhalong.png" alt="Hạ Long" data-fallback="linear-gradient(135deg,#1B2A4A,#219EBC)">
         <div class="dm-info"><div class="dm-name">Hạ Long</div><div class="dm-count">25 tour khả dụng</div></div>
       </div>
     </div>
@@ -1424,11 +800,11 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
 
 <!-- REVIEWS -->
 <section id="reviews">
-  <div class="container" style="position:relative;z-index:2">
-    <div class="sec-head" style="margin-bottom:36px">
-      <div class="sec-tag" style="background:rgba(255,183,3,.15);color:var(--gd)">Khách Hàng Nói Gì</div>
-      <h2 class="sec-title" style="color:#fff">Hàng Nghìn Hành Trình Đáng Nhớ</h2>
-      <p class="sec-sub" style="color:rgba(255,255,255,.55)">Mỗi chuyến đi là một câu chuyện — đây là những gì khách hàng chia sẻ sau khi đồng hành cùng SaigonTeam</p>
+  <div class="container home-inline-6">
+    <div class="sec-head home-inline-17">
+      <div class="sec-tag home-inline-18">Khách Hàng Nói Gì</div>
+      <h2 class="sec-title home-inline-12">Hàng Nghìn Hành Trình Đáng Nhớ</h2>
+      <p class="sec-sub home-inline-19">Mỗi chuyến đi là một câu chuyện — đây là những gì khách hàng chia sẻ sau khi đồng hành cùng SaigonTeam</p>
     </div>
   </div>
   <div class="rv-scroll-wrap">
@@ -1470,86 +846,8 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
   </div>
 </section>
 
-<!-- GALLERY -->
-<!-- <section id="gallery" style="padding:64px 0;background:var(--gy)">
-  <div class="container">
-    <div class="sec-head">
-      <div class="sec-tag">Khoảnh Khắc Lữ Hành</div>
-      <h2 class="sec-title">Hành Trình Của Những Kỷ Niệm</h2>
-      <p class="sec-sub">Mỗi bức ảnh là một câu chuyện — cùng SaigonTeam viết thêm những trang mới cho hành trình của bạn</p>
-    </div>
-    <div class="glr-grid">
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hành Trình 1" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#FF8C42)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-2.jpg" alt="Hành Trình 2" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#2D4080)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Hành Trình 3" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#023047)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-4.jpg" alt="Hành Trình 4" onerror="this.parentElement.style.background='linear-gradient(135deg,#2D6A4F,#1B4332)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-5.jpg" alt="Hành Trình 5" onerror="this.parentElement.style.background='linear-gradient(135deg,#6B8F71,#3D5A3E)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-6.jpg" alt="Hành Trình 6" onerror="this.parentElement.style.background='linear-gradient(135deg,#FFB703,#FB8500)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-7.jpg" alt="Hành Trình 7" onerror="this.parentElement.style.background='linear-gradient(135deg,#7C3AED,#3730A3)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-8.jpg" alt="Hành Trình 8" onerror="this.parentElement.style.background='linear-gradient(135deg,#059669,#0D9488)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-9.jpg" alt="Hành Trình 9" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#C44B00)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-      <div class="gi" onclick="openLb(this)" data-lbl="Hành Trình Kỷ Niệm · SaigonTeam">
-        <img src="images/hanhtrinhcuanhungkyniem-10.jpg" alt="Hành Trình 10" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.style.display='none'">
-        <div class="gi-ov"></div><div class="gi-lbl"><i class="fas fa-camera"></i> Khoảnh Khắc Đáng Nhớ</div><div class="gi-zoom"><i class="fas fa-expand"></i></div>
-      </div>
-
-    </div>
-
-    <div style="text-align:center;margin-top:36px">
-      <a href="#contact" class="btn btn-pr"><i class="fas fa-images"></i> Xem Thêm Hành Trình</a>
-    </div>
-  </div>
-</section> -->
-
-<!-- LIGHTBOX -->
-<div class="lb" id="lb" onclick="closeLb(event)">
-  <button class="lb-close" onclick="closeLb()"><i class="fas fa-times"></i></button>
-  <button class="lb-prev" onclick="navLb(-1);event.stopPropagation()"><i class="fas fa-chevron-left"></i></button>
-  <img class="lb-img" id="lb-img" src="" alt="">
-  <button class="lb-next" onclick="navLb(1);event.stopPropagation()"><i class="fas fa-chevron-right"></i></button>
-  <div class="lb-cap" id="lb-cap"></div>
-  <div class="lb-counter" id="lb-counter"></div>
-</div>
-
 <!-- CONTACT -->
-<section id="contact" style="padding:72px 0;background:var(--cr)">
+<section id="contact" class="home-inline-3">
   <div class="container">
     <div class="sec-head">
       <div class="sec-tag">Liên Hệ</div>
@@ -1558,8 +856,8 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
     </div>
     <div class="ct-grid">
       <div class="reveal">
-        <h3 style="font-size:1.25rem;font-weight:700;color:var(--nv);margin-bottom:8px">SAIGONTEAM</h3>
-        <p style="font-size:.875rem;color:var(--tl);line-height:1.75">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — Đối tác du lịch và sự kiện tin cậy của hơn 500 doanh nghiệp.</p>
+        <h3 class="home-inline-20">SAIGONTEAM</h3>
+        <p class="home-inline-21">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — Đối tác du lịch và sự kiện tin cậy của hơn 500 doanh nghiệp.</p>
         <div class="ct-items">
           <div class="ct-row">
             <div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div>
@@ -1628,7 +926,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
           </select>
         </div>
         <div class="fg"><label>Nội Dung Yêu Cầu</label><textarea placeholder="Mô tả chi tiết nhu cầu của bạn (thời gian, địa điểm, ngân sách...)"></textarea></div>
-        <button class="f-btn" onclick="submitForm(this)"><i class="fas fa-paper-plane"></i> Gửi Yêu Cầu Ngay</button>
+        <button class="f-btn" data-submit-form><i class="fas fa-paper-plane"></i> Gửi Yêu Cầu Ngay</button>
       </div>
     </div>
   </div>
@@ -1639,18 +937,18 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
   <div class="container">
     <div class="ft-grid">
       <div>
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px">
-          <img src="images/logo-3.png" alt="SaigonTeam" style="width:44px;height:44px;object-fit:contain;border-radius:8px;flex-shrink:0">
+        <div class="home-inline-22">
+          <img src="images/logo-3.png" alt="SaigonTeam" class="home-inline-23">
           <div>
-            <div style="font-weight:900;font-size:1rem;color:#fff;letter-spacing:.3px;line-height:1.2">SAIGONTEAM TRAVEL.JSC</div>
-            <div style="font-size:.6rem;color:var(--gd);letter-spacing:2px;text-transform:uppercase;margin-top:4px">Cùng Nhau Trải Nghiệm</div>
+            <div class="home-inline-24">SAIGONTEAM TRAVEL.JSC</div>
+            <div class="home-inline-25">Cùng Nhau Trải Nghiệm</div>
           </div>
         </div>
         <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm phục vụ doanh nghiệp Việt Nam.</p>
         <div class="socials">
-          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-facebook-f" style="color:#fff"></i></a>
-          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-youtube" style="color:#fff"></i></a>
-          <a href="#" class="soc" style="background:rgba(255,255,255,.08)"><i class="fab fa-instagram" style="color:#fff"></i></a>
+          <a class="soc home-inline-26" href="#"><i class="fab fa-facebook-f home-inline-12"></i></a>
+          <a class="soc home-inline-26" href="#"><i class="fab fa-youtube home-inline-12"></i></a>
+          <a class="soc home-inline-26" href="#"><i class="fab fa-instagram home-inline-12"></i></a>
         </div>
       </div>
       <div>
@@ -1677,7 +975,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
         <div class="ft-ttl">Liên Hệ</div>
         <ul class="ft-cl">
           <li><i class="fas fa-map-marker-alt"></i>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng, TP. HCM</li>
-          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" style="color:var(--or);font-weight:700">0908.940.903</a></li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" class="home-inline-27">0908.940.903</a></li>
           <li><i class="fas fa-envelope"></i>Saigonteamtravel2021@gmail.com</li>
           <li><i class="fas fa-clock"></i>T2–T7: 8:00–18:00 | CN: 8:00–12:00</li>
         </ul>
@@ -1697,190 +995,7 @@ footer{background:var(--nv);color:#fff;padding:60px 0 28px}
   <a href="https://zalo.me/0908940903" class="fsoc za" target="_blank" rel="noopener" data-tip="Zalo"><span class="zalo-ltr">Zalo</span></a>
   <a href="https://maps.google.com/?q=Phạm+Hùng+Bình+Hưng+TP.HCM" class="fsoc gm" target="_blank" rel="noopener" data-tip="Bản đồ"><i class="fas fa-map-marker-alt"></i></a>
 </div>
-
-<script>
-// Announcement bar
-(function(){
-  const bar = document.getElementById('topBar');
-  if(bar && !sessionStorage.getItem('barDismissed')){
-    document.body.classList.add('bar-on');
-  } else if(bar){
-    bar.classList.add('hidden');
-  }
-})();
-function dismissBar(){
-  document.getElementById('topBar').classList.add('hidden');
-  document.body.classList.remove('bar-on');
-  sessionStorage.setItem('barDismissed','1');
-}
-
-// Nav scroll
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('solid', window.scrollY > 60);
-});
-
-// Hero parallax on scroll
-window.addEventListener('scroll', () => {
-  const hero = document.getElementById('hero');
-  if (hero && window.scrollY < window.innerHeight) {
-    hero.style.backgroundPositionY = (window.scrollY * 0.35) + 'px';
-  }
-}, {passive:true});
-
-// Card 3D tilt — desktop pointer devices only
-if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-  document.querySelectorAll('.tcard,.srv,.ccard').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width - 0.5;
-      const y = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `translateY(-7px) scale(1.015) rotateX(${-y*6}deg) rotateY(${x*6}deg)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
-}
-
-// Mobile nav
-function toggleNav() {
-  document.getElementById('mnav').classList.toggle('on');
-  document.getElementById('overlay').classList.toggle('on');
-}
-// Mobile sub-menu accordion
-function toggleMsub(btn) {
-  const li = btn.parentElement;
-  const isOpen = li.classList.contains('open');
-  document.querySelectorAll('.has-msub.open').forEach(el => el.classList.remove('open'));
-  if (!isOpen) li.classList.add('open');
-}
-
-// Reveal on scroll
-const io = new IntersectionObserver(entries => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('on'), i * 90);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// Counter
-const cio = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting && !e.target._done) {
-      e.target._done = true;
-      const target = +e.target.dataset.t;
-      const dur = 2000;
-      const step = target / (dur / 16);
-      let cur = 0;
-      const t = setInterval(() => {
-        cur = Math.min(cur + step, target);
-        e.target.textContent = Math.floor(cur);
-        if (cur >= target) clearInterval(t);
-      }, 16);
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('.cnt').forEach(el => cio.observe(el));
-
-// Tour filter tabs
-function filterTours(cat, btn) {
-  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.tcard').forEach(c => {
-    const match = cat === 'all' || c.dataset.cat === cat;
-    c.classList.toggle('hidden', !match);
-  });
-}
-
-// Tour / Combo booking toast
-function bookTour(name) {
-  const existing = document.getElementById('toast');
-  if (existing) existing.remove();
-  const t = document.createElement('div');
-  t.id = 'toast';
-  t.style.cssText = 'position:fixed;bottom:100px;right:32px;background:var(--nv);color:#fff;padding:14px 22px;border-radius:14px;font-size:.85rem;font-weight:600;box-shadow:0 8px 30px rgba(0,0,0,.25);z-index:8888;display:flex;align-items:center;gap:10px;animation:fdRight .4s ease';
-  t.innerHTML = '<i class="fas fa-check-circle" style="color:var(--gd);font-size:1.1rem"></i>Đã thêm <strong style="color:var(--gd)">' + name + '</strong> — Chúng tôi sẽ liên hệ bạn sớm!';
-  document.body.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
-}
-
-// Heart toggle
-document.addEventListener('click', e => {
-  if (e.target.closest('.tc-fav')) {
-    const btn = e.target.closest('.tc-fav');
-    btn.style.background = btn.style.background === 'rgb(232, 93, 4)' ? '' : 'var(--or)';
-    btn.style.color = btn.style.color === 'rgb(255, 255, 255)' ? '' : '#fff';
-  }
-});
-
-// Lightbox
-let lbItems = [], lbIdx = 0, lbTouchX = 0;
-
-function openLb(el) {
-  lbItems = Array.from(document.querySelectorAll('.gi'));
-  lbIdx = lbItems.indexOf(el);
-  _showLb();
-  document.getElementById('lb').classList.add('on');
-  document.body.style.overflow = 'hidden';
-}
-
-function _showLb() {
-  const el = lbItems[lbIdx];
-  const img = el.querySelector('img');
-  document.getElementById('lb-img').src = img.src.replace(/w=\d+/, 'w=1400').replace(/h=\d+/, '');
-  document.getElementById('lb-cap').textContent = el.dataset.lbl || '';
-  document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + lbItems.length;
-}
-
-function navLb(dir) {
-  lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
-  _showLb();
-}
-
-function closeLb(e) {
-  if (e && e.target !== document.getElementById('lb') && !e.target.closest('.lb-close')) return;
-  document.getElementById('lb').classList.remove('on');
-  document.body.style.overflow = '';
-}
-
-document.addEventListener('keydown', e => {
-  if (!document.getElementById('lb').classList.contains('on')) return;
-  if (e.key === 'Escape') closeLb({target: document.getElementById('lb')});
-  if (e.key === 'ArrowLeft') navLb(-1);
-  if (e.key === 'ArrowRight') navLb(1);
-});
-
-// Touch swipe
-(function() {
-  const lb = document.getElementById('lb');
-  lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, {passive:true});
-  lb.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - lbTouchX;
-    if (Math.abs(dx) > 50) navLb(dx < 0 ? 1 : -1);
-  }, {passive:true});
-})();
-
-// Form
-function submitForm(btn) {
-  const orig = btn.innerHTML;
-  btn.innerHTML = '<i class="fas fa-check"></i> Đã Gửi — Chúng Tôi Sẽ Liên Hệ Lại Sớm!';
-  btn.style.background = '#16a34a';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.innerHTML = orig;
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 4000);
-}
-
-function filterDest(type, btn) {
-  document.querySelectorAll('.df-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-}
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/pages/home.js"></script>
 </body>
 </html>
