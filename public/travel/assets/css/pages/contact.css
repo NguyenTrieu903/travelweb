@@ -1,0 +1,70 @@
+/* =========================
+   Contact page only
+   ========================= */
+body.page-contact { background: var(--cr); }
+
+/* Page hero */
+.page-hero {
+  background: linear-gradient(135deg, var(--nv), var(--nv2));
+  padding: 80px 0 64px;
+  position: relative; overflow: hidden; text-align: center;
+}
+.page-hero::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(circle at 70% 50%, rgba(232,93,4,.18), transparent 60%);
+  pointer-events: none;
+}
+.ph-tag {
+  display: inline-block;
+  background: rgba(232,93,4,.18); color: var(--or3);
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  padding: 6px 18px; border-radius: 20px; margin-bottom: 14px;
+  border: 1px solid rgba(232,93,4,.25); position: relative; z-index: 1;
+}
+.ph-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 700;
+  color: #fff; line-height: 1.2; margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+.ph-title em { color: var(--or3); font-style: normal; }
+.ph-sub {
+  font-size: .95rem; color: rgba(255,255,255,.6);
+  max-width: 600px; margin: 0 auto; line-height: 1.8;
+  position: relative; z-index: 1;
+}
+
+/* Contact section */
+.contact-section { padding: 72px 0 80px; }
+.ct-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; }
+.ct-items { display: flex; flex-direction: column; gap: 22px; margin: 28px 0; }
+.ct-row { display: flex; align-items: flex-start; gap: 15px; }
+.ct-ico { width: 48px; height: 48px; background: rgba(232,93,4,.1); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--or); font-size: 1.05rem; flex-shrink: 0; }
+.ct-tx strong { display: block; font-size: .8rem; font-weight: 700; color: var(--nv); margin-bottom: 3px; text-transform: uppercase; letter-spacing: .5px; }
+.ct-tx span, .ct-tx a { font-size: .88rem; color: var(--tl); line-height: 1.6; }
+.ct-tx a { color: var(--or); font-weight: 600; }
+
+/* Social icons */
+.socials { display: flex; gap: 10px; margin-top: 26px; }
+.soc { width: 42px; height: 42px; background: var(--gy); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--nv); font-size: .95rem; transition: all .3s; }
+.soc:hover { background: var(--or); color: #fff; transform: translateY(-3px); }
+
+/* Contact form */
+.ct-form { background: #fff; border-radius: 22px; padding: 38px; box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+.form-ttl { font-size: 1.3rem; font-weight: 700; color: var(--nv); margin-bottom: 22px; }
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.fg { margin-bottom: 14px; }
+.fg label { display: block; font-size: .72rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--tx); margin-bottom: 5px; }
+.fg input, .fg select, .fg textarea { width: 100%; padding: 11px 14px; border: 1.5px solid #E8EAF0; border-radius: 10px; font-family: var(--font-sans); font-size: .875rem; color: var(--tx); outline: none; transition: border-color .3s; background: #fff; }
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--or); }
+.fg textarea { height: 110px; resize: vertical; }
+.f-btn { width: 100%; padding: 14px; background: var(--or); color: #fff; border: none; border-radius: 50px; font-family: var(--font-sans); font-size: .95rem; font-weight: 700; cursor: pointer; transition: all .3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.f-btn:hover { background: var(--or2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,93,4,.35); }
+
+/* Map embed */
+.ct-map { margin-top: 64px; border-radius: 20px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,.08); }
+.ct-map iframe { width: 100%; height: 360px; border: 0; display: block; }
+
+@media (max-width: 900px) { .ct-grid { grid-template-columns: 1fr; gap: 36px; } }
+@media (max-width: 600px) { .f-row { grid-template-columns: 1fr; } .ct-form { padding: 24px; } }
