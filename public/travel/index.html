@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SaigonTeam – Dịch Vụ & Sự Kiện</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/pages/home.css">
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="top-bar" id="topBar">
+  <span class="top-bar-tag">🔥 Flash Sale</span>
+  <span>Tour Phú Quốc &amp; Đà Nẵng giảm đến <strong>20%</strong> — Đặt trước 30/6 còn chỗ!</span>
+  <a href="#tours">Xem ngay →</a>
+  <button class="top-bar-close" data-dismiss-bar title="Đóng">✕</button>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-in">
+      <a href="#hero" class="logo">
+        <img src="images/logo-3.png" alt="SaigonTeam Travel" class="logo-ico-img">
+        <div><div class="logo-nm">SAIGONTEAM TRAVEL.JSC</div><div class="logo-sl">Cùng Nhau Trải Nghiệm</div></div>
+      </a>
+      <ul class="nav-ul">
+        <li><a href="pages/about.html">Về Chúng Tôi</a></li>
+        <li><a href="pages/tours.html">Tour &amp; Combo</a></li>
+        <li><a href="pages/services.html">Dịch Vụ</a></li>
+        <li><a href="pages/gallery.html">Gallery</a></li>
+        <li><a href="pages/videos.html">Video</a></li>
+        <li><a href="pages/contact.html" class="nav-cta">Liên Hệ Ngay</a></li>
+      </ul>
+      <div class="hbg" data-nav-toggle>
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="overlay" id="overlay" data-nav-toggle></div>
+<div class="mnav" id="mnav">
+  <button class="mnav-close" data-nav-toggle><i class="fas fa-times"></i></button>
+  <ul>
+    <li class="has-msub">
+      <button class="mnav-link" data-msub-toggle>
+        Tour &amp; Điểm Đến
+        <i class="fas fa-chevron-down mnav-arrow"></i>
+      </button>
+      <ul class="mnav-sub">
+        <li><a href="pages/tours.html#destinations" data-nav-toggle><i class="fas fa-map-marker-alt"></i> Điểm Đến Nổi Bật</a></li>
+        <li><a href="pages/tours.html" data-nav-toggle><i class="fas fa-compass"></i> Tour Nội Địa</a></li>
+        <li><a href="pages/tours.html" data-nav-toggle><i class="fas fa-globe"></i> Tour Quốc Tế</a></li>
+        <li><a href="pages/tours.html#combos" data-nav-toggle><i class="fas fa-tag"></i> Combo Bay + Khách Sạn</a></li>
+      </ul>
+    </li>
+    <li class="has-msub">
+      <button class="mnav-link" data-msub-toggle>
+        Dịch Vụ
+        <i class="fas fa-chevron-down mnav-arrow"></i>
+      </button>
+      <ul class="mnav-sub">
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-users"></i> Tổ Chức TeamBuilding</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-star"></i> Tổ Chức Sự Kiện</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-bus-alt"></i> Cho Thuê Xe Du Lịch</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-plane-departure"></i> Bán Vé Máy Bay</a></li>
+        <li><a href="pages/services.html" data-nav-toggle><i class="fas fa-route"></i> Tour Khách Đoàn &amp; Lẻ</a></li>
+      </ul>
+    </li>
+    <li><a href="pages/gallery.html">Gallery</a></li>
+    <li><a href="pages/videos.html">Video</a></li>
+    <li><a href="pages/contact.html" data-nav-toggle>Liên Hệ</a></li>
+    <li class="mnav-cta-li"><a href="pages/contact.html" data-nav-toggle><i class="fas fa-phone-alt"></i>&nbsp; Liên Hệ Ngay</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-dots"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- LEFT: Content -->
+      <div>
+        <div class="hero-badge">
+          <i class="fas fa-star home-inline-1"></i>
+          Đối tác tin cậy của 500+ doanh nghiệp
+        </div>
+
+        <h1 class="hero-h1">
+          Khám Phá Vẻ&nbsp;Đẹp<br>
+          <em>Việt Nam</em> Cùng<br>
+          SaigonTeam
+        </h1>
+
+        <p class="hero-p">
+          Chuyên tổ chức tour du lịch, teambuilding, sự kiện doanh nghiệp, cho thuê xe và bán vé máy bay.
+          Hơn 5 năm kinh nghiệm — hàng nghìn hành trình đáng nhớ đã được tạo nên.
+        </p>
+
+        <div class="hero-btns">
+          <a href="#tours" class="btn btn-pr">
+            <i class="fas fa-compass"></i> Xem Tour Hot
+          </a>
+          <button class="btn-ol-dk" data-scroll-target="contact">
+            <i class="fas fa-phone-alt"></i> Tư Vấn Miễn Phí
+          </button>
+        </div>
+
+        <!-- Quick search -->
+        <div class="hero-search">
+          <div class="hs-field">
+            <div class="hs-lbl"><i class="fas fa-map-marker-alt"></i> Điểm đến</div>
+            <select class="hs-sel">
+              <option>Chọn điểm đến...</option>
+              <option>Phú Quốc</option>
+              <option>Đà Lạt</option>
+              <option>Hội An</option>
+              <option>Hạ Long</option>
+              <option>Sapa</option>
+              <option>Nha Trang</option>
+              <option>Bangkok</option>
+              <option>Bali</option>
+            </select>
+          </div>
+          <div class="hs-field">
+            <div class="hs-lbl"><i class="fas fa-calendar"></i> Ngày đi</div>
+            <input class="hs-inp" type="text" placeholder="Chọn ngày..." onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+          </div>
+          <div class="hs-field">
+            <div class="hs-lbl"><i class="fas fa-users"></i> Số người</div>
+            <select class="hs-sel">
+              <option>2 người</option>
+              <option>3–5 người</option>
+              <option>6–10 người</option>
+              <option>10–50 người</option>
+              <option>50+ người</option>
+            </select>
+          </div>
+          <button class="hs-btn" data-scroll-target="tours">
+            <i class="fas fa-search"></i> Tìm Tour
+          </button>
+        </div>
+
+        <!-- Hot destination tags -->
+        <div class="hero-tags">
+          <span class="ht-lbl">Đang hot:</span>
+          <a href="#tours" class="htag">🏖️ Phú Quốc</a>
+          <a href="#tours" class="htag">🌿 Đà Lạt</a>
+          <a href="#tours" class="htag">🏮 Hội An</a>
+          <a href="#tours" class="htag">⛵ Hạ Long</a>
+          <a href="#tours" class="htag">✈️ Bangkok</a>
+        </div>
+      </div>
+
+      <!-- RIGHT: Visual cards -->
+      <div class="hero-vis">
+        <div class="hv-stack">
+          <div class="hv-card hv-c1">
+            <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Tour Phú Quốc"
+                 data-fallback="linear-gradient(135deg,#1B2A4A,#E85D04)">
+            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Kiên Giang</div>
+          </div>
+          <div class="hv-card hv-c2">
+            <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Tour Hội An"
+                 data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
+            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Hội An, Quảng Nam</div>
+          </div>
+          <div class="hv-badge">
+            <div class="hv-badge-ico"><i class="fas fa-star"></i></div>
+            <div>
+              <div class="hv-badge-n">4.9 <span>★</span></div>
+              <div class="hv-badge-l">1,200+ đánh giá</div>
+            </div>
+          </div>
+        </div>
+        <div class="hv-stats">
+          <div class="hv-st"><div class="hv-st-n">5<span>+</span></div><div class="hv-st-l">Năm kinh nghiệm</div></div>
+          <div class="hv-st"><div class="hv-st-n">500<span>+</span></div><div class="hv-st-l">Doanh nghiệp</div></div>
+          <div class="hv-st"><div class="hv-st-n">50<span>+</span></div><div class="hv-st-l">Điểm đến</div></div>
+          <div class="hv-st"><div class="hv-st-n">98<span>%</span></div><div class="hv-st-l">Hài lòng</div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <i class="fas fa-chevron-down"></i>
+  </div>
+</section>
+
+<!-- Wave divider Hero → Services -->
+<div class="wave-sep home-inline-2">
+  <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,32 C240,56 480,8 720,32 C960,56 1200,8 1440,32 L1440,56 L0,56 Z" fill="#FFF8F0"/>
+  </svg>
+</div>
+<!-- SERVICES -->
+<section id="services" class="home-inline-3">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Dịch Vụ Chính</div>
+      <h2 class="sec-title">Chúng Tôi Cung Cấp</h2>
+      <p class="sec-sub">Đa dạng dịch vụ du lịch &amp; sự kiện chuyên nghiệp, đáp ứng mọi nhu cầu của doanh nghiệp và cá nhân</p>
+    </div>
+    <div class="srv-grid">
+
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=tour-doan-le">
+        <div class="srv-top g1">
+          <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="" class="home-inline-5">
+          <i class="fas fa-route home-inline-6"></i>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tour Khách Đoàn &amp; Lẻ</h3>
+          <p class="srv-dsc">Thiết kế tour du lịch trong và ngoài nước cho cả đoàn lớn và khách lẻ. Chương trình đa dạng, giá cạnh tranh, hướng dẫn viên chuyên nghiệp.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Tour nội địa</span>
+            <span class="srv-tag">Tour quốc tế</span>
+            <span class="srv-tag">Theo yêu cầu</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal home-inline-7" data-href="pages/service-detail.html?id=teambuilding">
+        <div class="srv-top g2">
+          <img src="images/teambuilding-1.jpg" alt="" class="home-inline-8">
+          <i class="fas fa-users home-inline-6"></i>
+          <div class="srv-hot home-inline-6">PHỔ BIẾN</div>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tổ Chức TeamBuilding</h3>
+          <p class="srv-dsc">Chương trình teambuilding sáng tạo, gắn kết đội nhóm hiệu quả. Phù hợp mọi quy mô từ 20 đến 5.000+ người với các hoạt động indoor &amp; outdoor.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Outdoor</span>
+            <span class="srv-tag">Indoor</span>
+            <span class="srv-tag">Hybrid</span>
+            <span class="srv-tag">Game show</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=su-kien">
+        <div class="srv-top g3">
+          <img src="images/teambuilding-2.jpg" alt="" class="home-inline-9">
+          <i class="fas fa-star home-inline-6"></i>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Tổ Chức Sự Kiện</h3>
+          <p class="srv-dsc">Lên kế hoạch và thực hiện sự kiện doanh nghiệp, gala dinner, hội nghị, triển lãm, tiệc tất niên chuyên nghiệp từ A đến Z.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Gala dinner</span>
+            <span class="srv-tag">Hội nghị</span>
+            <span class="srv-tag">Tất niên</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=thue-xe">
+        <div class="srv-top g4">
+          <img src="images/thue-xe-du-lic" alt="" class="home-inline-5">
+          <i class="fas fa-bus-alt home-inline-6"></i>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Cho Thuê Xe Du Lịch</h3>
+          <p class="srv-dsc">Đội xe hiện đại, đa dạng từ 4 đến 45 chỗ. Tài xế kinh nghiệm, am hiểu địa bàn, cam kết đúng giờ, phục vụ 24/7.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">4–7 chỗ</span>
+            <span class="srv-tag">16–29 chỗ</span>
+            <span class="srv-tag">45 chỗ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal home-inline-4" data-href="pages/service-detail.html?id=ve-may-bay">
+        <div class="srv-top g5">
+          <img src="images/vemaybaygiare.jpg" alt="" class="home-inline-5">
+          <i class="fas fa-plane-departure home-inline-6"></i>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl">Bán Vé Máy Bay</h3>
+          <p class="srv-dsc">Đặt vé máy bay nội địa và quốc tế với giá tốt nhất thị trường. Hỗ trợ đặt vé 24/7, xuất vé nhanh, thanh toán linh hoạt.</p>
+          <div class="srv-tags">
+            <span class="srv-tag">Nội địa</span>
+            <span class="srv-tag">Quốc tế</span>
+            <span class="srv-tag">Giá tốt</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="srv reveal home-inline-10">
+        <div class="srv-top g6">
+          <img src="images/tu-van-vien-du-lich-careerbuilder.jpg" alt="" class="home-inline-11">
+          <i class="fas fa-headset home-inline-6"></i>
+        </div>
+        <div class="srv-body">
+          <h3 class="srv-ttl home-inline-12">Tư Vấn &amp; Hỗ Trợ 24/7</h3>
+          <p class="srv-dsc home-inline-13">Đội ngũ tư vấn nhiệt tình, chuyên nghiệp. Liên hệ ngay để được báo giá và hỗ trợ nhanh nhất.</p>
+          <a class="btn btn-pr home-inline-14" href="tel:0908940903">
+            <i class="fas fa-phone-alt"></i> 0908.940.903
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DESTINATIONS -->
+
+<!-- TOURS -->
+<section id="tours" class="home-inline-15">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Tour Nổi Bật</div>
+      <h2 class="sec-title">Tour Đang Hot 🔥</h2>
+      <p class="sec-sub">Những chương trình được đặt nhiều nhất — giá tốt, dịch vụ đỉnh, khởi hành linh hoạt</p>
+    </div>
+
+    <div class="filter-tabs">
+      <button class="ftab active" data-filter-tour="all">Tất Cả</button>
+      <button class="ftab" data-filter-tour="nam">Miền Nam</button>
+      <button class="ftab" data-filter-tour="trung">Miền Trung</button>
+      <button class="ftab" data-filter-tour="bac">Miền Bắc</button>
+      <button class="ftab" data-filter-tour="quocte">Quốc Tế</button>
+    </div>
+
+    <div class="tour-grid" data-catalog="tours" data-base=""></div>
+    <div class="view-all-wrap">
+      <a href="pages/tours.html" class="btn btn-pr"><i class="fas fa-compass"></i> Xem Tất Cả Tour</a>
+    </div>
+  </div>
+</section>
+
+<!-- COMBOS -->
+<section id="combos">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Combo Siêu Tiết Kiệm</div>
+      <h2 class="sec-title">Combo Bay + Khách Sạn</h2>
+      <p class="sec-sub">Đặt trọn gói — tiết kiệm đến 30% so với đặt lẻ từng dịch vụ</p>
+    </div>
+    <div class="combo-grid" data-catalog="combos" data-base=""></div>
+  </div>
+</section>
+
+
+<!-- DESTINATIONS MOSAIC -->
+<section id="destinations">
+  <div class="container">
+    <div class="dest-header">
+      <div>
+        <div class="sec-tag">Khám Phá Điểm Đến</div>
+        <h2 class="sec-title home-inline-16">Xu Hướng 2026</h2>
+      </div>
+      <div class="dest-filter">
+        <button class="df-btn active" data-filter-dest="domestic">Trong nước</button>
+        <button class="df-btn" data-filter-dest="international">Nước ngoài</button>
+      </div>
+    </div>
+    <div class="dest-mosaic">
+      <div class="dm-card dm-large" data-href="pages/tour-list.html?destination=danang">
+        <img src="images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng" data-fallback="linear-gradient(135deg,#219EBC,#1B2A4A)">
+        <div class="dm-badge">Xu hướng 2026</div>
+        <div class="dm-info"><div class="dm-name">Đà Nẵng</div><div class="dm-count">22 tour khả dụng</div></div>
+      </div>
+      <div class="dm-card" data-href="pages/tour-list.html?destination=hcm">
+        <img src="images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="TP. Hồ Chí Minh" data-fallback="linear-gradient(135deg,#E85D04,#C44B00)">
+        <div class="dm-badge">Phổ biến</div>
+        <div class="dm-info"><div class="dm-name">TP. Hồ Chí Minh</div><div class="dm-count">4 tour khả dụng</div></div>
+      </div>
+      <div class="dm-card" data-href="pages/tour-list.html?destination=phuquoc">
+        <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc" data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
+        <div class="dm-info"><div class="dm-name">Phú Quốc</div><div class="dm-count">19 tour khả dụng</div></div>
+      </div>
+      <div class="dm-card" data-href="pages/tour-list.html?destination=hanoi">
+        <img src="images/ninhbinh.jpg" alt="Hà Nội" data-fallback="linear-gradient(135deg,#1B2A4A,#243660)">
+        <div class="dm-info"><div class="dm-name">Hà Nội</div><div class="dm-count">24 tour khả dụng</div></div>
+      </div>
+      <div class="dm-card" data-href="pages/tour-list.html?destination=halong">
+        <img src="images/vinhhalong.png" alt="Hạ Long" data-fallback="linear-gradient(135deg,#1B2A4A,#219EBC)">
+        <div class="dm-info"><div class="dm-name">Hạ Long</div><div class="dm-count">25 tour khả dụng</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container home-inline-6">
+    <div class="sec-head home-inline-17">
+      <div class="sec-tag home-inline-18">Khách Hàng Nói Gì</div>
+      <h2 class="sec-title home-inline-12">Hàng Nghìn Hành Trình Đáng Nhớ</h2>
+      <p class="sec-sub home-inline-19">Mỗi chuyến đi là một câu chuyện — đây là những gì khách hàng chia sẻ sau khi đồng hành cùng SaigonTeam</p>
+    </div>
+  </div>
+  <div class="rv-scroll-wrap">
+    <div class="rv-track">
+      <!-- Set A -->
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Chuyến đi Phú Quốc do SaigonTeam tổ chức thật sự tuyệt vời. Mọi thứ đều chu đáo từ xe đón đến khách sạn. Gia đình tôi rất hài lòng và chắc chắn sẽ đặt tour tiếp!"</p><div class="rv-author"><div class="rv-av">L</div><div><div class="rv-nm">Nguyễn Thị Lan</div><div class="rv-loc">TP. Hồ Chí Minh</div></div></div><div class="rv-service"><i class="fas fa-suitcase"></i> Tour Phú Quốc 4N3Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Team building công ty chúng tôi với hơn 80 người, SaigonTeam xử lý cực kỳ chuyên nghiệp. Các hoạt động sáng tạo, nhân viên nhiệt tình — sẽ hợp tác lại lần sau!"</p><div class="rv-author"><div class="rv-av">M</div><div><div class="rv-nm">Trần Minh Khoa</div><div class="rv-loc">Giám đốc HR · Công ty FPT</div></div></div><div class="rv-service"><i class="fas fa-users"></i> TeamBuilding 80 người</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt combo Đà Nẵng bay + khách sạn, giá rẻ hơn tự đặt mà được phục vụ tận tình. Hướng dẫn viên hiểu biết, vui tính. Cảm ơn SaigonTeam!"</p><div class="rv-author"><div class="rv-av">H</div><div><div class="rv-nm">Lê Hoàng Phúc</div><div class="rv-loc">Bình Dương</div></div></div><div class="rv-service"><i class="fas fa-plane"></i> Combo Đà Nẵng 3N2Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★☆</div><p class="rv-quote">"Sự kiện hội nghị 200 khách được tổ chức bài bản, âm thanh ánh sáng chuyên nghiệp. Chỉ thiếu 1 sao vì trời mưa hôm đó, nhưng team xử lý rất linh hoạt!"</p><div class="rv-author"><div class="rv-av">T</div><div><div class="rv-nm">Phạm Thu Hương</div><div class="rv-loc">Trưởng phòng Marketing</div></div></div><div class="rv-service"><i class="fas fa-calendar-star"></i> Tổ Chức Sự Kiện</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Thuê xe du lịch 16 chỗ đi Đà Lạt, xe sạch sẽ, tài xế thân thiện và đúng giờ. Giá cả hợp lý, sẽ tiếp tục sử dụng dịch vụ cho các chuyến sau."</p><div class="rv-author"><div class="rv-av">D</div><div><div class="rv-nm">Đinh Văn Dũng</div><div class="rv-loc">Đồng Nai</div></div></div><div class="rv-service"><i class="fas fa-bus"></i> Cho Thuê Xe 16 Chỗ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Mua vé máy bay qua SaigonTeam tiết kiệm hơn đặt trực tiếp. Hỗ trợ nhanh, xuất vé ngay trong ngày. Tư vấn nhiệt tình, chuyên nghiệp!"</p><div class="rv-author"><div class="rv-av">A</div><div><div class="rv-nm">Võ Thị Anh</div><div class="rv-loc">Cần Thơ</div></div></div><div class="rv-service"><i class="fas fa-ticket-alt"></i> Vé Máy Bay</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Tour Hạ Long 2 ngày 1 đêm trên du thuyền — trải nghiệm đỉnh nhất từ trước đến nay. SaigonTeam tư vấn rất kỹ, không bị 'chặt chém' như mấy chỗ khác."</p><div class="rv-author"><div class="rv-av">B</div><div><div class="rv-nm">Nguyễn Bảo Long</div><div class="rv-loc">Hà Nội</div></div></div><div class="rv-service"><i class="fas fa-ship"></i> Tour Hạ Long 2N1Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt tour cho nhóm 15 người, SaigonTeam linh hoạt điều chỉnh lịch trình theo yêu cầu. Dịch vụ cá nhân hóa rất tốt. Khuyến khích mọi người thử!"</p><div class="rv-author"><div class="rv-av">N</div><div><div class="rv-nm">Trịnh Ngọc Mai</div><div class="rv-loc">Vũng Tàu</div></div></div><div class="rv-service"><i class="fas fa-map-marked-alt"></i> Tour Theo Yêu Cầu</div></div>
+
+      <!-- Set B (duplicate for seamless loop) -->
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Chuyến đi Phú Quốc do SaigonTeam tổ chức thật sự tuyệt vời. Mọi thứ đều chu đáo từ xe đón đến khách sạn. Gia đình tôi rất hài lòng và chắc chắn sẽ đặt tour tiếp!"</p><div class="rv-author"><div class="rv-av">L</div><div><div class="rv-nm">Nguyễn Thị Lan</div><div class="rv-loc">TP. Hồ Chí Minh</div></div></div><div class="rv-service"><i class="fas fa-suitcase"></i> Tour Phú Quốc 4N3Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Team building công ty chúng tôi với hơn 80 người, SaigonTeam xử lý cực kỳ chuyên nghiệp. Các hoạt động sáng tạo, nhân viên nhiệt tình — sẽ hợp tác lại lần sau!"</p><div class="rv-author"><div class="rv-av">M</div><div><div class="rv-nm">Trần Minh Khoa</div><div class="rv-loc">Giám đốc HR · Công ty FPT</div></div></div><div class="rv-service"><i class="fas fa-users"></i> TeamBuilding 80 người</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt combo Đà Nẵng bay + khách sạn, giá rẻ hơn tự đặt mà được phục vụ tận tình. Hướng dẫn viên hiểu biết, vui tính. Cảm ơn SaigonTeam!"</p><div class="rv-author"><div class="rv-av">H</div><div><div class="rv-nm">Lê Hoàng Phúc</div><div class="rv-loc">Bình Dương</div></div></div><div class="rv-service"><i class="fas fa-plane"></i> Combo Đà Nẵng 3N2Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★☆</div><p class="rv-quote">"Sự kiện hội nghị 200 khách được tổ chức bài bản, âm thanh ánh sáng chuyên nghiệp. Chỉ thiếu 1 sao vì trời mưa hôm đó, nhưng team xử lý rất linh hoạt!"</p><div class="rv-author"><div class="rv-av">T</div><div><div class="rv-nm">Phạm Thu Hương</div><div class="rv-loc">Trưởng phòng Marketing</div></div></div><div class="rv-service"><i class="fas fa-calendar-star"></i> Tổ Chức Sự Kiện</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Thuê xe du lịch 16 chỗ đi Đà Lạt, xe sạch sẽ, tài xế thân thiện và đúng giờ. Giá cả hợp lý, sẽ tiếp tục sử dụng dịch vụ cho các chuyến sau."</p><div class="rv-author"><div class="rv-av">D</div><div><div class="rv-nm">Đinh Văn Dũng</div><div class="rv-loc">Đồng Nai</div></div></div><div class="rv-service"><i class="fas fa-bus"></i> Cho Thuê Xe 16 Chỗ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Mua vé máy bay qua SaigonTeam tiết kiệm hơn đặt trực tiếp. Hỗ trợ nhanh, xuất vé ngay trong ngày. Tư vấn nhiệt tình, chuyên nghiệp!"</p><div class="rv-author"><div class="rv-av">A</div><div><div class="rv-nm">Võ Thị Anh</div><div class="rv-loc">Cần Thơ</div></div></div><div class="rv-service"><i class="fas fa-ticket-alt"></i> Vé Máy Bay</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Tour Hạ Long 2 ngày 1 đêm trên du thuyền — trải nghiệm đỉnh nhất từ trước đến nay. SaigonTeam tư vấn rất kỹ, không bị 'chặt chém' như mấy chỗ khác."</p><div class="rv-author"><div class="rv-av">B</div><div><div class="rv-nm">Nguyễn Bảo Long</div><div class="rv-loc">Hà Nội</div></div></div><div class="rv-service"><i class="fas fa-ship"></i> Tour Hạ Long 2N1Đ</div></div>
+
+      <div class="rv-card"><div class="rv-stars">★★★★★</div><p class="rv-quote">"Đặt tour cho nhóm 15 người, SaigonTeam linh hoạt điều chỉnh lịch trình theo yêu cầu. Dịch vụ cá nhân hóa rất tốt. Khuyến khích mọi người thử!"</p><div class="rv-author"><div class="rv-av">N</div><div><div class="rv-nm">Trịnh Ngọc Mai</div><div class="rv-loc">Vũng Tàu</div></div></div><div class="rv-service"><i class="fas fa-map-marked-alt"></i> Tour Theo Yêu Cầu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="home-inline-3">
+  <div class="container">
+    <div class="sec-head">
+      <div class="sec-tag">Liên Hệ</div>
+      <h2 class="sec-title">Liên Hệ Với Chúng Tôi</h2>
+      <p class="sec-sub">Đội ngũ tư vấn luôn sẵn sàng hỗ trợ bạn 24/7 — đừng ngại liên hệ!</p>
+    </div>
+    <div class="ct-grid">
+      <div class="reveal">
+        <h3 class="home-inline-20">SAIGONTEAM</h3>
+        <p class="home-inline-21">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — Đối tác du lịch và sự kiện tin cậy của hơn 500 doanh nghiệp.</p>
+        <div class="ct-items">
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="ct-tx">
+              <strong>Địa chỉ văn phòng</strong>
+              <span>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng,<br>Thành phố Hồ Chí Minh</span>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-phone-alt"></i></div>
+            <div class="ct-tx">
+              <strong>Hotline</strong>
+              <a href="tel:0908940903">0908.940.903</a>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-envelope"></i></div>
+            <div class="ct-tx">
+              <strong>Email</strong>
+              <a href="mailto:Saigonteamtravel2021@gmail.com">Saigonteamtravel2021@gmail.com</a>
+            </div>
+          </div>
+          <div class="ct-row">
+            <div class="ct-ico"><i class="fas fa-clock"></i></div>
+            <div class="ct-tx">
+              <strong>Giờ làm việc</strong>
+              <span>Thứ 2 – Thứ 7: 8:00 – 18:00<br>Chủ nhật: 8:00 – 12:00</span>
+            </div>
+          </div>
+        </div>
+        <div class="socials">
+          <a href="#" class="soc"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="soc"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="soc"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="soc"><i class="fas fa-comment-dots"></i></a>
+        </div>
+      </div>
+
+      <div class="ct-form reveal">
+        <div class="form-ttl">Gửi Yêu Cầu Tư Vấn</div>
+        <div class="f-row">
+          <div class="fg"><label>Họ &amp; Tên *</label><input type="text" placeholder="Nguyễn Văn A"></div>
+          <div class="fg"><label>Số Điện Thoại *</label><input type="tel" placeholder="0xxx xxx xxx"></div>
+        </div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="email@company.com"></div>
+        <div class="fg">
+          <label>Dịch Vụ Quan Tâm</label>
+          <select>
+            <option>Chọn dịch vụ...</option>
+            <option>Tour khách đoàn &amp; lẻ</option>
+            <option>Tổ chức TeamBuilding</option>
+            <option>Tổ chức sự kiện</option>
+            <option>Cho thuê xe du lịch</option>
+            <option>Bán vé máy bay</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Số Lượng Người</label>
+          <select>
+            <option>Chọn quy mô...</option>
+            <option>Dưới 20 người</option>
+            <option>20 – 50 người</option>
+            <option>50 – 200 người</option>
+            <option>200 – 500 người</option>
+            <option>Trên 500 người</option>
+          </select>
+        </div>
+        <div class="fg"><label>Nội Dung Yêu Cầu</label><textarea placeholder="Mô tả chi tiết nhu cầu của bạn (thời gian, địa điểm, ngân sách...)"></textarea></div>
+        <button class="f-btn" data-submit-form><i class="fas fa-paper-plane"></i> Gửi Yêu Cầu Ngay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div>
+        <div class="home-inline-22">
+          <img src="images/logo-3.png" alt="SaigonTeam" class="home-inline-23">
+          <div>
+            <div class="home-inline-24">SAIGONTEAM TRAVEL.JSC</div>
+            <div class="home-inline-25">Cùng Nhau Trải Nghiệm</div>
+          </div>
+        </div>
+        <p class="ft-dsc">Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam — đối tác du lịch &amp; sự kiện tin cậy với hơn 5 năm kinh nghiệm phục vụ doanh nghiệp Việt Nam.</p>
+        <div class="socials">
+          <a class="soc home-inline-26" href="#"><i class="fab fa-facebook-f home-inline-12"></i></a>
+          <a class="soc home-inline-26" href="#"><i class="fab fa-youtube home-inline-12"></i></a>
+          <a class="soc home-inline-26" href="#"><i class="fab fa-instagram home-inline-12"></i></a>
+        </div>
+      </div>
+      <div>
+        <div class="ft-ttl">Dịch Vụ</div>
+        <ul class="ft-ul">
+          <li><a href="#services">Tour Khách Đoàn &amp; Lẻ</a></li>
+          <li><a href="#services">Tổ Chức TeamBuilding</a></li>
+          <li><a href="#services">Tổ Chức Sự Kiện</a></li>
+          <li><a href="#services">Cho Thuê Xe Du Lịch</a></li>
+          <li><a href="#services">Bán Vé Máy Bay</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Công Ty</div>
+        <ul class="ft-ul">
+          <li><a href="#about">Về Chúng Tôi</a></li>
+          <li><a href="#why">Tại Sao Chọn Chúng Tôi</a></li>
+          <li><a href="#partners">Đối Tác</a></li>
+          <li><a href="#languages">Ngôn Ngữ Hỗ Trợ</a></li>
+          <li><a href="#contact">Liên Hệ</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="ft-ttl">Liên Hệ</div>
+        <ul class="ft-cl">
+          <li><i class="fas fa-map-marker-alt"></i>Số 14/149, Ấp 32 Phạm Hùng, Xã Bình Hưng, TP. HCM</li>
+          <li><i class="fas fa-phone-alt"></i><a href="tel:0908940903" class="home-inline-27">0908.940.903</a></li>
+          <li><i class="fas fa-envelope"></i>Saigonteamtravel2021@gmail.com</li>
+          <li><i class="fas fa-clock"></i>T2–T7: 8:00–18:00 | CN: 8:00–12:00</li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bot">
+      <span>© 2024 SaigonTeam. Công Ty TNHH Dịch Vụ &amp; Sự Kiện SaigonTeam. All rights reserved.</span>
+      <span>Thiết kế chuyên nghiệp để demo khách hàng</span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOAT SOCIAL -->
+<div class="float-social">
+  <a href="https://facebook.com/saigonteam" class="fsoc fb" target="_blank" rel="noopener" data-tip="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="tel:0908940903" class="fsoc ph" data-tip="Gọi: 0908.940.903"><i class="fas fa-phone-alt"></i></a>
+  <a href="https://zalo.me/0908940903" class="fsoc za" target="_blank" rel="noopener" data-tip="Zalo"><span class="zalo-ltr">Zalo</span></a>
+  <a href="https://maps.google.com/?q=Phạm+Hùng+Bình+Hưng+TP.HCM" class="fsoc gm" target="_blank" rel="noopener" data-tip="Bản đồ"><i class="fas fa-map-marker-alt"></i></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/pages/home.js"></script>
+<script src="assets/js/data/render-catalog.js"></script>
+</body>
+</html>

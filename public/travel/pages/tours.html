@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tour &amp; Combo — SaigonTeam Travel</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="../assets/css/main.css">
+  <link rel="stylesheet" href="../assets/css/pages/tours.css">
+</head>
+<body class="page-tours">
+
+  <div data-component="top-bar"></div>
+  <div data-component="header" data-base="../" data-solid="true"></div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="ph-tag">🧭 Tour &amp; Combo</div>
+      <h1 class="ph-title">Khám Phá <em>Hành Trình</em> Của Bạn</h1>
+      <p class="ph-sub">Hàng chục tour nội địa, quốc tế và combo siêu tiết kiệm — giá tốt, dịch vụ đỉnh, khởi hành linh hoạt mỗi tuần</p>
+    </div>
+  </section>
+
+  <!-- Tours section -->
+  <section class="tours-section">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-tag">Tour Nổi Bật</div>
+        <h2 class="sec-title">Tour Đang Hot 🔥</h2>
+        <p class="sec-sub">Những chương trình được đặt nhiều nhất — giá tốt, dịch vụ đỉnh, khởi hành linh hoạt</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="ftab active" type="button" onclick="filterTours('all',this)">Tất Cả</button>
+        <button class="ftab" type="button" onclick="filterTours('nam',this)">Miền Nam</button>
+        <button class="ftab" type="button" onclick="filterTours('trung',this)">Miền Trung</button>
+        <button class="ftab" type="button" onclick="filterTours('bac',this)">Miền Bắc</button>
+        <button class="ftab" type="button" onclick="filterTours('quocte',this)">Quốc Tế</button>
+      </div>
+
+      <div class="tour-grid" data-catalog="tours" data-base="../"></div>
+
+      <div class="view-all-wrap">
+        <a href="tour-list.html" class="btn btn-pr"><i class="fas fa-compass"></i> Xem Tất Cả Tour</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Combos section -->
+  <section class="combos-section">
+    <div class="container">
+      <div class="sec-head">
+        <div class="sec-tag">Combo Siêu Tiết Kiệm</div>
+        <h2 class="sec-title">Combo Bay + Khách Sạn</h2>
+        <p class="sec-sub">Đặt trọn gói — tiết kiệm đến 30% so với đặt lẻ từng dịch vụ</p>
+      </div>
+      <div class="combo-grid" data-catalog="combos" data-base="../"></div>
+    </div>
+  </section>
+
+  <!-- Destinations section -->
+  <section class="destinations-section">
+    <div class="container">
+      <div class="dest-header">
+        <div>
+          <div class="sec-tag">Khám Phá Điểm Đến</div>
+          <h2 class="sec-title" style="margin-bottom:0">Xu Hướng 2026</h2>
+        </div>
+        <div class="dest-filter">
+          <button class="df-btn active" type="button" onclick="filterDest('domestic',this)">Trong nước</button>
+          <button class="df-btn" type="button" onclick="filterDest('international',this)">Nước ngoài</button>
+        </div>
+      </div>
+      <div class="dest-mosaic">
+        <div class="dm-card dm-large" onclick="location.href='tour-list.html?destination=danang'">
+          <img src="../images/dia-diem-du-lich-da-nang-thumb.jpg" alt="Đà Nẵng" onerror="this.parentElement.style.background='linear-gradient(135deg,#219EBC,#1B2A4A)';this.style.display='none'">
+          <div class="dm-badge">Xu hướng 2026</div>
+          <div class="dm-info"><div class="dm-name">Đà Nẵng</div><div class="dm-count">22 tour khả dụng</div></div>
+        </div>
+        <div class="dm-card" onclick="location.href='tour-list.html?destination=hcm'">
+          <img src="../images/tour-sai-gon-mui-ne-2-ngay-1-dem-4.jpg" alt="TP. Hồ Chí Minh" onerror="this.parentElement.style.background='linear-gradient(135deg,#E85D04,#C44B00)';this.style.display='none'">
+          <div class="dm-badge">Phổ biến</div>
+          <div class="dm-info"><div class="dm-name">TP. Hồ Chí Minh</div><div class="dm-count">4 tour khả dụng</div></div>
+        </div>
+        <div class="dm-card" onclick="location.href='tour-list.html?destination=phuquoc'">
+          <img src="../images/du-lich-phu-quoc.jpg" alt="Phú Quốc" onerror="this.parentElement.style.background='linear-gradient(135deg,#0B6E4F,#219EBC)';this.style.display='none'">
+          <div class="dm-info"><div class="dm-name">Phú Quốc</div><div class="dm-count">19 tour khả dụng</div></div>
+        </div>
+        <div class="dm-card" onclick="location.href='tour-list.html?destination=hanoi'">
+          <img src="../images/ninhbinh.jpg" alt="Hà Nội" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#243660)';this.style.display='none'">
+          <div class="dm-info"><div class="dm-name">Hà Nội</div><div class="dm-count">24 tour khả dụng</div></div>
+        </div>
+        <div class="dm-card" onclick="location.href='tour-list.html?destination=halong'">
+          <img src="../images/vinhhalong.png" alt="Hạ Long" onerror="this.parentElement.style.background='linear-gradient(135deg,#1B2A4A,#219EBC)';this.style.display='none'">
+          <div class="dm-info"><div class="dm-name">Hạ Long</div><div class="dm-count">25 tour khả dụng</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-component="footer" data-base="../"></div>
+  <div data-component="float-social"></div>
+
+  <script src="../assets/js/components/toast.js"></script>
+  <script src="../assets/js/components/top-bar.js"></script>
+  <script src="../assets/js/components/header.js"></script>
+  <script src="../assets/js/components/footer.js"></script>
+  <script src="../assets/js/components/float-social.js"></script>
+  <script src="../assets/js/pages/tours.js"></script>
+  <script src="../assets/js/data/render-catalog.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>
