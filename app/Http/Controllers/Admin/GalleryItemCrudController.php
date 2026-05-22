@@ -41,7 +41,16 @@ class GalleryItemCrudController extends CrudController
         ]);
 
         CRUD::field('title')->label('Title')->type('text');
-        CRUD::field('category')->label('Category key')->type('text');
+        CRUD::field('category')
+            ->label('Category')
+            ->type('select_from_array')
+            ->options([
+                'hanh-trinh' => 'Hành Trình',
+                'diem-den' => 'Điểm Đến',
+                'teambuilding' => 'TeamBuilding',
+                'dich-vu' => 'Dịch Vụ',
+            ])
+            ->allows_null(false);
         CRUD::field('category_label')->label('Category label')->type('text');
         CRUD::field('image_url')->label('Image URL')->type('text');
         CRUD::field('description')->label('Description')->type('textarea');
@@ -54,4 +63,3 @@ class GalleryItemCrudController extends CrudController
         $this->setupCreateOperation();
     }
 }
-

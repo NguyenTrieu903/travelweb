@@ -248,12 +248,34 @@ class TravelContentApiController extends Controller
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(fn (GalleryItem $item) => [
-                'cat' => $item->category,
-                'catLabel' => $item->category_label,
+                'cat' => $this->galleryCategoryKey($item->category),
+                'catLabel' => $item->category_label ?: $this->galleryCategoryLabel($item->category),
                 'title' => $item->title,
                 'src' => $item->image_url,
             ])
             ->all();
+    }
+
+    private function galleryCategoryKey(?string $category): ?string
+    {
+        return match ($category) {
+            'Hành Trình', 'hanh-trinh' => 'hanh-trinh',
+            'Điểm Đến', 'diem-den' => 'diem-den',
+            'TeamBuilding', 'teambuilding' => 'teambuilding',
+            'Dịch Vụ', 'Dich Vu', 'dich-vu' => 'dich-vu',
+            default => $category,
+        };
+    }
+
+    private function galleryCategoryLabel(?string $category): ?string
+    {
+        return match ($this->galleryCategoryKey($category)) {
+            'hanh-trinh' => 'Hành Trình',
+            'diem-den' => 'Điểm Đến',
+            'teambuilding' => 'TeamBuilding',
+            'dich-vu' => 'Dịch Vụ',
+            default => $category,
+        };
     }
 
     private function videoPayload(): array
@@ -265,14 +287,14 @@ class TravelContentApiController extends Controller
             ->get();
 
         $mapVideo = fn (TravelVideo $video) => [
-            'cat' => $video->category,
-            'catLabel' => $video->category_label,
+            'cat' => $this->videoCategoryKey($video->category),
+            'catLabel' => $video->category_label ?: $this->videoCategoryLabel($video->category),
             'title' => $video->title,
             'description' => $video->description,
             'desc' => $video->description,
             'thumb' => $video->thumbnail_url,
             'thumbFb' => 'linear-gradient(135deg,#219EBC,#023047)',
-            'src' => $video->video_url,
+            'src' => $video->is_local ? $video->video_url : $this->youtubeId($video->video_url),
             'local' => $video->is_local,
             'duration' => $video->duration,
             'badge' => $video->badge_text ? [
@@ -293,6 +315,43 @@ class TravelContentApiController extends Controller
                 ->values()
                 ->all(),
         ];
+    }
+
+    private function videoCategoryKey(?string $category): ?string
+    {
+        return match ($category) {
+            'Tour Nổi Bật', 'Tour Du Lịch', 'tour' => 'tour',
+            'TeamBuilding', 'teambuilding' => 'teambuilding',
+            'Sự Kiện', 'Su Kien', 'event' => 'event',
+            default => $category,
+        };
+    }
+
+    private function videoCategoryLabel(?string $category): ?string
+    {
+        return match ($this->videoCategoryKey($category)) {
+            'tour' => 'Tour Du Lịch',
+            'teambuilding' => 'TeamBuilding',
+            'event' => 'Sự Kiện',
+            default => $category,
+        };
+    }
+
+    private function youtubeId(?string $value): ?string
+    {
+        if (!$value) {
+            return null;
+        }
+
+        if (preg_match('/^[A-Za-z0-9_-]{11}$/', $value)) {
+            return $value;
+        }
+
+        if (preg_match('/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([A-Za-z0-9_-]{11})/', $value, $matches)) {
+            return $matches[1];
+        }
+
+        return $value;
     }
 
     private function decode(?string $value): array

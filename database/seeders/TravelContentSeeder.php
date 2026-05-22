@@ -142,8 +142,8 @@ class TravelContentSeeder extends Seeder
             GalleryItem::updateOrCreate(
                 ['image_url' => $item['src'], 'title' => $item['title']],
                 [
-                    'category' => $item['cat'] ?? null,
-                    'category_label' => $item['catLabel'] ?? null,
+                    'category' => $this->galleryCategoryKey($item['cat'] ?? null),
+                    'category_label' => $item['catLabel'] ?? $this->galleryCategoryLabel($item['cat'] ?? null),
                     'is_active' => true,
                     'sort_order' => $index,
                 ]
@@ -169,8 +169,8 @@ class TravelContentSeeder extends Seeder
         TravelVideo::updateOrCreate(
             ['title' => $video['title'], 'video_url' => $video['src']],
             [
-                'category' => $video['cat'] ?? null,
-                'category_label' => $video['catLabel'] ?? null,
+                'category' => $this->videoCategoryKey($video['cat'] ?? null),
+                'category_label' => $video['catLabel'] ?? $this->videoCategoryLabel($video['cat'] ?? null),
                 'description' => $video['description'] ?? $video['desc'] ?? null,
                 'thumbnail_url' => $video['thumb'] ?? null,
                 'is_local' => $video['local'] ?? false,
@@ -184,6 +184,48 @@ class TravelContentSeeder extends Seeder
                 'sort_order' => $sortOrder,
             ]
         );
+    }
+
+    private function videoCategoryKey(?string $category): ?string
+    {
+        return match ($category) {
+            'Tour Ná»•i Báº­t', 'Tour Du Lá»‹ch', 'tour' => 'tour',
+            'TeamBuilding', 'teambuilding' => 'teambuilding',
+            'Sá»± Kiá»‡n', 'Su Kien', 'event' => 'event',
+            default => $category,
+        };
+    }
+
+    private function videoCategoryLabel(?string $category): ?string
+    {
+        return match ($this->videoCategoryKey($category)) {
+            'tour' => 'Tour Du Lá»‹ch',
+            'teambuilding' => 'TeamBuilding',
+            'event' => 'Sá»± Kiá»‡n',
+            default => $category,
+        };
+    }
+
+    private function galleryCategoryKey(?string $category): ?string
+    {
+        return match ($category) {
+            'Hành Trình', 'hanh-trinh' => 'hanh-trinh',
+            'Điểm Đến', 'diem-den' => 'diem-den',
+            'TeamBuilding', 'teambuilding' => 'teambuilding',
+            'Dịch Vụ', 'Dich Vu', 'dich-vu' => 'dich-vu',
+            default => $category,
+        };
+    }
+
+    private function galleryCategoryLabel(?string $category): ?string
+    {
+        return match ($this->galleryCategoryKey($category)) {
+            'hanh-trinh' => 'Hành Trình',
+            'diem-den' => 'Điểm Đến',
+            'teambuilding' => 'TeamBuilding',
+            'dich-vu' => 'Dịch Vụ',
+            default => $category,
+        };
     }
 
     private function json(array $value): string

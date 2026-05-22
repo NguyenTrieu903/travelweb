@@ -42,7 +42,16 @@ class TravelVideoCrudController extends CrudController
 
         CRUD::field('title')->label('Title')->type('text')->tab('Basic');
         CRUD::field('description')->label('Description')->type('textarea')->tab('Basic');
-        CRUD::field('category')->label('Category key')->type('text')->tab('Basic');
+        CRUD::field('category')
+            ->label('Category')
+            ->type('select_from_array')
+            ->options([
+                'tour' => 'Tour Du Lịch',
+                'teambuilding' => 'TeamBuilding',
+                'event' => 'Sự Kiện',
+            ])
+            ->allows_null(false)
+            ->tab('Basic');
         CRUD::field('category_label')->label('Category label')->type('text')->tab('Basic');
         CRUD::field('thumbnail_url')->label('Thumbnail URL')->type('text')->tab('Media');
         CRUD::field('video_url')->label('Video URL or YouTube ID')->type('text')->tab('Media');
@@ -62,4 +71,3 @@ class TravelVideoCrudController extends CrudController
         $this->setupCreateOperation();
     }
 }
-
