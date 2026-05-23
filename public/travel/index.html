@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -80,50 +80,32 @@
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-dots"></div>
-
   <div class="container">
     <div class="hero-grid">
-
-      <!-- LEFT: Content -->
-      <div>
+      <div class="hero-copy">
         <div class="hero-badge">
-          <i class="fas fa-star home-inline-1"></i>
+          <span><i class="fas fa-star"></i></span>
           Đối tác tin cậy của 500+ doanh nghiệp
         </div>
 
         <h1 class="hero-h1">
-          Khám Phá Vẻ&nbsp;Đẹp<br>
-          <em>Việt Nam</em> Cùng<br>
-          SaigonTeam
+          Khám phá vẻ đẹp <em>Việt Nam</em><br>
+          cùng SaigonTeam
         </h1>
 
         <p class="hero-p">
-          Chuyên tổ chức tour du lịch, teambuilding, sự kiện doanh nghiệp, cho thuê xe và bán vé máy bay.
-          Hơn 5 năm kinh nghiệm — hàng nghìn hành trình đáng nhớ đã được tạo nên.
+          Chuyên tổ chức tour du lịch, teambuilding, sự kiện doanh nghiệp. Hơn 5 năm kinh nghiệm — hàng nghìn hành trình đáng nhớ đã được tạo nên.
         </p>
 
-        <div class="hero-btns">
-          <a href="#tours" class="btn btn-pr">
-            <i class="fas fa-compass"></i> Xem Tour Hot
-          </a>
-          <button class="btn-ol-dk" data-scroll-target="contact">
-            <i class="fas fa-phone-alt"></i> Tư Vấn Miễn Phí
-          </button>
-        </div>
-
-        <!-- Quick search -->
         <div class="hero-search">
           <div class="hs-field">
             <div class="hs-lbl"><i class="fas fa-map-marker-alt"></i> Điểm đến</div>
             <select class="hs-sel">
-              <option>Chọn điểm đến...</option>
+              <option>Sapa, Lào Cai</option>
               <option>Phú Quốc</option>
               <option>Đà Lạt</option>
               <option>Hội An</option>
               <option>Hạ Long</option>
-              <option>Sapa</option>
               <option>Nha Trang</option>
               <option>Bangkok</option>
               <option>Bali</option>
@@ -131,72 +113,92 @@
           </div>
           <div class="hs-field">
             <div class="hs-lbl"><i class="fas fa-calendar"></i> Ngày đi</div>
-            <input class="hs-inp" type="text" placeholder="Chọn ngày..." onfocus="this.type='date'" onblur="if(!this.value)this.type='text'">
+            <input class="hs-inp" type="text" value="14/06" onfocus="this.type='date';this.value=''" onblur="if(!this.value){this.type='text';this.value='14/06'}">
           </div>
           <div class="hs-field">
-            <div class="hs-lbl"><i class="fas fa-users"></i> Số người</div>
+            <div class="hs-lbl"><i class="fas fa-users"></i> Người</div>
             <select class="hs-sel">
-              <option>2 người</option>
-              <option>3–5 người</option>
-              <option>6–10 người</option>
-              <option>10–50 người</option>
-              <option>50+ người</option>
+              <option>2</option>
+              <option>3–5</option>
+              <option>6–10</option>
+              <option>10–50</option>
+              <option>50+</option>
             </select>
           </div>
           <button class="hs-btn" data-scroll-target="tours">
-            <i class="fas fa-search"></i> Tìm Tour
+            <i class="fas fa-search"></i> Tìm tour
           </button>
         </div>
 
-        <!-- Hot destination tags -->
         <div class="hero-tags">
           <span class="ht-lbl">Đang hot:</span>
-          <a href="#tours" class="htag">🏖️ Phú Quốc</a>
-          <a href="#tours" class="htag">🌿 Đà Lạt</a>
-          <a href="#tours" class="htag">🏮 Hội An</a>
-          <a href="#tours" class="htag">⛵ Hạ Long</a>
-          <a href="#tours" class="htag">✈️ Bangkok</a>
+          <a href="#tours" class="htag"><span>🏝️</span> Phú Quốc</a>
+          <a href="#tours" class="htag"><span>🌸</span> Đà Lạt</a>
+          <a href="#tours" class="htag"><span>🏮</span> Hội An</a>
+          <a href="#tours" class="htag"><span>⛵</span> Hạ Long</a>
         </div>
       </div>
 
-      <!-- RIGHT: Visual cards -->
       <div class="hero-vis">
-        <div class="hv-stack">
-          <div class="hv-card hv-c1">
-            <img src="images/hanhtrinhcuanhungkyniem-3.jpg" alt="Tour Phú Quốc"
-                 data-fallback="linear-gradient(135deg,#1B2A4A,#E85D04)">
-            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Phú Quốc, Kiên Giang</div>
-          </div>
-          <div class="hv-card hv-c2">
-            <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Tour Hội An"
-                 data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
-            <div class="hv-card-lbl"><i class="fas fa-map-marker-alt"></i> Hội An, Quảng Nam</div>
-          </div>
-          <div class="hv-badge">
-            <div class="hv-badge-ico"><i class="fas fa-star"></i></div>
+        <div class="hero-feature">
+          <img src="images/vinhhalong.png" alt="Hạ Long Bay - du thuyền 2 ngày 1 đêm" data-fallback="linear-gradient(135deg,#1B2A4A,#219EBC)">
+          <div class="hero-feature-shade"></div>
+
+          <div class="hero-rating">
+            <span><i class="fas fa-star"></i></span>
             <div>
-              <div class="hv-badge-n">4.9 <span>★</span></div>
-              <div class="hv-badge-l">1,200+ đánh giá</div>
+              <strong>4.9 / 5</strong>
+              <small>1,200+ đánh giá</small>
             </div>
           </div>
+
+          <div class="hero-weekly">
+            <small>Đã khởi hành</small>
+            <strong><span>+12</span> tuần này</strong>
+          </div>
+
+          <div class="hero-feature-caption">
+            <div>
+              <small><i class="fas fa-circle-dot"></i> Tour nổi bật</small>
+              <h2>Hạ Long Bay — Du thuyền 2N1Đ</h2>
+              <p>Từ 3.500.000₫ · Khởi hành thứ 6 hằng tuần</p>
+            </div>
+            <button type="button" data-scroll-target="tours" aria-label="Xem tour Hạ Long">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
-        <div class="hv-stats">
-          <div class="hv-st"><div class="hv-st-n">5<span>+</span></div><div class="hv-st-l">Năm kinh nghiệm</div></div>
-          <div class="hv-st"><div class="hv-st-n">500<span>+</span></div><div class="hv-st-l">Doanh nghiệp</div></div>
-          <div class="hv-st"><div class="hv-st-n">50<span>+</span></div><div class="hv-st-l">Điểm đến</div></div>
-          <div class="hv-st"><div class="hv-st-n">98<span>%</span></div><div class="hv-st-l">Hài lòng</div></div>
+
+        <div class="hero-thumbs">
+          <a href="#tours" class="hero-thumb">
+            <img src="images/mountains-in-Vietnam-banner.jpg" alt="Sapa" data-fallback="linear-gradient(135deg,#1B2A4A,#0B6E4F)">
+            <span><strong>Sapa</strong><small>5N4Đ</small></span>
+          </a>
+          <a href="#tours" class="hero-thumb">
+            <img src="images/du-lich-phu-quoc.jpg" alt="Phú Quốc" data-fallback="linear-gradient(135deg,#0B6E4F,#219EBC)">
+            <span><strong>Phú Quốc</strong><small>3N2Đ</small></span>
+          </a>
+          <a href="#tours" class="hero-thumb">
+            <img src="images/hanhtrinhcuanhungkyniem-1.jpg" alt="Hội An" data-fallback="linear-gradient(135deg,#1B2A4A,#E85D04)">
+            <span><strong>Hội An</strong><small>4N3Đ</small></span>
+          </a>
         </div>
       </div>
-
+    </div>
+  <div class="hero-stats">
+    <div class="container">
+      <div class="hero-stats-grid">
+        <div><strong>5<span>+</span></strong><small>Năm kinh nghiệm</small></div>
+        <div><strong>500<span>+</span></strong><small>Doanh nghiệp đối tác</small></div>
+        <div><strong>50<span>+</span></strong><small>Điểm đến</small></div>
+        <div><strong>98<span>%</span></strong><small>Hài lòng</small></div>
+      </div>
     </div>
   </div>
-
-  <div class="scroll-hint">
-    <span>Scroll</span>
-    <i class="fas fa-chevron-down"></i>
   </div>
-</section>
 
+
+</section>
 <!-- Wave divider Hero → Services -->
 <div class="wave-sep home-inline-2">
   <svg viewBox="0 0 1440 56" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">

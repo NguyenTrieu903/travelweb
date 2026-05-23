@@ -19,18 +19,6 @@ window.addEventListener("scroll", () => {
   nav.classList.toggle("solid", window.scrollY > 60);
 });
 
-// Hero parallax on scroll
-window.addEventListener(
-  "scroll",
-  () => {
-    const hero = document.getElementById("hero");
-    if (hero && window.scrollY < window.innerHeight) {
-      hero.style.backgroundPositionY = window.scrollY * 0.35 + "px";
-    }
-  },
-  { passive: true },
-);
-
 // Card 3D tilt — desktop pointer devices only
 if (!("ontouchstart" in window) && navigator.maxTouchPoints === 0) {
   document.querySelectorAll(".tcard,.srv,.ccard").forEach((card) => {
