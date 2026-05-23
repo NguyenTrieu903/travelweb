@@ -11,8 +11,8 @@
     <div class="tour-admin-builder" data-tour-builder="pkgstrip">
         <div class="tour-builder-heading">
             <div>
-                <strong>Thông tin nổi bật (strip)</strong>
-                <p>Các mục hiển thị dạng strip dưới ảnh nền</p>
+                <strong>Thông tin nổi bật</strong>
+                <p>Đây là các hightlight mà người dùng sẽ thấy khi nhìn vào tour.</p>
             </div>
             <button type="button" class="btn btn-sm btn-primary" data-tour-action="add-strip-item">
                 <i class="la la-plus"></i> Thêm mục
