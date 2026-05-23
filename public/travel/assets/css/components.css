@@ -530,6 +530,17 @@ footer.site-footer {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+.tc-summary {
+  color: #5f6b7a;
+  display: -webkit-box;
+  font-size: .78rem;
+  line-height: 1.55;
+  margin: -4px 0 12px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: pre-line;
+}
 .tc-meta { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
 .tc-meta-row {
   display: flex; align-items: center;

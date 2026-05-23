@@ -1,0 +1,231 @@
+.travel-tour-admin .app-body,
+.travel-tour-admin .content-wrapper {
+    background: #f4f6fb;
+}
+
+.travel-tour-admin .nav-tabs {
+    border-bottom: 0;
+    gap: 8px;
+}
+
+.travel-tour-admin .nav-tabs .nav-link {
+    background: #2b2534 !important;
+    border: 1px solid #cfd6e4;
+    border-radius: 10px 10px 0 0;
+    color: #e7eaf2 !important;
+    font-weight: 600;
+    padding: 10px 14px;
+}
+
+.travel-tour-admin .nav-tabs .nav-link:hover,
+.travel-tour-admin .nav-tabs .nav-link:focus {
+    background: #3a3146 !important;
+    color: #fff !important;
+}
+
+.travel-tour-admin .nav-tabs .nav-link.active,
+.travel-tour-admin .nav-tabs .nav-item.show .nav-link {
+    background: #fff !important;
+    border-color: #fff;
+    color: #111827 !important;
+    position: relative;
+}
+
+.travel-tour-admin .nav-tabs .nav-link.active::after,
+.travel-tour-admin .nav-tabs .nav-item.show .nav-link::after {
+    background: #6d5dfc;
+    border-radius: 999px;
+    bottom: 5px;
+    content: "";
+    height: 3px;
+    left: 14px;
+    position: absolute;
+    right: 14px;
+}
+
+.travel-tour-admin .tab-content {
+    background: #fff;
+    border: 1px solid #dce2ee;
+    border-radius: 0 12px 12px 12px;
+    box-shadow: 0 14px 40px rgba(15, 23, 42, 0.08);
+    padding: 22px;
+}
+
+.travel-tour-admin .form-group > label {
+    color: #172033;
+    font-weight: 700;
+    margin-bottom: 7px;
+}
+
+.travel-tour-admin .form-control {
+    border-color: #d9e0ec;
+    border-radius: 8px;
+}
+
+.travel-tour-admin .form-control:focus {
+    border-color: #6d5dfc;
+    box-shadow: 0 0 0 0.2rem rgba(109, 93, 252, 0.12);
+}
+
+.tour-builder-field {
+    margin-top: 10px;
+}
+
+.tour-admin-builder {
+    background: #f8fafc;
+    border: 1px solid #dce2ee;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.tour-builder-heading {
+    align-items: flex-start;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    margin-bottom: 14px;
+}
+
+.tour-builder-heading strong {
+    color: #101828;
+    display: block;
+    font-size: 16px;
+}
+
+.tour-builder-heading p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 4px 0 0;
+}
+
+.tour-builder-empty {
+    background: #fff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    color: #64748b;
+    padding: 18px;
+    text-align: center;
+}
+
+.tour-builder-error {
+    background: #fff1f2;
+    border: 1px solid #fecdd3;
+    border-radius: 8px;
+    color: #be123c;
+    display: none;
+    margin-bottom: 12px;
+    padding: 10px 12px;
+}
+
+.tour-builder-card {
+    background: #fff;
+    border: 1px solid #dce2ee;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+    margin-bottom: 12px;
+    overflow: hidden;
+}
+
+.tour-builder-card-header {
+    align-items: center;
+    background: #fbfcff;
+    border-bottom: 1px solid #edf1f7;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    padding: 12px 14px;
+}
+
+.tour-builder-card-title {
+    color: #172033;
+    font-weight: 700;
+}
+
+.tour-builder-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tour-builder-card-body {
+    padding: 14px;
+}
+
+.tour-builder-grid {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tour-builder-grid .full {
+    grid-column: 1 / -1;
+}
+
+.tour-builder-field-label {
+    color: #475569;
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.tour-builder-icon-preview {
+    align-items: center;
+    background: #eef2ff;
+    border-radius: 10px;
+    color: #4f46e5;
+    display: inline-flex;
+    height: 42px;
+    justify-content: center;
+    margin-right: 8px;
+    width: 42px;
+}
+
+.tour-builder-sticky-actions {
+    align-items: center;
+    background: rgba(15, 23, 42, 0.96);
+    border-radius: 14px;
+    bottom: 18px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.28);
+    color: #fff;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    left: 50%;
+    max-width: 920px;
+    padding: 12px 14px;
+    position: fixed;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    z-index: 1030;
+}
+
+.tour-builder-sticky-actions span {
+    color: #dbeafe;
+    font-weight: 700;
+}
+
+.tour-builder-sticky-actions .btn {
+    white-space: nowrap;
+}
+
+body.travel-tour-admin {
+    padding-bottom: 86px;
+}
+
+@media (max-width: 767px) {
+    .travel-tour-admin .tab-content {
+        padding: 14px;
+    }
+
+    .tour-builder-heading,
+    .tour-builder-sticky-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .tour-builder-grid {
+        grid-template-columns: 1fr;
+    }
+}

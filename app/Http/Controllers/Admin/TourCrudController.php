@@ -6,12 +6,17 @@ use App\Models\Destination;
 use App\Models\Tour;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
+use Illuminate\Support\Str;
 
 class TourCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
-    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
+    use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation {
+        store as traitStore;
+    }
+    use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation {
+        update as traitUpdate;
+    }
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
 
@@ -19,19 +24,19 @@ class TourCrudController extends CrudController
     {
         CRUD::setModel(Tour::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/tour');
-        CRUD::setEntityNameStrings('tour', 'tours');
+        CRUD::setEntityNameStrings('tour', 'tour');
     }
 
     protected function setupListOperation(): void
     {
         CRUD::column('id')->label('ID');
-        CRUD::column('title')->label('Title');
-        CRUD::column('destination.name')->label('Destination');
-        CRUD::column('duration')->label('Duration');
-        CRUD::column('price')->label('Price')->type('number')->decimals(0);
-        CRUD::column('is_featured')->label('Featured')->type('boolean');
-        CRUD::column('is_active')->label('Active')->type('boolean');
-        CRUD::column('sort_order')->label('Sort')->type('number');
+        CRUD::column('title')->label('Tên tour');
+        CRUD::column('destination.name')->label('Điểm đến');
+        CRUD::column('duration')->label('Thời lượng');
+        CRUD::column('price')->label('Giá')->type('number')->decimals(0);
+        CRUD::column('is_featured')->label('Nổi bật')->type('boolean');
+        CRUD::column('is_active')->label('Đang hiển thị')->type('boolean');
+        CRUD::column('sort_order')->label('Thứ tự')->type('number');
         CRUD::orderBy('sort_order');
         CRUD::orderBy('created_at', 'desc');
     }
@@ -45,46 +50,191 @@ class TourCrudController extends CrudController
             'includes' => 'nullable|json',
         ]);
 
+        CRUD::field('destination_name')
+            ->label('Điểm đến')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Đà Nẵng, Phú Quốc, Hà Nội'])
+            ->hint('Admin nhập tên điểm đến tại đây. Hệ thống sẽ tự tạo/tìm điểm đến tương ứng để website hiển thị.')
+            ->tab('Thông tin cơ bản');
+
         CRUD::field('destination_id')
-            ->label('Destination')
-            ->type('select')
-            ->entity('destination')
-            ->model(Destination::class)
-            ->attribute('name')
-            ->tab('Basic');
-        CRUD::field('title')->label('Title')->type('text')->tab('Basic');
-        CRUD::field('slug')->label('Slug')->type('text')->tab('Basic');
-        CRUD::field('summary')->label('Summary')->type('textarea')->tab('Basic');
-        CRUD::field('description')->label('Description')->type('summernote')->tab('Content');
-        CRUD::field('image_url')->label('Image URL')->type('text')->tab('Basic');
-        CRUD::field('duration')->label('Duration')->type('text')->tab('Basic');
-        CRUD::field('departure')->label('Departure')->type('text')->tab('Basic');
-        CRUD::field('transport')->label('Transport')->type('text')->tab('Basic');
-        CRUD::field('price')->label('Price')->type('number')->attributes(['step' => '0.01', 'min' => '0'])->tab('Pricing');
-        CRUD::field('price_text')->label('Price text')->type('text')->tab('Pricing');
-        CRUD::field('badge_text')->label('Badge text')->type('text')->tab('Marketing');
-        CRUD::field('badge_type')->label('Badge type')->type('text')->hint('Examples: hot, sale, new, special')->tab('Marketing');
-        CRUD::field('tags')->label('Tags')->type('textarea')->hint('One tag per line or comma separated.')->tab('Marketing');
-        CRUD::field('filters')->label('Filters')->type('textarea')->hint('Examples: 3n2d, 4n3d, sale.')->tab('Marketing');
-        CRUD::field('departure_dates')->label('Departure dates')->type('textarea')->hint('One date per line.')->tab('Pricing');
+            ->type('hidden')
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('title')
+            ->label('Tên tour')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Khám phá Đà Nẵng - Hội An 3N2Đ'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('slug')
+            ->label('Đường dẫn')
+            ->type('text')
+            ->hint('Dùng chữ thường, không dấu, cách nhau bằng dấu gạch ngang. Ví dụ: da-nang-hoi-an-3n2d')
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('summary')
+            ->label('Mô tả ngắn')
+            ->type('textarea')
+            ->attributes(['rows' => 4, 'placeholder' => 'Tóm tắt ngắn gọn điểm nổi bật của tour'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('image_url')
+            ->label('Ảnh đại diện')
+            ->type('text')
+            ->attributes(['placeholder' => '/travel/assets/images/tours/example.jpg hoặc URL ảnh'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('duration')
+            ->label('Thời lượng')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: 3 ngày 2 đêm'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('departure')
+            ->label('Khởi hành')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Hằng tuần từ TP.HCM'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('transport')
+            ->label('Phương tiện')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Máy bay, xe du lịch'])
+            ->tab('Thông tin cơ bản');
+
+        CRUD::field('description')
+            ->label('Mô tả chi tiết')
+            ->type('summernote')
+            ->tab('Nội dung tour');
+
         CRUD::field('itinerary')
-            ->label('Itinerary JSON')
-            ->type('textarea')
-            ->hint('Example: [{"day":1,"title":"Day title","activities":["Activity 1"],"meals":["Lunch"]}]')
-            ->tab('Content');
+            ->label('Lịch trình tour')
+            ->type('tour_itinerary_builder')
+            ->tab('Nội dung tour');
+
         CRUD::field('includes')
-            ->label('Includes JSON')
+            ->label('Dịch vụ bao gồm')
+            ->type('tour_includes_builder')
+            ->tab('Nội dung tour');
+
+        CRUD::field('price')
+            ->label('Giá số')
+            ->type('number')
+            ->attributes(['step' => '0.01', 'min' => '0', 'placeholder' => 'Ví dụ: 3500000'])
+            ->hint('Có thể để trống nếu chỉ muốn hiển thị giá dạng chữ.')
+            ->tab('Giá & lịch khởi hành');
+
+        CRUD::field('price_text')
+            ->label('Giá hiển thị')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Liên hệ theo yêu cầu'])
+            ->hint('Nếu nhập trường này, frontend nên ưu tiên hiển thị nội dung này.')
+            ->tab('Giá & lịch khởi hành');
+
+        CRUD::field('departure_dates')
+            ->label('Ngày khởi hành')
             ->type('textarea')
-            ->hint('Example: [{"icon":"fa-bus","type":"tour","title":"Xe du lịch","detail":"Xe phục vụ theo lịch trình"}]')
-            ->tab('Content');
-        CRUD::field('is_active')->label('Active')->type('boolean')->default(true)->tab('Settings');
-        CRUD::field('is_featured')->label('Featured')->type('boolean')->default(false)->tab('Settings');
-        CRUD::field('sort_order')->label('Sort order')->type('number')->default(0)->tab('Settings');
+            ->attributes(['rows' => 5, 'placeholder' => "Mỗi ngày một dòng\nVí dụ:\n15/06/2026\n22/06/2026"])
+            ->hint('Nhập mỗi ngày khởi hành trên một dòng.')
+            ->tab('Giá & lịch khởi hành');
+
+        CRUD::field('badge_text')
+            ->label('Nhãn nổi bật')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: Hot, Giảm giá, Mới'])
+            ->tab('Marketing');
+
+        CRUD::field('badge_type')
+            ->label('Kiểu nhãn')
+            ->type('text')
+            ->attributes(['placeholder' => 'Ví dụ: hot, sale, new, special'])
+            ->hint('Dùng để frontend chọn màu/kiểu hiển thị.')
+            ->tab('Marketing');
+
+        CRUD::field('tags')
+            ->label('Từ khóa')
+            ->type('textarea')
+            ->attributes(['rows' => 4, 'placeholder' => 'Mỗi từ khóa một dòng hoặc phân tách bằng dấu phẩy'])
+            ->tab('Marketing');
+
+        CRUD::field('filters')
+            ->label('Bộ lọc')
+            ->type('textarea')
+            ->attributes(['rows' => 4, 'placeholder' => 'Ví dụ: 3n2d, 4n3d, sale'])
+            ->hint('Dùng cho bộ lọc ngoài website.')
+            ->tab('Marketing');
+
+        CRUD::field('is_active')
+            ->label('Đang hiển thị')
+            ->type('boolean')
+            ->default(true)
+            ->tab('Cài đặt');
+
+        CRUD::field('is_featured')
+            ->label('Tour nổi bật')
+            ->type('boolean')
+            ->default(false)
+            ->tab('Cài đặt');
+
+        CRUD::field('sort_order')
+            ->label('Thứ tự sắp xếp')
+            ->type('number')
+            ->default(0)
+            ->tab('Cài đặt');
     }
 
     protected function setupUpdateOperation(): void
     {
         $this->setupCreateOperation();
     }
-}
 
+    public function store()
+    {
+        $this->prepareDestinationInput();
+
+        return $this->traitStore();
+    }
+
+    public function update()
+    {
+        $this->prepareDestinationInput();
+
+        return $this->traitUpdate();
+    }
+
+    private function prepareDestinationInput(): void
+    {
+        $destinationName = trim((string) request()->input('destination_name', ''));
+
+        if ($destinationName === '') {
+            request()->merge([
+                'destination_id' => null,
+                'destination_name' => null,
+            ]);
+
+            return;
+        }
+
+        $slug = Str::slug($destinationName);
+
+        if ($slug === '') {
+            $slug = 'diem-den-' . substr(md5($destinationName), 0, 8);
+        }
+
+        $destination = Destination::firstOrCreate(
+            ['slug' => $slug],
+            [
+                'name' => $destinationName,
+                'is_active' => true,
+                'is_featured' => false,
+                'sort_order' => 0,
+            ]
+        );
+
+        request()->merge([
+            'destination_id' => $destination->id,
+            'destination_name' => null,
+        ]);
+    }
+}

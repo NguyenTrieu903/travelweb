@@ -97,13 +97,14 @@
     return `
       <div class="tc" data-id="${t.id}">
         <div class="tc-img-wrap">
-          <img src="${basePath}${t.img}" alt="${escapeAttr(t.title)}" data-fallback="${escapeAttr(t.imgFb || '')}">
+          <img src="${assetUrl(t.img)}" alt="${escapeAttr(t.title)}" data-fallback="${escapeAttr(t.imgFb || '')}">
           ${badge}
           <div class="tc-dur">${t.duration}</div>
         </div>
         <div class="tc-body">
           <div class="tc-tags">${tags}</div>
           <div class="tc-title">${t.title}</div>
+          ${t.summary ? `<div class="tc-summary">${escapeHtml(t.summary)}</div>` : ''}
           <div class="tc-meta">
             <div class="tc-meta-row"><i class="fas fa-map-marker-alt"></i>Khởi hành từ ${t.dep}</div>
             <div class="tc-meta-row"><i class="fas fa-plane"></i>${t.airline}</div>
@@ -122,6 +123,20 @@
     if (el) el.textContent = value;
   }
   function escapeAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
+  }
+  function assetUrl(value) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return basePath + raw;
+  }
   function bindImageFallbacks(scope) {
     scope.querySelectorAll('img[data-fallback]').forEach((img) => {
       img.addEventListener('error', () => {

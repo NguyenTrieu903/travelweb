@@ -38,6 +38,7 @@
     bindControls();
     setDefaultDates();
     updateTotal();
+    setupTravelDateSync();
   }
 
   function renderPage(tour, tours) {
@@ -49,10 +50,11 @@
     setText('hero-rnum', '4.9');
     setText('hero-rcnt', '(120+ đánh giá)');
     setHTML('hero-badges', buildBadges(tour, 'hbadge'));
+    setHTML('tour-desc', buildDescription(tour));
     setText('modal-name', tour.title);
 
     const heroImg = document.getElementById('hero-img');
-    heroImg.src = basePath + tour.img;
+    heroImg.src = assetUrl(tour.img);
     heroImg.alt = tour.title;
     heroImg.addEventListener('error', () => {
       heroImg.parentElement.style.background = tour.imgFb || 'linear-gradient(135deg,#1B2A4A,#E85D04)';
@@ -109,6 +111,22 @@
     return badge + `<span class="${className} best">${tour.price ? 'Giá tốt' : 'Thiết kế riêng'}</span>`;
   }
 
+  function buildDescription(tour) {
+    const description = tour.description || tour.desc || '';
+    const summary = tour.summary || '';
+    let html = '';
+
+    if (summary) {
+      html += `<div class="tour-summary-box">${escapeHtml(summary)}</div>`;
+    }
+
+    if (description) {
+      html += `<div class="tour-desc-content">${description}</div>`;
+    }
+
+    return html || '<div class="empty-state">Chưa có mô tả cho tour này.</div>';
+  }
+
   function buildItinerary(list) {
     if (!Array.isArray(list) || !list.length) {
       return '<div class="empty-state">Chưa có lịch trình cho tour này.</div>';
@@ -150,7 +168,7 @@
     const related = tours.filter((tour) => tour.id !== current.id).slice(0, 4);
     setHTML('rel-grid', related.map((tour) => `
       <article class="rel-card" data-id="${tour.id}">
-        <div class="rel-img"><img src="${basePath}${tour.img}" alt="${escapeAttr(tour.title)}"></div>
+        <div class="rel-img"><img src="${assetUrl(tour.img)}" alt="${escapeAttr(tour.title)}"></div>
         <div class="rel-body">
           <div class="rel-dest">${getDestLabel(tour)}</div>
           <div class="rel-name">${tour.title}</div>
@@ -204,6 +222,7 @@
 
   function openModal() {
     document.getElementById('modal-date').value = document.getElementById('sb-date').value;
+    renderTravelDates(document.getElementById('sb-date').value);
     document.getElementById('modal').classList.add('on');
     document.body.style.overflow = 'hidden';
   }
@@ -265,6 +284,81 @@
     if (tour.price) return fmt(tour.price) + 'đ';
     return tour.priceText || 'Liên hệ';
   }
+  function assetUrl(value) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return basePath + raw;
+  }
+  function setupTravelDateSync() {
+    const strip = document.getElementById('pkg-strip');
+    if (!strip) return;
+
+    const items = strip.querySelectorAll('.pkg-item');
+    const departureValue = items[items.length - 1] && items[items.length - 1].querySelector('.pkg-val');
+    if (departureValue) departureValue.dataset.dateRole = 'departure';
+
+    if (!strip.querySelector('[data-date-role="return"]')) {
+      const returnItem = document.createElement('div');
+      returnItem.className = 'pkg-item';
+      returnItem.innerHTML = '<div class="pkg-icon"><i class="fas fa-calendar-check"></i></div><div><div class="pkg-label">Ngày về</div><div class="pkg-val" data-date-role="return">Theo yêu cầu</div></div>';
+      strip.appendChild(returnItem);
+    }
+
+    ['sb-date', 'modal-date'].forEach((id) => {
+      const input = document.getElementById(id);
+      if (!input) return;
+      input.addEventListener('change', () => syncTravelDates(id));
+      input.addEventListener('input', () => syncTravelDates(id));
+    });
+
+    renderTravelDates((document.getElementById('sb-date') || {}).value || '');
+  }
+  function syncTravelDates(sourceId) {
+    const source = document.getElementById(sourceId);
+    if (!source) return;
+
+    const target = document.getElementById(sourceId === 'sb-date' ? 'modal-date' : 'sb-date');
+    if (target) target.value = source.value;
+
+    renderTravelDates(source.value);
+  }
+  function renderTravelDates(departureValue) {
+    const departure = parseDateInput(departureValue);
+    const departureEl = document.querySelector('[data-date-role="departure"]');
+    const returnEl = document.querySelector('[data-date-role="return"]');
+
+    if (!departure) {
+      if (departureEl) departureEl.textContent = 'Theo yêu cầu';
+      if (returnEl) returnEl.textContent = 'Theo yêu cầu';
+      return;
+    }
+
+    const returnDate = addDays(departure, Math.max(getTourDayCount(currentTour && currentTour.duration) - 1, 0));
+    if (departureEl) departureEl.textContent = formatDateVi(departure);
+    if (returnEl) returnEl.textContent = formatDateVi(returnDate);
+  }
+  function parseDateInput(value) {
+    if (!value) return null;
+    const parts = value.split('-').map((part) => parseInt(part, 10));
+    if (parts.length !== 3 || parts.some(Number.isNaN)) return null;
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+  }
+  function addDays(date, days) {
+    const next = new Date(date.getTime());
+    next.setDate(next.getDate() + days);
+    return next;
+  }
+  function getTourDayCount(duration) {
+    const text = String(duration || '').toLowerCase();
+    const dayMatch = text.match(/(\d+)\s*(ngày|ngÃ y|n)\b/);
+    if (dayMatch) return parseInt(dayMatch[1], 10);
+    const anyNumber = text.match(/\d+/);
+    return anyNumber ? parseInt(anyNumber[0], 10) : 1;
+  }
+  function formatDateVi(date) {
+    return date.toLocaleDateString('vi-VN', { day: '2-digit', month: '2-digit', year: 'numeric' });
+  }
   function setText(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
@@ -275,6 +369,14 @@
   }
   function escapeAttr(value) {
     return String(value).replace(/"/g, '&quot;');
+  }
+  function escapeHtml(value) {
+    return String(value || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#039;');
   }
   function applyBarWidths(scope) {
     if (!scope) return;

@@ -41,7 +41,7 @@
   function renderPage(c, base) {
     document.title = c.name + ' — SaigonTeam';
     setText('bc-name',     c.dest);
-    setSrc('hero-img',     base + c.img);
+    setSrc('hero-img',     assetUrl(c.img, base));
     setAttr('hero-img', 'alt', c.name);
     setHeroFallback('hero-img', 'linear-gradient(135deg,#1B2A4A,#E85D04)');
     setText('hero-title',  c.name);
@@ -135,7 +135,7 @@
     const list = Object.values(COMBOS).filter((c) => c.id !== cur.id);
     setHTML('rel-grid', list.map((c) =>
       `<div class="rel-card" data-id="${c.id}">
-        <div class="rel-img"><img src="${base}${c.img}" alt="${escapeAttr(c.name)}"
+        <div class="rel-img"><img src="${assetUrl(c.img, base)}" alt="${escapeAttr(c.name)}"
              data-fallback="linear-gradient(135deg,#1B2A4A,#E85D04)"></div>
         <div class="rel-body">
           <div class="rel-dest">${c.dest}</div>
@@ -219,6 +219,12 @@
   function setSrc(id, v)  { const el = document.getElementById(id); if (el) el.src = v; }
   function setAttr(id, name, v) { const el = document.getElementById(id); if (el) el.setAttribute(name, v); }
   function escapeAttr(s)  { return String(s).replace(/"/g, '&quot;'); }
+  function assetUrl(value, base) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return base + raw;
+  }
   function setHeroFallback(id, fallback) {
     const el = document.getElementById(id);
     if (!el) return;

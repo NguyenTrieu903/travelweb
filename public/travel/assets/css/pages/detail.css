@@ -4,14 +4,7 @@
    ============================================= */
 body.page-detail { background: var(--gy); }
 
-/* Breadcrumb when not preceded by a page-hero */
-.page-detail .breadcrumb {
-  background: var(--wh);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  padding: 12px 0;
-  margin-top: 68px;
-}
-body.bar-on.page-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
+.page-detail .breadcrumb { display: none; }
 .page-detail .bc-inner { color: var(--tl); }
 .page-detail .bc-inner a { color: var(--tl); }
 .page-detail .bc-inner a:hover { color: var(--or); }
@@ -21,20 +14,16 @@ body.bar-on.page-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
 /* Hero with full-width image */
 .detail-hero {
   position: relative;
-  height: 460px;
+  min-height: 0;
+  height: clamp(280px, 36vw, 560px);
+  margin-top: 68px;
   overflow: hidden;
   background: var(--nv);
 }
-.detail-hero .hero-img { width: 100%; height: 100%; object-fit: cover; opacity: .75; }
-.detail-hero .hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(27,42,74,.9) 0%, rgba(27,42,74,.3) 55%, transparent 100%);
-}
-.detail-hero .hero-content {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 36px;
-}
+.detail-hero .hero-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; }
+.detail-hero .hero-overlay,
+.detail-hero .hero-content { display: none; }
+body.bar-on.page-detail .detail-hero { margin-top: 110px; }
 .hero-badges { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
 .hbadge {
   padding: 6px 14px;
@@ -69,7 +58,7 @@ body.bar-on.page-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
 .hero-rnum { font-size: 1rem; font-weight: 800; color: #fff; }
 .hero-rcnt { font-size: .78rem; color: rgba(255,255,255,.6); }
 @media (max-width: 768px) {
-  .detail-hero { height: 290px; }
+  .detail-hero { height: clamp(240px, 58vw, 380px); }
   .detail-hero .hero-content { padding: 18px 16px; }
   .detail-hero .hero-title { font-size: 1.28rem; line-height: 1.3; }
   .hero-dest { font-size: .82rem; }
@@ -77,7 +66,7 @@ body.bar-on.page-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
   .hbadge { font-size: .64rem; padding: 4px 10px; }
 }
 @media (max-width: 480px) {
-  .detail-hero { height: 240px; }
+  .detail-hero { height: clamp(220px, 72vw, 340px); }
   .detail-hero .hero-title { font-size: 1.15rem; }
 }
 
@@ -159,6 +148,61 @@ body.bar-on.page-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
   padding: 3px 10px;
   border-radius: 20px;
   margin-left: auto;
+}
+
+.tour-desc-card {
+  background: var(--wh);
+  border: 1.5px solid #EEF0F5;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(20, 31, 58, .05);
+  color: #4b5563;
+  font-size: .94rem;
+  line-height: 1.75;
+  margin-bottom: 24px;
+  padding: 22px 24px;
+}
+.tour-summary-box {
+  background: #fff7ed;
+  border-left: 4px solid var(--or);
+  border-radius: 12px;
+  color: var(--nv);
+  font-size: .98rem;
+  font-weight: 700;
+  line-height: 1.7;
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  white-space: pre-line;
+}
+.tour-desc-content > :first-child { margin-top: 0; }
+.tour-desc-content > :last-child { margin-bottom: 0; }
+.tour-desc-content h1,
+.tour-desc-content h2,
+.tour-desc-content h3,
+.tour-desc-content h4 {
+  color: var(--nv);
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 18px 0 10px;
+}
+.tour-desc-content p { margin-bottom: 12px; }
+.tour-desc-content ul,
+.tour-desc-content ol {
+  margin: 0 0 12px 20px;
+  padding: 0;
+}
+.tour-desc-content li { margin-bottom: 6px; }
+.tour-desc-content img {
+  border-radius: 14px;
+  height: auto;
+  max-width: 100%;
+}
+@media (max-width: 768px) {
+  .tour-desc-card {
+    border-radius: 14px;
+    font-size: .9rem;
+    margin-bottom: 18px;
+    padding: 16px;
+  }
 }
 
 /* Savings banner */
