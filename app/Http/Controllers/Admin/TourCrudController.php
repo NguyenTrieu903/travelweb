@@ -139,30 +139,39 @@ class TourCrudController extends CrudController
             ->hint('Nhập mỗi ngày khởi hành trên một dòng.')
             ->tab('Giá & lịch khởi hành');
 
+        CRUD::field('marketing_info')
+            ->type('custom_html')
+            ->value('
+                <div class="alert alert-info mb-0 mt-2">
+                    <strong><i class="la la-bullhorn"></i> Hướng dẫn tab Marketing</strong><br>
+                    <b>Nhãn nổi bật</b>: văn bản hiển thị trên badge của tour (ví dụ: HOT, Sale -20%, Mới).<br>
+                    <b>Kiểu nhãn</b>: giá trị CSS quyết định màu badge — chọn một trong: <code>hot</code> <code>best</code> <code>new</code> <code>vip</code> <code>save</code>.<br>
+                    <b>Từ khóa</b>: JSON array — hiển thị dưới dạng chip trên card tour. Mỗi phần tử gồm <code>l</code> (tên hiển thị) và <code>c</code> (css class, có thể để trống).<br>
+                    <b>Bộ lọc</b>: JSON array — dùng cho nút lọc trên trang danh sách tour. Giá trị hợp lệ: <code>"3n2d"</code>, <code>"4n3d"</code>, <code>"vietkieu"</code>, <code>"sale"</code>.
+                </div>
+            ')
+            ->tab('Marketing');
+
         CRUD::field('badge_text')
             ->label('Nhãn nổi bật')
             ->type('text')
-            ->attributes(['placeholder' => 'Ví dụ: Hot, Giảm giá, Mới'])
+            ->attributes(['placeholder' => 'Ví dụ: HOT, Sale -20%, Mới'])
+            ->hint('Văn bản hiển thị trên badge của tour. Để trống nếu không cần nhãn.')
             ->tab('Marketing');
 
         CRUD::field('badge_type')
             ->label('Kiểu nhãn')
             ->type('text')
-            ->attributes(['placeholder' => 'Ví dụ: hot, sale, new, special'])
-            ->hint('Dùng để frontend chọn màu/kiểu hiển thị.')
+            ->attributes(['placeholder' => 'Ví dụ: hot'])
+            ->hint('Quyết định màu sắc badge: hot (đỏ cam) · best (xanh lá) · new (xanh dương) · vip (vàng tím) · save (teal). Để trống = không có màu.')
             ->tab('Marketing');
 
-        CRUD::field('tags')
-            ->label('Từ khóa')
-            ->type('textarea')
-            ->attributes(['rows' => 4, 'placeholder' => 'Mỗi từ khóa một dòng hoặc phân tách bằng dấu phẩy'])
-            ->tab('Marketing');
 
         CRUD::field('filters')
             ->label('Bộ lọc')
             ->type('textarea')
-            ->attributes(['rows' => 4, 'placeholder' => 'Ví dụ: 3n2d, 4n3d, sale'])
-            ->hint('Dùng cho bộ lọc ngoài website.')
+            ->attributes(['rows' => 3, 'placeholder' => '["3n2d","sale"]'])
+            ->hint('JSON array. Giá trị hợp lệ: "3n2d", "4n3d", "vietkieu", "sale". Ví dụ: ["3n2d","sale"]')
             ->tab('Marketing');
 
         CRUD::field('is_active')

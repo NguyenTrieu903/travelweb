@@ -316,39 +316,6 @@
         }
     }
 
-    function addStickyActions() {
-        const form = document.querySelector('form[method="post"]');
-        if (!form || document.querySelector('.tour-builder-sticky-actions')) {
-            return;
-        }
-
-        const bar = document.createElement('div');
-        bar.className = 'tour-builder-sticky-actions';
-        bar.innerHTML = `
-            <span>Quản lý tour</span>
-            <div>
-                <button type="button" class="btn btn-outline-light btn-sm" data-tour-save-draft>Lưu nháp</button>
-                <button type="button" class="btn btn-light btn-sm" data-tour-save> Lưu </button>
-                <button type="button" class="btn btn-primary btn-sm" data-tour-save-active>Lưu & kích hoạt</button>
-            </div>
-        `;
-
-        bar.querySelector('[data-tour-save-draft]').addEventListener('click', () => {
-            setActiveValue(false);
-            submitForm(form);
-        });
-
-        bar.querySelector('[data-tour-save]').addEventListener('click', () => {
-            submitForm(form);
-        });
-
-        bar.querySelector('[data-tour-save-active]').addEventListener('click', () => {
-            setActiveValue(true);
-            submitForm(form);
-        });
-
-        document.body.appendChild(bar);
-    }
 
     function init() {
         const itineraryBuilder = document.querySelector('[data-tour-builder="itinerary"]');
@@ -371,8 +338,6 @@
         document.querySelectorAll('form[method="post"]').forEach((form) => {
             form.addEventListener('submit', syncBeforeSubmit);
         });
-
-        addStickyActions();
     }
 
     if (document.readyState === 'loading') {

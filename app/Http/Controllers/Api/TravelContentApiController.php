@@ -157,6 +157,7 @@ class TravelContentApiController extends Controller
             ->map(fn (Tour $tour) => [
                 'id' => $tour->slug,
                 'dest' => array_values(array_filter([$tour->destination?->slug])),
+                'destName' => $tour->destination?->name,
                 'title' => $tour->title,
                 'summary' => $tour->summary,
                 'description' => $tour->description,
