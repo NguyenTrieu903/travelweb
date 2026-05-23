@@ -6,7 +6,7 @@ img{display:block;max-width:100%}
 a{text-decoration:none}
 
 /* UTILS */
-.container{max-width:1280px;margin:0 auto;padding:0 36px}
+.container{max-width:1480px;margin:0 auto;padding:0 24px}
 .sec{padding:72px 0}
 .sec-tag{display:inline-block;background:rgba(232,93,4,.12);color:var(--or);font-size:.74rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:8px 20px;border-radius:30px;margin-bottom:16px}
 .sec-title{font-family:'Playfair Display',serif;font-size:clamp(2.1rem,4vw,3.2rem);font-weight:700;color:var(--nv);line-height:1.18;margin-bottom:14px}
@@ -675,4 +675,10 @@ body.bar-on #hero{margin-top:118px}
   #services{padding:28px 0 40px}
   #tours,#combos{padding:36px 0 42px}
   #services .sec-head,#tours .sec-head,#combos .sec-head{margin-bottom:28px}
+}
+
+.srv-grid,.tour-grid,.combo-grid{gap:28px}
+.dest-mosaic{gap:18px}
+@media(max-width:768px){
+  .srv-grid,.tour-grid,.combo-grid{gap:18px}
 }

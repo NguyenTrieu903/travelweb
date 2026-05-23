@@ -22,8 +22,8 @@
   --font-serif: 'Playfair Display', Georgia, serif;
 
   /* Layout */
-  --container-max: 1280px;
-  --container-pad: 36px;
+  --container-max: 1480px;
+  --container-pad: 24px;
   --container-pad-mobile: 16px;
 
   /* Shadows */
