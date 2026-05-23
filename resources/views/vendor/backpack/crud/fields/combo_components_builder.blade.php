@@ -38,11 +38,9 @@
     @endif
 @include('crud::fields.inc.wrapper_end')
 
+@include('vendor.backpack.crud.fields.inc.travel_builder_inline')
+
 @once
-    @push('after_styles')
-        <link rel="stylesheet" href="{{ asset('admin/travel-tour-form.css') }}?v={{ filemtime(public_path('admin/travel-tour-form.css')) }}">
-    @endpush
-    @push('after_scripts')
-        <script src="{{ asset('admin/travel-tour-form.js') }}?v={{ filemtime(public_path('admin/travel-tour-form.js')) }}"></script>
-    @endpush
+    <link rel="stylesheet" href="{{ asset('admin/travel-tour-form.css') }}?v={{ filemtime(public_path('admin/travel-tour-form.css')) }}">
+    <script src="{{ asset('admin/travel-tour-form.js') }}?v={{ filemtime(public_path('admin/travel-tour-form.js')) }}"></script>
 @endonce
