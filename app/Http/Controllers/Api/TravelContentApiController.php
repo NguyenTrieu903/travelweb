@@ -136,6 +136,7 @@ class TravelContentApiController extends Controller
     {
         $destCfg = Destination::query()
             ->where('is_active', true)
+            ->withCount(['tours' => fn ($q) => $q->where('is_active', true)])
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get()
@@ -144,6 +145,7 @@ class TravelContentApiController extends Controller
                     'label' => $destination->name,
                     'tag' => $destination->tag,
                     'sub' => $destination->subtitle,
+                    'tourCount' => $destination->tours_count,
                 ],
             ])
             ->all();

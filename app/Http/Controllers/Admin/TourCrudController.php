@@ -50,6 +50,11 @@ class TourCrudController extends CrudController
             'includes' => 'nullable|json',
         ]);
 
+        CRUD::field('info_basic')
+            ->type('custom_html')
+            ->value('<div class="alert alert-secondary mb-0 mt-2"><i class="la la-info-circle"></i> <strong>Thông tin cơ bản</strong> — Đây là những gì khách thấy đầu tiên khi lướt danh sách tour. Tên tour hấp dẫn, ảnh đẹp và thời lượng rõ ràng giúp khách dừng lại và quan tâm. Điền đầy đủ để tăng tỷ lệ khách click vào xem.</div>')
+            ->tab('Thông tin cơ bản');
+
         CRUD::field('destination_name')
             ->label('Điểm đến')
             ->type('text')
@@ -103,6 +108,11 @@ class TourCrudController extends CrudController
             ->attributes(['placeholder' => 'Ví dụ: Máy bay, xe du lịch'])
             ->tab('Thông tin cơ bản');
 
+        CRUD::field('info_content')
+            ->type('custom_html')
+            ->value('<div class="alert alert-secondary mb-0 mt-2"><i class="la la-file-alt"></i> <strong>Nội dung tour</strong> — Lịch trình càng cụ thể, khách càng yên tâm đặt. Dịch vụ bao gồm rõ ràng giúp khách không lo chi phí phát sinh. Đây là phần quan trọng nhất quyết định khách có chốt đặt hay không.</div>')
+            ->tab('Nội dung tour');
+
         CRUD::field('description')
             ->label('Mô tả chi tiết')
             ->type('summernote')
@@ -117,6 +127,11 @@ class TourCrudController extends CrudController
             ->label('Dịch vụ bao gồm')
             ->type('tour_includes_builder')
             ->tab('Nội dung tour');
+
+        CRUD::field('info_pricing')
+            ->type('custom_html')
+            ->value('<div class="alert alert-secondary mb-0 mt-2"><i class="la la-tags"></i> <strong>Giá & lịch khởi hành</strong> — Khách luôn so sánh giá và ngày đi trước khi quyết định. Điền ngày khởi hành cụ thể để khách biết mình có thể đi vào thời điểm nào, từ đó dễ chốt đặt hơn.</div>')
+            ->tab('Giá & lịch khởi hành');
 
         CRUD::field('price')
             ->label('Giá số')
@@ -141,15 +156,7 @@ class TourCrudController extends CrudController
 
         CRUD::field('marketing_info')
             ->type('custom_html')
-            ->value('
-                <div class="alert alert-info mb-0 mt-2">
-                    <strong><i class="la la-bullhorn"></i> Hướng dẫn tab Marketing</strong><br>
-                    <b>Nhãn nổi bật</b>: văn bản hiển thị trên badge của tour (ví dụ: HOT, Sale -20%, Mới).<br>
-                    <b>Kiểu nhãn</b>: giá trị CSS quyết định màu badge — chọn một trong: <code>hot</code> <code>best</code> <code>new</code> <code>vip</code> <code>save</code>.<br>
-                    <b>Từ khóa</b>: JSON array — hiển thị dưới dạng chip trên card tour. Mỗi phần tử gồm <code>l</code> (tên hiển thị) và <code>c</code> (css class, có thể để trống).<br>
-                    <b>Bộ lọc</b>: JSON array — dùng cho nút lọc trên trang danh sách tour. Giá trị hợp lệ: <code>"3n2d"</code>, <code>"4n3d"</code>, <code>"vietkieu"</code>, <code>"sale"</code>.
-                </div>
-            ')
+            ->value('<div class="alert alert-info mb-0 mt-2"><strong><i class="la la-bullhorn"></i> Marketing</strong><br><b>Nhãn nổi bật</b>: chữ hiện trên góc thẻ tour khi khách lướt danh sách — dùng để thu hút sự chú ý. Ví dụ: <em>HOT</em>, <em>Sale -20%</em>, <em>Mới</em>.<br><b>Kiểu nhãn</b>: màu sắc của nhãn — <code>hot</code> (đỏ), <code>best</code> (xanh lá), <code>new</code> (xanh dương), <code>vip</code> (vàng), <code>save</code> (teal).<br><b>Bộ lọc</b>: giúp tour xuất hiện đúng khi khách bấm lọc theo thời lượng hoặc ưu đãi. Giá trị hợp lệ: <code>"3n2d"</code>, <code>"4n3d"</code>, <code>"vietkieu"</code>, <code>"sale"</code>.</div>')
             ->tab('Marketing');
 
         CRUD::field('badge_text')
@@ -173,6 +180,11 @@ class TourCrudController extends CrudController
             ->attributes(['rows' => 3, 'placeholder' => '["3n2d","sale"]'])
             ->hint('JSON array. Giá trị hợp lệ: "3n2d", "4n3d", "vietkieu", "sale". Ví dụ: ["3n2d","sale"]')
             ->tab('Marketing');
+
+        CRUD::field('info_settings')
+            ->type('custom_html')
+            ->value('<div class="alert alert-secondary mb-0 mt-2"><i class="la la-cog"></i> <strong>Cài đặt</strong> — Tắt tour khi chưa sẵn sàng bán, bật lại khi muốn khách thấy. Đánh dấu nổi bật để tour xuất hiện ở vị trí ưu tiên. Thứ tự nhỏ hơn = lên trên cao hơn trong danh sách.</div>')
+            ->tab('Cài đặt');
 
         CRUD::field('is_active')
             ->label('Đang hiển thị')
