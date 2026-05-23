@@ -493,9 +493,9 @@
                     <div class="tour-builder-grid">
                         <div><label class="tour-builder-field-label">Biểu tượng</label>
                             <select class="form-control" data-field="icon">${iconOptions}</select></div>
-                        <div><label class="tour-builder-field-label">Nhãn</label>
+                        <div><label class="tour-builder-field-label">Tiêu đề</label>
                             <input type="text" class="form-control" data-field="label" value="${escapeHtml(item.label || "")}" placeholder="Thời lượng"></div>
-                        <div class="full"><label class="tour-builder-field-label">Giá trị</label>
+                        <div class="full"><label class="tour-builder-field-label">Mô tả</label>
                             <input type="text" class="form-control" data-field="val" value="${escapeHtml(item.val || "")}" placeholder="3 ngày 2 đêm"></div>
                     </div>
                 </div>`;
