@@ -41,6 +41,8 @@ class TourCrudController extends CrudController
         CRUD::setValidation([
             'slug' => 'required|max:255|unique:tours,slug,' . request()->route('id'),
             'title' => 'required|max:255',
+            'itinerary' => 'nullable|json',
+            'includes' => 'nullable|json',
         ]);
 
         CRUD::field('destination_id')
@@ -65,8 +67,16 @@ class TourCrudController extends CrudController
         CRUD::field('tags')->label('Tags')->type('textarea')->hint('One tag per line or comma separated.')->tab('Marketing');
         CRUD::field('filters')->label('Filters')->type('textarea')->hint('Examples: 3n2d, 4n3d, sale.')->tab('Marketing');
         CRUD::field('departure_dates')->label('Departure dates')->type('textarea')->hint('One date per line.')->tab('Pricing');
-        CRUD::field('itinerary')->label('Itinerary')->type('summernote')->tab('Content');
-        CRUD::field('includes')->label('Includes')->type('summernote')->tab('Content');
+        CRUD::field('itinerary')
+            ->label('Itinerary JSON')
+            ->type('textarea')
+            ->hint('Example: [{"day":1,"title":"Day title","activities":["Activity 1"],"meals":["Lunch"]}]')
+            ->tab('Content');
+        CRUD::field('includes')
+            ->label('Includes JSON')
+            ->type('textarea')
+            ->hint('Example: [{"icon":"fa-bus","type":"tour","title":"Xe du lịch","detail":"Xe phục vụ theo lịch trình"}]')
+            ->tab('Content');
         CRUD::field('is_active')->label('Active')->type('boolean')->default(true)->tab('Settings');
         CRUD::field('is_featured')->label('Featured')->type('boolean')->default(false)->tab('Settings');
         CRUD::field('sort_order')->label('Sort order')->type('number')->default(0)->tab('Settings');

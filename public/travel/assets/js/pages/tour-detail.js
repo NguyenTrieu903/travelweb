@@ -70,12 +70,13 @@
         <div><div class="pkg-label">${item.label}</div><div class="pkg-val">${item.val}</div></div>
       </div>`).join(''));
 
-    setHTML('itin-wrap', buildItinerary(tour));
-    setText('inc-count', '7 hạng mục');
-    setHTML('components-grid', buildIncludes());
+    setHTML('itin-wrap', buildItinerary(tour.itinerary));
+    const includes = Array.isArray(tour.includes) ? tour.includes : [];
+    setText('inc-count', includes.length + ' hạng mục');
+    setHTML('components-grid', buildIncludes(includes));
     setHTML('sb-badges', buildBadges(tour, 'sb-badge'));
     setText('sb-old', tour.price ? fmt(Math.round(tour.price * 1.12)) + 'đ' : '');
-    setText('sb-new', tour.price ? fmt(tour.price) + 'đ' : 'Liên hệ');
+    setText('sb-new', displayPrice(tour));
 
     setText('rv-num', '4.9');
     setHTML('rv-stars', stars(4.9));
@@ -108,43 +109,41 @@
     return badge + `<span class="${className} best">${tour.price ? 'Giá tốt' : 'Thiết kế riêng'}</span>`;
   }
 
-  function buildItinerary(tour) {
-    const days = parseInt(tour.duration, 10) || 3;
-    const templates = [
-      { title: 'Khởi hành - Check-in điểm đến', acts: ['Đón khách tại điểm hẹn', 'Di chuyển đến điểm đến chính', 'Dùng bữa theo chương trình', 'Nhận phòng và nghỉ ngơi'], meals: ['Trưa', 'Tối'] },
-      { title: 'Tham quan - Trải nghiệm địa phương', acts: ['Tham quan các điểm nổi bật', 'Trải nghiệm ẩm thực địa phương', 'Tự do chụp ảnh và mua sắm', 'Giao lưu cùng đoàn vào buổi tối'], meals: ['Sáng', 'Trưa', 'Tối'] },
-      { title: 'Tự do khám phá - Kết thúc hành trình', acts: ['Ăn sáng tại khách sạn', 'Tự do khám phá hoặc mua quà', 'Làm thủ tục trả phòng', 'Đưa khách về điểm hẹn ban đầu'], meals: ['Sáng', 'Trưa'] }
-    ];
-    const list = Array.from({ length: Math.max(2, Math.min(days, 4)) }, (_, index) => templates[Math.min(index, templates.length - 1)]);
+  function buildItinerary(list) {
+    if (!Array.isArray(list) || !list.length) {
+      return '<div class="empty-state">Chưa có lịch trình cho tour này.</div>';
+    }
     return list.map((day, index) => `
       <div class="itin-day${index === 0 ? ' open' : ''}">
         <div class="itin-head">
-          <div class="itin-day-num">${index + 1}</div>
-          <div class="itin-day-title">Ngày ${index + 1}: ${day.title}</div>
+          <div class="itin-day-num">${day.day || index + 1}</div>
+          <div class="itin-day-title">Ngày ${day.day || index + 1}: ${day.title || ''}</div>
           <i class="fas fa-chevron-down itin-arrow"></i>
         </div>
         <div class="itin-body">
           <div class="itin-inner">
-            <ul class="itin-acts">${day.acts.map((item) => `<li><i class="fas fa-circle"></i>${item}</li>`).join('')}</ul>
-            <div class="itin-meals"><span class="meal-lbl">Bữa ăn:</span>${day.meals.map((meal) => `<span class="meal-tag">${meal}</span>`).join('')}</div>
+            <ul class="itin-acts">${arrayOf(day.activities || day.acts).map((item) => `<li><i class="fas fa-circle"></i>${item}</li>`).join('')}</ul>
+            <div class="itin-meals"><span class="meal-lbl">Bữa ăn:</span>${arrayOf(day.meals).map((meal) => `<span class="meal-tag">${meal}</span>`).join('')}</div>
           </div>
         </div>
       </div>`).join('');
   }
 
-  function buildIncludes() {
-    return [
-      ['fa-bus', 'Xe du lịch', 'Xe đời mới, điều hòa, phục vụ theo lịch trình'],
-      ['fa-hotel', 'Lưu trú', 'Khách sạn theo tiêu chuẩn gói tour'],
-      ['fa-utensils', 'Bữa ăn', 'Các bữa ăn ghi trong chương trình'],
-      ['fa-ticket-alt', 'Vé tham quan', 'Vé vào cổng các điểm theo lịch trình'],
-      ['fa-user-tie', 'Hướng dẫn viên', 'HDV tiếng Việt đồng hành cùng đoàn'],
-      ['fa-shield-alt', 'Bảo hiểm', 'Bảo hiểm du lịch theo quy định']
-    ].map((item) => `
+  function buildIncludes(items) {
+    if (!Array.isArray(items) || !items.length) {
+      return '<div class="empty-state">Chưa có thông tin dịch vụ bao gồm cho tour này.</div>';
+    }
+    return items.map((item) => {
+      const icon = item.icon || item[0] || 'fa-check';
+      const title = item.title || item[1] || String(item);
+      const detail = item.detail || item[2] || '';
+      const type = item.type || 'tour';
+      return `
       <div class="comp-card">
-        <div class="comp-icon tour"><i class="fas ${item[0]}"></i></div>
-        <div><div class="comp-title">${item[1]}</div><div class="comp-detail">${item[2]}</div></div>
-      </div>`).join('');
+        <div class="comp-icon ${type}"><i class="fas ${icon}"></i></div>
+        <div><div class="comp-title">${title}</div><div class="comp-detail">${detail}</div></div>
+      </div>`;
+    }).join('');
   }
 
   function renderRelated(current, tours) {
@@ -200,7 +199,7 @@
 
   function updateTotal() {
     if (!currentTour) return;
-    setText('sb-total', currentTour.price ? fmt(currentTour.price * guestCount) + 'đ' : 'Liên hệ');
+    setText('sb-total', currentTour.price ? fmt(currentTour.price * guestCount) + 'đ' : displayPrice(currentTour));
   }
 
   function openModal() {
@@ -262,6 +261,10 @@
   function fmt(value) {
     return parseInt(value, 10).toLocaleString('vi-VN');
   }
+  function displayPrice(tour) {
+    if (tour.price) return fmt(tour.price) + 'đ';
+    return tour.priceText || 'Liên hệ';
+  }
   function setText(id, value) {
     const el = document.getElementById(id);
     if (el) el.textContent = value;
@@ -278,6 +281,9 @@
     scope.querySelectorAll('[data-width]').forEach((bar) => {
       bar.style.width = bar.dataset.width + '%';
     });
+  }
+  function arrayOf(value) {
+    return Array.isArray(value) ? value : [];
   }
 
   if (document.readyState === 'loading') {

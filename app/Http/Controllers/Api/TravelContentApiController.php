@@ -170,6 +170,8 @@ class TravelContentApiController extends Controller
                 'dep' => $tour->departure,
                 'airline' => $tour->transport,
                 'dates' => $this->decode($tour->departure_dates),
+                'itinerary' => $this->decode($tour->itinerary),
+                'includes' => $this->decode($tour->includes),
                 'price' => $tour->price ? (float) $tour->price : null,
                 'priceText' => $tour->price_text,
             ])
