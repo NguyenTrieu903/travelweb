@@ -47,6 +47,11 @@ class Tour extends Model
         return $this->belongsTo(Destination::class);
     }
 
+    public function getDestinationNameAttribute(): ?string
+    {
+        return $this->destination?->name;
+    }
+
     public function bookingRequests(): HasMany
     {
         return $this->hasMany(BookingRequest::class);

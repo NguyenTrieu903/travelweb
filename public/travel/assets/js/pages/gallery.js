@@ -12,7 +12,7 @@
 
     grid.innerHTML = items.map((it, i) => `
       <div class="m-item" data-cat="${it.cat}" data-idx="${i}" data-delay="${i * 40}">
-        <img src="${base}${it.src}" alt="${escapeAttr(it.title)}">
+        <img src="${assetUrl(it.src, base)}" alt="${escapeAttr(it.title)}">
         <div class="m-item-ov"></div>
         <div class="m-item-info">
           <div class="m-item-cat">${it.catLabel}</div>
@@ -45,7 +45,7 @@
       const lbItems = visible.map((el) => {
         const i = parseInt(el.dataset.idx, 10);
         const data = items[i];
-        return { src: base + data.src, caption: data.catLabel + ' · ' + data.title };
+        return { src: assetUrl(data.src, base), caption: data.catLabel + ' · ' + data.title };
       });
       if (window.SaigonLightbox) window.SaigonLightbox.open(lbItems, start);
     });
@@ -65,6 +65,12 @@
   }
 
   function escapeAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+  function assetUrl(value, base) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return base + raw;
+  }
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);

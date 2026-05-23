@@ -24,7 +24,7 @@
     const info   = document.getElementById('fv-info');
     if (player) {
       player.innerHTML = `
-        <img src="${base}${f.thumb}" alt="${escapeAttr(f.title)}">
+        <img src="${assetUrl(f.thumb, base)}" alt="${escapeAttr(f.title)}">
         <button class="fv-play" type="button" aria-label="Play"><i class="fas fa-play"></i></button>`;
       player.addEventListener('click', () => openVideo(f.src, f.title, f.cat, false));
     }
@@ -55,7 +55,7 @@
       return `
         <div class="vcard" data-cat="${v.cat}" data-idx="${i}" data-delay="${i * 60}">
           <div class="vc-thumb">
-            <img src="${base}${v.thumb}" alt="${escapeAttr(v.title)}" data-fallback="${escapeAttr(v.thumbFb || '')}">
+            <img src="${assetUrl(v.thumb, base)}" alt="${escapeAttr(v.title)}" data-fallback="${escapeAttr(v.thumbFb || '')}">
             ${badge}
             ${dur}
             <button class="vc-play" type="button"><i class="fas fa-play"></i></button>
@@ -80,7 +80,7 @@
       const card = e.target.closest('.vcard');
       if (!card) return;
       const v = list[parseInt(card.dataset.idx, 10)];
-      const src = v.local ? (base + v.src) : v.src;
+      const src = v.local ? assetUrl(v.src, base) : v.src;
       openVideo(src, v.title, v.catLabel, !!v.local);
     });
   }
@@ -154,6 +154,12 @@
   }
 
   function escapeAttr(s) { return String(s).replace(/"/g, '&quot;'); }
+  function assetUrl(value, base) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return base + raw;
+  }
   function bindImageFallbacks(scope) {
     scope.querySelectorAll('img[data-fallback]').forEach((img) => {
       img.addEventListener('error', () => {

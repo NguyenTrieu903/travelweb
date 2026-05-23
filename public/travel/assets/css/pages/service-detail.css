@@ -3,26 +3,18 @@
    ========================= */
 body.page-service-detail { background: var(--gy); }
 
-.page-service-detail .breadcrumb {
-  background: var(--wh);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  padding: 12px 0;
-  margin-top: 68px;
-}
-body.bar-on.page-service-detail .breadcrumb { margin-top: 110px; padding-top: 0; }
+.page-service-detail .breadcrumb { display: none; }
 .page-service-detail .bc-inner { color: var(--tl); }
 .page-service-detail .bc-inner a { color: var(--tl); }
 .page-service-detail .bc-inner a:hover { color: var(--or); }
 .page-service-detail .bc-inner i { color: #ccc; }
 .page-service-detail .bc-current { color: var(--tx); font-weight: 600; }
 
-.svc-hero { position: relative; height: 460px; overflow: hidden; background: var(--nv); }
-.svc-hero .hero-img { width: 100%; height: 100%; object-fit: cover; opacity: .75; }
-.svc-hero .hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(27,42,74,.88) 0%, rgba(27,42,74,.2) 60%, transparent 100%);
-}
-.svc-hero .hero-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 40px 48px; }
+.svc-hero { position: relative; height: clamp(280px, 36vw, 560px); margin-top: 68px; overflow: hidden; background: var(--nv); }
+.svc-hero .hero-img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center center; opacity: 1; }
+.svc-hero .hero-overlay,
+.svc-hero .hero-content { display: none; }
+body.bar-on.page-service-detail .svc-hero { margin-top: 110px; }
 .svc-hero .hero-badge {
   display: inline-flex; align-items: center; gap: 7px;
   background: var(--or); color: #fff;
@@ -40,14 +32,14 @@ body.bar-on.page-service-detail .breadcrumb { margin-top: 110px; padding-top: 0;
 }
 .svc-hero .hero-sub { font-size: .95rem; color: rgba(255,255,255,.8); max-width: 680px; line-height: 1.7; }
 @media (max-width: 768px) {
-  .svc-hero { height: 300px; }
+  .svc-hero { height: clamp(240px, 58vw, 380px); }
   .svc-hero .hero-content { padding: 18px 16px; }
   .svc-hero .hero-title { font-size: 1.3rem; }
   .svc-hero .hero-sub { font-size: .82rem; }
   .svc-hero .hero-badge { font-size: .65rem; padding: 5px 11px; }
 }
 @media (max-width: 480px) {
-  .svc-hero { height: 240px; }
+  .svc-hero { height: clamp(220px, 72vw, 340px); }
   .svc-hero .hero-title { font-size: 1.18rem; }
   .svc-hero .hero-sub { display: none; }
 }

@@ -34,7 +34,7 @@
 
     const heroImg = document.getElementById('hero-img');
     if (heroImg) {
-      heroImg.src = basePath + service.img;
+      heroImg.src = assetUrl(service.img);
       heroImg.alt = service.name;
       heroImg.addEventListener('error', () => {
         heroImg.parentElement.style.background = service.imgFallback || 'linear-gradient(135deg,#1B2A4A,#E85D04)';
@@ -90,7 +90,7 @@
       </div>`).join(''));
     setHTML('rel-grid', Object.values(services).filter((item) => item.id !== service.id).map((item) => `
       <article class="svc-rel-card" data-id="${item.id}">
-        <div class="svc-rel-img"><img src="${basePath}${item.img}" alt="${escapeAttr(item.name)}"></div>
+        <div class="svc-rel-img"><img src="${assetUrl(item.img)}" alt="${escapeAttr(item.name)}"></div>
         <div class="svc-rel-body">
           <div class="svc-rel-name">${item.name}</div>
           <span class="svc-rel-tag">${item.badge}</span>
@@ -207,6 +207,12 @@
   }
   function escapeAttr(value) {
     return String(value).replace(/"/g, '&quot;');
+  }
+  function assetUrl(value) {
+    const raw = String(value || '');
+    if (!raw) return '';
+    if (/^(https?:)?\/\//i.test(raw) || raw.startsWith('/')) return raw;
+    return basePath + raw;
   }
 
   if (document.readyState === 'loading') {

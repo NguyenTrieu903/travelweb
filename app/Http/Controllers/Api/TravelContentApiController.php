@@ -136,6 +136,7 @@ class TravelContentApiController extends Controller
     {
         $destCfg = Destination::query()
             ->where('is_active', true)
+            ->withCount(['tours' => fn ($q) => $q->where('is_active', true)])
             ->orderBy('sort_order')
             ->orderBy('name')
             ->get()
@@ -144,6 +145,7 @@ class TravelContentApiController extends Controller
                     'label' => $destination->name,
                     'tag' => $destination->tag,
                     'sub' => $destination->subtitle,
+                    'tourCount' => $destination->tours_count,
                 ],
             ])
             ->all();
@@ -157,7 +159,11 @@ class TravelContentApiController extends Controller
             ->map(fn (Tour $tour) => [
                 'id' => $tour->slug,
                 'dest' => array_values(array_filter([$tour->destination?->slug])),
+                'destName' => $tour->destination?->name,
                 'title' => $tour->title,
+                'summary' => $tour->summary,
+                'description' => $tour->description,
+                'desc' => $tour->description,
                 'img' => $tour->image_url,
                 'imgFb' => 'linear-gradient(135deg,#219EBC,#1B2A4A)',
                 'duration' => $tour->duration,
@@ -170,6 +176,8 @@ class TravelContentApiController extends Controller
                 'dep' => $tour->departure,
                 'airline' => $tour->transport,
                 'dates' => $this->decode($tour->departure_dates),
+                'itinerary' => $this->decode($tour->itinerary),
+                'includes' => $this->decode($tour->includes),
                 'price' => $tour->price ? (float) $tour->price : null,
                 'priceText' => $tour->price_text,
             ])
