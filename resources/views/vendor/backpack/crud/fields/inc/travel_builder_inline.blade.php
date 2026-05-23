@@ -101,9 +101,9 @@
                     controlsHtml(!isHeader) +
                 '</div>' +
                 '<div class="tour-builder-card-body"><div class="tour-builder-grid">' +
-                    '<div><label class="tour-builder-field-label">Dịch vụ</label><input type="text" class="form-control" data-col="0" value="' + esc(row[0] || '') + '" placeholder="Nhập loại dịch vụ"></div>' +
-                    '<div><label class="tour-builder-field-label">Đặt lẻ từng phần</label><input type="text" class="form-control" data-col="1" value="' + esc(row[1] || '') + '" placeholder="Nhập giá đặt lẻ"></div>' +
-                    '<div class="full"><label class="tour-builder-field-label">Combo SaigonTeam</label><input type="text" class="form-control" data-col="2" value="' + esc(row[2] || '') + '" placeholder="Nhập giá combo"></div>' +
+                    '<div><label class="tour-builder-field-label">Dịch vụ</label><input type="text" class="form-control" data-col="0" value="' + esc(row[0] || '') + '" placeholder="' + (isHeader ? 'Hạng mục' : 'Nhập loại dịch vụ') + '"></div>' +
+                    '<div><label class="tour-builder-field-label">Đặt lẻ từng phần</label><input type="text" class="form-control" data-col="1" value="' + esc(row[1] || '') + '" placeholder="' + (isHeader ? 'Đặt lẻ' : 'Nhập giá đặt lẻ') + '"></div>' +
+                    '<div class="full"><label class="tour-builder-field-label">Combo SaigonTeam</label><input type="text" class="form-control" data-col="2" value="' + esc(row[2] || '') + '" placeholder="' + (isHeader ? 'Combo' : 'Nhập giá combo') + '"></div>' +
                 '</div></div>';
             }
 
@@ -185,7 +185,7 @@
 
                     var items = read(storage);
                     if (!items.length) {
-                        items.push(['Hạng mục', 'Đặt lẻ', 'Combo']);
+                        items.push(['', '', '']);
                         write(storage, items);
                     }
 
